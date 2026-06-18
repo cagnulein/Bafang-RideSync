@@ -7,7 +7,7 @@
      confirmed to support BLE Central (Toybox.BluetoothLowEnergy) at minApiVersion 3.4.0.
      Verify the exact product IDs against your installed SDK's devices/ folder.
 -->
-<iq:manifest xmlns:iq="com.garmin.iq" version="3">
+<iq:manifest xmlns:iq="http://www.garmin.com/xml/connectiq" version="3">
     <iq:application
         entry="BafangRideSyncApp"
         id="1c04cde9-379e-4b0e-b220-3a441c72baa5"
