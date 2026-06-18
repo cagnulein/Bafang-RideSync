@@ -9,6 +9,12 @@ class BafangRideSyncApp extends Application.AppBase {
     // Flip back to false before sideloading on a real device.
     static const SIMULATE as Boolean = false;
 
+    // Set to true to skip name-based BLE scan and connect directly to
+    // DIRECT_CONNECT_ADDRESS. Useful for bench testing with a known device.
+    // Set to false to use normal name-based discovery (DEVICE_NAME filter).
+    static const DIRECT_CONNECT as Boolean = true;
+    static const DIRECT_CONNECT_ADDRESS as String = "70:de:f9:d6:ab:5f";
+
     private static var _data as BafangData = new BafangData();
 
     function initialize() {

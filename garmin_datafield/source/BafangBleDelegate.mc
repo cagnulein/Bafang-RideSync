@@ -71,11 +71,30 @@ class BafangBleDelegate extends Ble.BleDelegate {
         }
     }
 
-    // Called by the View to start scanning.
+    // Called by the View to start scanning (or direct-connect if DIRECT_CONNECT).
     function startScan() as Void {
         if (_state != STATE_IDLE && _state != STATE_ERROR) { return; }
+        if (BafangRideSyncApp.DIRECT_CONNECT && _tryConnectBonded()) { return; }
         _setState(STATE_SCANNING);
         Ble.setScanState(Ble.SCAN_STATE_SCANNING);
+    }
+
+    // Try to connect directly using a previously bonded ScanResult by address.
+    // Returns true if the device was found and pairDevice() was called.
+    private function _tryConnectBonded() as Boolean {
+        var iter = Ble.getBondedDevices();
+        var item = iter.next();
+        while (item != null) {
+            var sr = item as Ble.ScanResult;
+            if (sr.hasAddress(BafangRideSyncApp.DIRECT_CONNECT_ADDRESS)) {
+                _setState(STATE_CONNECTING);
+                BafangRideSyncApp.getData().bleStatus = "BOND";
+                Ble.pairDevice(sr);
+                return true;
+            }
+            item = iter.next();
+        }
+        return false;
     }
 
     // ── BLE callbacks ─────────────────────────────────────────────────────
@@ -84,8 +103,11 @@ class BafangBleDelegate extends Ble.BleDelegate {
         var result = scanResults.next();
         while (result != null) {
             var scanResult = result as Ble.ScanResult;
-            var name = scanResult.getDeviceName();
-            if (name != null && name.find(DEVICE_NAME) != null) {
+            var match = BafangRideSyncApp.DIRECT_CONNECT
+                ? scanResult.hasAddress(BafangRideSyncApp.DIRECT_CONNECT_ADDRESS)
+                : (scanResult.getDeviceName() != null &&
+                   (scanResult.getDeviceName() as String).find(DEVICE_NAME) != null);
+            if (match) {
                 Ble.setScanState(Ble.SCAN_STATE_OFF);
                 _setState(STATE_CONNECTING);
                 Ble.pairDevice(scanResult);
