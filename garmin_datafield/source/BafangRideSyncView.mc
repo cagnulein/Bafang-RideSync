@@ -1,7 +1,7 @@
 import Toybox.Activity;
-import Toybox.BluetoothLowEnergy as Ble;
+using Toybox.BluetoothLowEnergy as Ble;
 import Toybox.FitContributor;
-import Toybox.Graphics as Gfx;
+using Toybox.Graphics as Gfx;
 import Toybox.Lang;
 import Toybox.System;
 import Toybox.WatchUi;

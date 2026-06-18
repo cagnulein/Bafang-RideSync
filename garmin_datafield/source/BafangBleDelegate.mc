@@ -1,4 +1,4 @@
-import Toybox.BluetoothLowEnergy as Ble;
+using Toybox.BluetoothLowEnergy as Ble;
 import Toybox.Lang;
 import Toybox.System;
 import Toybox.Time;
