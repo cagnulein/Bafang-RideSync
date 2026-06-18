@@ -1,0 +1,724 @@
+Frame 46325: Packet, 29 bytes on wire (232 bits), 29 bytes captured (232 bits)
+    Encapsulation type: Apple Bluetooth PacketLogger (118)
+    Arrival Time: Jun 18, 2026 13:23:26.946000000 ora legale Europa occidentale
+    UTC Arrival Time: Jun 18, 2026 11:23:26.946000000 UTC
+    Epoch Arrival Time: 1781781806.946000000
+    [Time shift for this packet: 0.000000000 seconds]
+    [Time delta from previous captured frame: 2.000000 milliseconds]
+    [Time since reference or first frame: 5 hours, 14 minutes, 30.221000000 seconds]
+    Frame Number: 46325
+    Frame Length: 29 bytes (232 bits)
+    Capture Length: 29 bytes (232 bits)
+    [Frame is marked: False]
+    [Frame is ignored: False]
+    [Protocols in frame: bluetooth:packetlogger:bthci_acl:btl2cap:btatt]
+    Character encoding: ASCII (0)
+Bluetooth
+    [Source: FaiWahIntern_d6:ab:5f (70:de:f9:d6:ab:5f)]
+    [Destination: 00:00:00_00:00:00 (00:00:00:00:00:00)]
+PacketLogger Recv ACL Data
+    Type: Recv ACL Data (0x03)
+Bluetooth HCI ACL Packet
+    .... 0100 0000 0010 = Connection Handle: 0x402
+    ..01 .... .... .... = PB Flag: Continuing Fragment (1)
+    00.. .... .... .... = BC Flag: Point-To-Point (0)
+    Data Total Length: 24
+    [This is a continuation to the PDU in frame: 46324]
+    Data Fragment
+    [Connect in frame: 46204]
+    [Disconnect in frame: 47411]
+    [Source BD_ADDR: FaiWahIntern_d6:ab:5f (70:de:f9:d6:ab:5f)]
+    [Source Device Name: ]
+    [Source Role: Unknown (0)]
+    [Destination BD_ADDR: 00:00:00_00:00:00 (00:00:00:00:00:00)]
+    [Destination Device Name: ]
+    [Destination Role: Unknown (0)]
+    [Current Mode: Unknown (-1)]
+Bluetooth L2CAP Protocol
+    Length: 44
+    CID: Attribute Protocol (0x0004)
+Bluetooth Attribute Protocol
+    Opcode: Read By Type Response (0x09)
+        0... .... = Authentication Signature: False
+        .0.. .... = Command: False
+        ..00 1001 = Method: Read By Type Response (0x09)
+    Length: 21
+    Attribute Data, Handle: 0x0101, Characteristic Handle: 0x0102, UUID128: Nordic UART Tx
+        Handle: 0x0101 (Unknown: Characteristic)
+            [Service UUID: 7dfc90007d1c495186aa8d9728f8d66c]
+            [UUID: Characteristic (0x2803)]
+        Characteristic Properties: 0x0a, Write, Read
+            0... .... = Extended Properties: False
+            .0.. .... = Authenticated Signed Writes: False
+            ..0. .... = Indicate: False
+            ...0 .... = Notify: False
+            .... 1... = Write: True
+            .... .0.. = Write without Response: False
+            .... ..1. = Read: True
+            .... ...0 = Broadcast: False
+        Characteristic Value Handle: 0x0102 (Unknown: Nordic UART Tx)
+            [Service UUID: 7dfc90007d1c495186aa8d9728f8d66c]
+            [UUID: 6e400002b5a3f393e0a9e50e24dcca9e]
+        UUID: 9ecadc240ee5a9e093f3a3b50200406e
+    Attribute Data, Handle: 0x0103, Characteristic Handle: 0x0104, UUID128: Nordic UART Rx
+        Handle: 0x0103 (Unknown: Nordic UART Tx: Characteristic)
+            [Service UUID: 7dfc90007d1c495186aa8d9728f8d66c]
+            [Characteristic UUID: 6e400002b5a3f393e0a9e50e24dcca9e]
+            [UUID: Characteristic (0x2803)]
+        Characteristic Properties: 0x10, Notify
+            0... .... = Extended Properties: False
+            .0.. .... = Authenticated Signed Writes: False
+            ..0. .... = Indicate: False
+            ...1 .... = Notify: True
+            .... 0... = Write: False
+            .... .0.. = Write without Response: False
+            .... ..0. = Read: False
+            .... ...0 = Broadcast: False
+        Characteristic Value Handle: 0x0104 (Unknown: Nordic UART Rx)
+            [Service UUID: 7dfc90007d1c495186aa8d9728f8d66c]
+            [UUID: 6e400003b5a3f393e0a9e50e24dcca9e]
+        UUID: 9ecadc240ee5a9e093f3a3b50300406e
+    [UUID: Characteristic (0x2803)]
+    [Request in Frame: 46318]
+
+Packet (29 bytes):
+0000  03 02 14 18 00 00 40 6e 03 01 10 04 01 9e ca dc   ......@n........
+0010  24 0e e5 a9 e0 93 f3 a3 b5 03 00 40 6e            $..........@n
+Reassembled BTHCI ACL (48 bytes):
+0000  2c 00 04 00 09 15 01 01 0a 02 01 9e ca dc 24 0e   ,.............$.
+0010  e5 a9 e0 93 f3 a3 b5 02 00 40 6e 03 01 10 04 01   .........@n.....
+0020  9e ca dc 24 0e e5 a9 e0 93 f3 a3 b5 03 00 40 6e   ...$..........@n
+
+Frame 46336: Packet, 22 bytes on wire (176 bits), 22 bytes captured (176 bits)
+    Encapsulation type: Apple Bluetooth PacketLogger (118)
+    Arrival Time: Jun 18, 2026 13:23:27.064000000 ora legale Europa occidentale
+    UTC Arrival Time: Jun 18, 2026 11:23:27.064000000 UTC
+    Epoch Arrival Time: 1781781807.064000000
+    [Time shift for this packet: 0.000000000 seconds]
+    [Time delta from previous captured frame: 0.000000000 seconds]
+    [Time delta from previous displayed frame: 118.000000 milliseconds]
+    [Time since reference or first frame: 5 hours, 14 minutes, 30.339000000 seconds]
+    Frame Number: 46336
+    Frame Length: 22 bytes (176 bits)
+    Capture Length: 22 bytes (176 bits)
+    [Frame is marked: False]
+    [Frame is ignored: False]
+    [Protocols in frame: bluetooth:packetlogger:bthci_acl:btl2cap:btatt:btgatt]
+    Character encoding: ASCII (0)
+Bluetooth
+    [Source: 00:00:00_00:00:00 (00:00:00:00:00:00)]
+    [Destination: FaiWahIntern_d6:ab:5f (70:de:f9:d6:ab:5f)]
+PacketLogger Sent ACL Data
+    Type: Sent ACL Data (0x02)
+Bluetooth HCI ACL Packet
+    .... 0100 0000 0010 = Connection Handle: 0x402
+    ..00 .... .... .... = PB Flag: First Non-automatically Flushable Packet (0)
+    00.. .... .... .... = BC Flag: Point-To-Point (0)
+    Data Total Length: 17
+    Data
+    [Connect in frame: 46204]
+    [Disconnect in frame: 47411]
+    [Source BD_ADDR: 00:00:00_00:00:00 (00:00:00:00:00:00)]
+    [Source Device Name: ]
+    [Source Role: Unknown (0)]
+    [Destination BD_ADDR: FaiWahIntern_d6:ab:5f (70:de:f9:d6:ab:5f)]
+    [Destination Device Name: ]
+    [Destination Role: Unknown (0)]
+    [Current Mode: Unknown (-1)]
+Bluetooth L2CAP Protocol
+    Length: 13
+    CID: Attribute Protocol (0x0004)
+Bluetooth Attribute Protocol
+    Opcode: Write Request (0x12)
+        0... .... = Authentication Signature: False
+        .0.. .... = Command: False
+        ..01 0010 = Method: Write Request (0x12)
+    Handle: 0x0102 (Unknown: Nordic UART Tx)
+        [Service UUID: 7dfc90007d1c495186aa8d9728f8d66c]
+        [UUID: 6e400002b5a3f393e0a9e50e24dcca9e]
+    UART Tx: U?\x01\x11\x10\x01
+        [Expert Info (Warning/Undecoded): Trailing stray characters]
+            [Trailing stray characters]
+            [Severity level: Warning]
+            [Group: Undecoded]
+
+0000  02 02 04 11 00 0d 00 04 00 12 02 01 55 aa 01 11   ............U...
+0010  10 01 00 04 d8 ff                                 ......
+
+Frame 46342: Packet, 37 bytes on wire (296 bits), 37 bytes captured (296 bits)
+    Encapsulation type: Apple Bluetooth PacketLogger (118)
+    Arrival Time: Jun 18, 2026 13:23:27.140000000 ora legale Europa occidentale
+    UTC Arrival Time: Jun 18, 2026 11:23:27.140000000 UTC
+    Epoch Arrival Time: 1781781807.140000000
+    [Time shift for this packet: 0.000000000 seconds]
+    [Time delta from previous captured frame: 15.000000 milliseconds]
+    [Time delta from previous displayed frame: 76.000000 milliseconds]
+    [Time since reference or first frame: 5 hours, 14 minutes, 30.415000000 seconds]
+    Frame Number: 46342
+    Frame Length: 37 bytes (296 bits)
+    Capture Length: 37 bytes (296 bits)
+    [Frame is marked: False]
+    [Frame is ignored: False]
+    [Protocols in frame: bluetooth:packetlogger:bthci_acl:btl2cap:btatt:btgatt]
+    Character encoding: ASCII (0)
+Bluetooth
+    [Source: 00:00:00_00:00:00 (00:00:00:00:00:00)]
+    [Destination: FaiWahIntern_d6:ab:5f (70:de:f9:d6:ab:5f)]
+PacketLogger Sent ACL Data
+    Type: Sent ACL Data (0x02)
+Bluetooth HCI ACL Packet
+    .... 0100 0000 0010 = Connection Handle: 0x402
+    ..00 .... .... .... = PB Flag: First Non-automatically Flushable Packet (0)
+    00.. .... .... .... = BC Flag: Point-To-Point (0)
+    Data Total Length: 32
+    Data
+    [Connect in frame: 46204]
+    [Disconnect in frame: 47411]
+    [Source BD_ADDR: 00:00:00_00:00:00 (00:00:00:00:00:00)]
+    [Source Device Name: ]
+    [Source Role: Unknown (0)]
+    [Destination BD_ADDR: FaiWahIntern_d6:ab:5f (70:de:f9:d6:ab:5f)]
+    [Destination Device Name: ]
+    [Destination Role: Unknown (0)]
+    [Current Mode: Unknown (-1)]
+Bluetooth L2CAP Protocol
+    Length: 28
+    CID: Attribute Protocol (0x0004)
+Bluetooth Attribute Protocol
+    Opcode: Write Request (0x12)
+        0... .... = Authentication Signature: False
+        .0.. .... = Command: False
+        ..01 0010 = Method: Write Request (0x12)
+    Handle: 0x0102 (Unknown: Nordic UART Tx)
+        [Service UUID: 7dfc90007d1c495186aa8d9728f8d66c]
+        [UUID: 6e400002b5a3f393e0a9e50e24dcca9e]
+    UART Tx: U?\x10\x11\x10 
+        [Expert Info (Warning/Undecoded): Trailing stray characters]
+            [Trailing stray characters]
+            [Severity level: Warning]
+            [Group: Undecoded]
+
+0000  02 02 04 20 00 1c 00 04 00 12 02 01 55 aa 10 11   ... ........U...
+0010  10 20 00 ac 8f 09 2a fb aa 90 e7 92 c9 f8 dc ff   . ....*.........
+0020  88 6d 58 a9 f5                                    .mX..
+
+Frame 46348: Packet, 22 bytes on wire (176 bits), 22 bytes captured (176 bits)
+    Encapsulation type: Apple Bluetooth PacketLogger (118)
+    Arrival Time: Jun 18, 2026 13:23:27.215000000 ora legale Europa occidentale
+    UTC Arrival Time: Jun 18, 2026 11:23:27.215000000 UTC
+    Epoch Arrival Time: 1781781807.215000000
+    [Time shift for this packet: 0.000000000 seconds]
+    [Time delta from previous captured frame: 1.000000 milliseconds]
+    [Time delta from previous displayed frame: 75.000000 milliseconds]
+    [Time since reference or first frame: 5 hours, 14 minutes, 30.490000000 seconds]
+    Frame Number: 46348
+    Frame Length: 22 bytes (176 bits)
+    Capture Length: 22 bytes (176 bits)
+    [Frame is marked: False]
+    [Frame is ignored: False]
+    [Protocols in frame: bluetooth:packetlogger:bthci_acl:btl2cap:btatt:btgatt]
+    Character encoding: ASCII (0)
+Bluetooth
+    [Source: 00:00:00_00:00:00 (00:00:00:00:00:00)]
+    [Destination: FaiWahIntern_d6:ab:5f (70:de:f9:d6:ab:5f)]
+PacketLogger Sent ACL Data
+    Type: Sent ACL Data (0x02)
+Bluetooth HCI ACL Packet
+    .... 0100 0000 0010 = Connection Handle: 0x402
+    ..00 .... .... .... = PB Flag: First Non-automatically Flushable Packet (0)
+    00.. .... .... .... = BC Flag: Point-To-Point (0)
+    Data Total Length: 17
+    Data
+    [Connect in frame: 46204]
+    [Disconnect in frame: 47411]
+    [Source BD_ADDR: 00:00:00_00:00:00 (00:00:00:00:00:00)]
+    [Source Device Name: ]
+    [Source Role: Unknown (0)]
+    [Destination BD_ADDR: FaiWahIntern_d6:ab:5f (70:de:f9:d6:ab:5f)]
+    [Destination Device Name: ]
+    [Destination Role: Unknown (0)]
+    [Current Mode: Unknown (-1)]
+Bluetooth L2CAP Protocol
+    Length: 13
+    CID: Attribute Protocol (0x0004)
+Bluetooth Attribute Protocol
+    Opcode: Write Request (0x12)
+        0... .... = Authentication Signature: False
+        .0.. .... = Command: False
+        ..01 0010 = Method: Write Request (0x12)
+    Handle: 0x0102 (Unknown: Nordic UART Tx)
+        [Service UUID: 7dfc90007d1c495186aa8d9728f8d66c]
+        [UUID: 6e400002b5a3f393e0a9e50e24dcca9e]
+    UART Tx: U?\x01\x11?\x01\x18\x18\x17?
+
+0000  02 02 04 11 00 0d 00 04 00 12 02 01 55 aa 01 11   ............U...
+0010  a5 01 18 18 17 ff                                 ......
+
+Frame 46376: Packet, 22 bytes on wire (176 bits), 22 bytes captured (176 bits)
+    Encapsulation type: Apple Bluetooth PacketLogger (118)
+    Arrival Time: Jun 18, 2026 13:23:27.754000000 ora legale Europa occidentale
+    UTC Arrival Time: Jun 18, 2026 11:23:27.754000000 UTC
+    Epoch Arrival Time: 1781781807.754000000
+    [Time shift for this packet: 0.000000000 seconds]
+    [Time delta from previous captured frame: 0.000000000 seconds]
+    [Time delta from previous displayed frame: 539.000000 milliseconds]
+    [Time since reference or first frame: 5 hours, 14 minutes, 31.029000000 seconds]
+    Frame Number: 46376
+    Frame Length: 22 bytes (176 bits)
+    Capture Length: 22 bytes (176 bits)
+    [Frame is marked: False]
+    [Frame is ignored: False]
+    [Protocols in frame: bluetooth:packetlogger:bthci_acl:btl2cap:btatt:btgatt]
+    Character encoding: ASCII (0)
+Bluetooth
+    [Source: 00:00:00_00:00:00 (00:00:00:00:00:00)]
+    [Destination: FaiWahIntern_d6:ab:5f (70:de:f9:d6:ab:5f)]
+PacketLogger Sent ACL Data
+    Type: Sent ACL Data (0x02)
+Bluetooth HCI ACL Packet
+    .... 0100 0000 0010 = Connection Handle: 0x402
+    ..00 .... .... .... = PB Flag: First Non-automatically Flushable Packet (0)
+    00.. .... .... .... = BC Flag: Point-To-Point (0)
+    Data Total Length: 17
+    Data
+    [Connect in frame: 46204]
+    [Disconnect in frame: 47411]
+    [Source BD_ADDR: 00:00:00_00:00:00 (00:00:00:00:00:00)]
+    [Source Device Name: ]
+    [Source Role: Unknown (0)]
+    [Destination BD_ADDR: FaiWahIntern_d6:ab:5f (70:de:f9:d6:ab:5f)]
+    [Destination Device Name: ]
+    [Destination Role: Unknown (0)]
+    [Current Mode: Unknown (-1)]
+Bluetooth L2CAP Protocol
+    Length: 13
+    CID: Attribute Protocol (0x0004)
+Bluetooth Attribute Protocol
+    Opcode: Write Request (0x12)
+        0... .... = Authentication Signature: False
+        .0.. .... = Command: False
+        ..01 0010 = Method: Write Request (0x12)
+    Handle: 0x0102 (Unknown: Nordic UART Tx)
+        [Service UUID: 7dfc90007d1c495186aa8d9728f8d66c]
+        [UUID: 6e400002b5a3f393e0a9e50e24dcca9e]
+    UART Tx: U?\x01\x11?\x01\x01\x1A??
+
+0000  02 02 04 11 00 0d 00 04 00 12 02 01 55 aa 01 11   ............U...
+0010  f1 01 01 1a e0 fe                                 ......
+
+Frame 46385: Packet, 25 bytes on wire (200 bits), 25 bytes captured (200 bits)
+    Encapsulation type: Apple Bluetooth PacketLogger (118)
+    Arrival Time: Jun 18, 2026 13:23:27.828000000 ora legale Europa occidentale
+    UTC Arrival Time: Jun 18, 2026 11:23:27.828000000 UTC
+    Epoch Arrival Time: 1781781807.828000000
+    [Time shift for this packet: 0.000000000 seconds]
+    [Time delta from previous captured frame: 13.000000 milliseconds]
+    [Time delta from previous displayed frame: 74.000000 milliseconds]
+    [Time since reference or first frame: 5 hours, 14 minutes, 31.103000000 seconds]
+    Frame Number: 46385
+    Frame Length: 25 bytes (200 bits)
+    Capture Length: 25 bytes (200 bits)
+    [Frame is marked: False]
+    [Frame is ignored: False]
+    [Protocols in frame: bluetooth:packetlogger:bthci_acl:btl2cap:btatt:btgatt]
+    Character encoding: ASCII (0)
+Bluetooth
+    [Source: 00:00:00_00:00:00 (00:00:00:00:00:00)]
+    [Destination: FaiWahIntern_d6:ab:5f (70:de:f9:d6:ab:5f)]
+PacketLogger Sent ACL Data
+    Type: Sent ACL Data (0x02)
+Bluetooth HCI ACL Packet
+    .... 0100 0000 0010 = Connection Handle: 0x402
+    ..00 .... .... .... = PB Flag: First Non-automatically Flushable Packet (0)
+    00.. .... .... .... = BC Flag: Point-To-Point (0)
+    Data Total Length: 20
+    Data
+    [Connect in frame: 46204]
+    [Disconnect in frame: 47411]
+    [Source BD_ADDR: 00:00:00_00:00:00 (00:00:00:00:00:00)]
+    [Source Device Name: ]
+    [Source Role: Unknown (0)]
+    [Destination BD_ADDR: FaiWahIntern_d6:ab:5f (70:de:f9:d6:ab:5f)]
+    [Destination Device Name: ]
+    [Destination Role: Unknown (0)]
+    [Current Mode: Unknown (-1)]
+Bluetooth L2CAP Protocol
+    Length: 16
+    CID: Attribute Protocol (0x0004)
+Bluetooth Attribute Protocol
+    Opcode: Write Request (0x12)
+        0... .... = Authentication Signature: False
+        .0.. .... = Command: False
+        ..01 0010 = Method: Write Request (0x12)
+    Handle: 0x0102 (Unknown: Nordic UART Tx)
+        [Service UUID: 7dfc90007d1c495186aa8d9728f8d66c]
+        [UUID: 6e400002b5a3f393e0a9e50e24dcca9e]
+    UART Tx: U?\x04\x11\x10\x02>\x0F?3j5?
+
+0000  02 02 04 14 00 10 00 04 00 12 02 01 55 aa 04 11   ............U...
+0010  10 02 3e 0f b9 33 6a 35 fe                        ..>..3j5.
+
+Frame 46391: Packet, 25 bytes on wire (200 bits), 25 bytes captured (200 bits)
+    Encapsulation type: Apple Bluetooth PacketLogger (118)
+    Arrival Time: Jun 18, 2026 13:23:27.874000000 ora legale Europa occidentale
+    UTC Arrival Time: Jun 18, 2026 11:23:27.874000000 UTC
+    Epoch Arrival Time: 1781781807.874000000
+    [Time shift for this packet: 0.000000000 seconds]
+    [Time delta from previous captured frame: 0.000000000 seconds]
+    [Time delta from previous displayed frame: 46.000000 milliseconds]
+    [Time since reference or first frame: 5 hours, 14 minutes, 31.149000000 seconds]
+    Frame Number: 46391
+    Frame Length: 25 bytes (200 bits)
+    Capture Length: 25 bytes (200 bits)
+    [Frame is marked: False]
+    [Frame is ignored: False]
+    [Protocols in frame: bluetooth:packetlogger:bthci_acl:btl2cap:btatt:btgatt]
+    Character encoding: ASCII (0)
+Bluetooth
+    [Source: 00:00:00_00:00:00 (00:00:00:00:00:00)]
+    [Destination: FaiWahIntern_d6:ab:5f (70:de:f9:d6:ab:5f)]
+PacketLogger Sent ACL Data
+    Type: Sent ACL Data (0x02)
+Bluetooth HCI ACL Packet
+    .... 0100 0000 0010 = Connection Handle: 0x402
+    ..00 .... .... .... = PB Flag: First Non-automatically Flushable Packet (0)
+    00.. .... .... .... = BC Flag: Point-To-Point (0)
+    Data Total Length: 20
+    Data
+    [Connect in frame: 46204]
+    [Disconnect in frame: 47411]
+    [Source BD_ADDR: 00:00:00_00:00:00 (00:00:00:00:00:00)]
+    [Source Device Name: ]
+    [Source Role: Unknown (0)]
+    [Destination BD_ADDR: FaiWahIntern_d6:ab:5f (70:de:f9:d6:ab:5f)]
+    [Destination Device Name: ]
+    [Destination Role: Unknown (0)]
+    [Current Mode: Unknown (-1)]
+Bluetooth L2CAP Protocol
+    Length: 16
+    CID: Attribute Protocol (0x0004)
+Bluetooth Attribute Protocol
+    Opcode: Write Request (0x12)
+        0... .... = Authentication Signature: False
+        .0.. .... = Command: False
+        ..01 0010 = Method: Write Request (0x12)
+    Handle: 0x0102 (Unknown: Nordic UART Tx)
+        [Service UUID: 7dfc90007d1c495186aa8d9728f8d66c]
+        [UUID: 6e400002b5a3f393e0a9e50e24dcca9e]
+    UART Tx: U?\x04\x11\x10\x02B \x1C
+
+0000  02 02 04 14 00 10 00 04 00 12 02 01 55 aa 04 11   ............U...
+0010  10 02 42 20 1c 00 00 5a ff                        ..B ...Z.
+
+Frame 46396: Packet, 25 bytes on wire (200 bits), 25 bytes captured (200 bits)
+    Encapsulation type: Apple Bluetooth PacketLogger (118)
+    Arrival Time: Jun 18, 2026 13:23:27.934000000 ora legale Europa occidentale
+    UTC Arrival Time: Jun 18, 2026 11:23:27.934000000 UTC
+    Epoch Arrival Time: 1781781807.934000000
+    [Time shift for this packet: 0.000000000 seconds]
+    [Time delta from previous captured frame: 0.000000000 seconds]
+    [Time delta from previous displayed frame: 60.000000 milliseconds]
+    [Time since reference or first frame: 5 hours, 14 minutes, 31.209000000 seconds]
+    Frame Number: 46396
+    Frame Length: 25 bytes (200 bits)
+    Capture Length: 25 bytes (200 bits)
+    [Frame is marked: False]
+    [Frame is ignored: False]
+    [Protocols in frame: bluetooth:packetlogger:bthci_acl:btl2cap:btatt:btgatt]
+    Character encoding: ASCII (0)
+Bluetooth
+    [Source: 00:00:00_00:00:00 (00:00:00:00:00:00)]
+    [Destination: FaiWahIntern_d6:ab:5f (70:de:f9:d6:ab:5f)]
+PacketLogger Sent ACL Data
+    Type: Sent ACL Data (0x02)
+Bluetooth HCI ACL Packet
+    .... 0100 0000 0010 = Connection Handle: 0x402
+    ..00 .... .... .... = PB Flag: First Non-automatically Flushable Packet (0)
+    00.. .... .... .... = BC Flag: Point-To-Point (0)
+    Data Total Length: 20
+    Data
+    [Connect in frame: 46204]
+    [Disconnect in frame: 47411]
+    [Source BD_ADDR: 00:00:00_00:00:00 (00:00:00:00:00:00)]
+    [Source Device Name: ]
+    [Source Role: Unknown (0)]
+    [Destination BD_ADDR: FaiWahIntern_d6:ab:5f (70:de:f9:d6:ab:5f)]
+    [Destination Device Name: ]
+    [Destination Role: Unknown (0)]
+    [Current Mode: Unknown (-1)]
+Bluetooth L2CAP Protocol
+    Length: 16
+    CID: Attribute Protocol (0x0004)
+Bluetooth Attribute Protocol
+    Opcode: Write Request (0x12)
+        0... .... = Authentication Signature: False
+        .0.. .... = Command: False
+        ..01 0010 = Method: Write Request (0x12)
+    Handle: 0x0102 (Unknown: Nordic UART Tx)
+        [Service UUID: 7dfc90007d1c495186aa8d9728f8d66c]
+        [UUID: 6e400002b5a3f393e0a9e50e24dcca9e]
+    UART Tx: U?\x04\x11\x10\x02F/?3j??
+
+0000  02 02 04 14 00 10 00 04 00 12 02 01 55 aa 04 11   ............U...
+0010  10 02 46 2f d5 33 6a f1 fd                        ..F/.3j..
+
+Frame 46402: Packet, 22 bytes on wire (176 bits), 22 bytes captured (176 bits)
+    Encapsulation type: Apple Bluetooth PacketLogger (118)
+    Arrival Time: Jun 18, 2026 13:23:27.994000000 ora legale Europa occidentale
+    UTC Arrival Time: Jun 18, 2026 11:23:27.994000000 UTC
+    Epoch Arrival Time: 1781781807.994000000
+    [Time shift for this packet: 0.000000000 seconds]
+    [Time delta from previous captured frame: 1.000000 milliseconds]
+    [Time delta from previous displayed frame: 60.000000 milliseconds]
+    [Time since reference or first frame: 5 hours, 14 minutes, 31.269000000 seconds]
+    Frame Number: 46402
+    Frame Length: 22 bytes (176 bits)
+    Capture Length: 22 bytes (176 bits)
+    [Frame is marked: False]
+    [Frame is ignored: False]
+    [Protocols in frame: bluetooth:packetlogger:bthci_acl:btl2cap:btatt:btgatt]
+    Character encoding: ASCII (0)
+Bluetooth
+    [Source: 00:00:00_00:00:00 (00:00:00:00:00:00)]
+    [Destination: FaiWahIntern_d6:ab:5f (70:de:f9:d6:ab:5f)]
+PacketLogger Sent ACL Data
+    Type: Sent ACL Data (0x02)
+Bluetooth HCI ACL Packet
+    .... 0100 0000 0010 = Connection Handle: 0x402
+    ..00 .... .... .... = PB Flag: First Non-automatically Flushable Packet (0)
+    00.. .... .... .... = BC Flag: Point-To-Point (0)
+    Data Total Length: 17
+    Data
+    [Connect in frame: 46204]
+    [Disconnect in frame: 47411]
+    [Source BD_ADDR: 00:00:00_00:00:00 (00:00:00:00:00:00)]
+    [Source Device Name: ]
+    [Source Role: Unknown (0)]
+    [Destination BD_ADDR: FaiWahIntern_d6:ab:5f (70:de:f9:d6:ab:5f)]
+    [Destination Device Name: ]
+    [Destination Role: Unknown (0)]
+    [Current Mode: Unknown (-1)]
+Bluetooth L2CAP Protocol
+    Length: 13
+    CID: Attribute Protocol (0x0004)
+Bluetooth Attribute Protocol
+    Opcode: Write Request (0x12)
+        0... .... = Authentication Signature: False
+        .0.. .... = Command: False
+        ..01 0010 = Method: Write Request (0x12)
+    Handle: 0x0102 (Unknown: Nordic UART Tx)
+        [Service UUID: 7dfc90007d1c495186aa8d9728f8d66c]
+        [UUID: 6e400002b5a3f393e0a9e50e24dcca9e]
+    UART Tx: U?\x01\x11?\x02?\x01d?
+
+0000  02 02 04 11 00 0d 00 04 00 12 02 01 55 aa 01 11   ............U...
+0010  a5 02 e1 01 64 fe                                 ....d.
+
+Frame 46412: Packet, 22 bytes on wire (176 bits), 22 bytes captured (176 bits)
+    Encapsulation type: Apple Bluetooth PacketLogger (118)
+    Arrival Time: Jun 18, 2026 13:23:28.054000000 ora legale Europa occidentale
+    UTC Arrival Time: Jun 18, 2026 11:23:28.054000000 UTC
+    Epoch Arrival Time: 1781781808.054000000
+    [Time shift for this packet: 0.000000000 seconds]
+    [Time delta from previous captured frame: 0.000000000 seconds]
+    [Time delta from previous displayed frame: 60.000000 milliseconds]
+    [Time since reference or first frame: 5 hours, 14 minutes, 31.329000000 seconds]
+    Frame Number: 46412
+    Frame Length: 22 bytes (176 bits)
+    Capture Length: 22 bytes (176 bits)
+    [Frame is marked: False]
+    [Frame is ignored: False]
+    [Protocols in frame: bluetooth:packetlogger:bthci_acl:btl2cap:btatt:btgatt]
+    Character encoding: ASCII (0)
+Bluetooth
+    [Source: 00:00:00_00:00:00 (00:00:00:00:00:00)]
+    [Destination: FaiWahIntern_d6:ab:5f (70:de:f9:d6:ab:5f)]
+PacketLogger Sent ACL Data
+    Type: Sent ACL Data (0x02)
+Bluetooth HCI ACL Packet
+    .... 0100 0000 0010 = Connection Handle: 0x402
+    ..00 .... .... .... = PB Flag: First Non-automatically Flushable Packet (0)
+    00.. .... .... .... = BC Flag: Point-To-Point (0)
+    Data Total Length: 17
+    Data
+    [Connect in frame: 46204]
+    [Disconnect in frame: 47411]
+    [Source BD_ADDR: 00:00:00_00:00:00 (00:00:00:00:00:00)]
+    [Source Device Name: ]
+    [Source Role: Unknown (0)]
+    [Destination BD_ADDR: FaiWahIntern_d6:ab:5f (70:de:f9:d6:ab:5f)]
+    [Destination Device Name: ]
+    [Destination Role: Unknown (0)]
+    [Current Mode: Unknown (-1)]
+Bluetooth L2CAP Protocol
+    Length: 13
+    CID: Attribute Protocol (0x0004)
+Bluetooth Attribute Protocol
+    Opcode: Write Request (0x12)
+        0... .... = Authentication Signature: False
+        .0.. .... = Command: False
+        ..01 0010 = Method: Write Request (0x12)
+    Handle: 0x0102 (Unknown: Nordic UART Tx)
+        [Service UUID: 7dfc90007d1c495186aa8d9728f8d66c]
+        [UUID: 6e400002b5a3f393e0a9e50e24dcca9e]
+    UART Tx: U?\x01\x11?\x01?\x01f?
+
+0000  02 02 04 11 00 0d 00 04 00 12 02 01 55 aa 01 11   ............U...
+0010  a5 01 e0 01 66 fe                                 ....f.
+
+Frame 46420: Packet, 22 bytes on wire (176 bits), 22 bytes captured (176 bits)
+    Encapsulation type: Apple Bluetooth PacketLogger (118)
+    Arrival Time: Jun 18, 2026 13:23:28.115000000 ora legale Europa occidentale
+    UTC Arrival Time: Jun 18, 2026 11:23:28.115000000 UTC
+    Epoch Arrival Time: 1781781808.115000000
+    [Time shift for this packet: 0.000000000 seconds]
+    [Time delta from previous captured frame: 0.000000000 seconds]
+    [Time delta from previous displayed frame: 61.000000 milliseconds]
+    [Time since reference or first frame: 5 hours, 14 minutes, 31.390000000 seconds]
+    Frame Number: 46420
+    Frame Length: 22 bytes (176 bits)
+    Capture Length: 22 bytes (176 bits)
+    [Frame is marked: False]
+    [Frame is ignored: False]
+    [Protocols in frame: bluetooth:packetlogger:bthci_acl:btl2cap:btatt:btgatt]
+    Character encoding: ASCII (0)
+Bluetooth
+    [Source: 00:00:00_00:00:00 (00:00:00:00:00:00)]
+    [Destination: FaiWahIntern_d6:ab:5f (70:de:f9:d6:ab:5f)]
+PacketLogger Sent ACL Data
+    Type: Sent ACL Data (0x02)
+Bluetooth HCI ACL Packet
+    .... 0100 0000 0010 = Connection Handle: 0x402
+    ..00 .... .... .... = PB Flag: First Non-automatically Flushable Packet (0)
+    00.. .... .... .... = BC Flag: Point-To-Point (0)
+    Data Total Length: 17
+    Data
+    [Connect in frame: 46204]
+    [Disconnect in frame: 47411]
+    [Source BD_ADDR: 00:00:00_00:00:00 (00:00:00:00:00:00)]
+    [Source Device Name: ]
+    [Source Role: Unknown (0)]
+    [Destination BD_ADDR: FaiWahIntern_d6:ab:5f (70:de:f9:d6:ab:5f)]
+    [Destination Device Name: ]
+    [Destination Role: Unknown (0)]
+    [Current Mode: Unknown (-1)]
+Bluetooth L2CAP Protocol
+    Length: 13
+    CID: Attribute Protocol (0x0004)
+Bluetooth Attribute Protocol
+    Opcode: Write Request (0x12)
+        0... .... = Authentication Signature: False
+        .0.. .... = Command: False
+        ..01 0010 = Method: Write Request (0x12)
+    Handle: 0x0102 (Unknown: Nordic UART Tx)
+        [Service UUID: 7dfc90007d1c495186aa8d9728f8d66c]
+        [UUID: 6e400002b5a3f393e0a9e50e24dcca9e]
+    UART Tx: U?\x01\x11?\x01\x18\x18\x17?
+
+0000  02 02 04 11 00 0d 00 04 00 12 02 01 55 aa 01 11   ............U...
+0010  a5 01 18 18 17 ff                                 ......
+
+Frame 46427: Packet, 22 bytes on wire (176 bits), 22 bytes captured (176 bits)
+    Encapsulation type: Apple Bluetooth PacketLogger (118)
+    Arrival Time: Jun 18, 2026 13:23:28.204000000 ora legale Europa occidentale
+    UTC Arrival Time: Jun 18, 2026 11:23:28.204000000 UTC
+    Epoch Arrival Time: 1781781808.204000000
+    [Time shift for this packet: 0.000000000 seconds]
+    [Time delta from previous captured frame: 0.000000000 seconds]
+    [Time delta from previous displayed frame: 89.000000 milliseconds]
+    [Time since reference or first frame: 5 hours, 14 minutes, 31.479000000 seconds]
+    Frame Number: 46427
+    Frame Length: 22 bytes (176 bits)
+    Capture Length: 22 bytes (176 bits)
+    [Frame is marked: False]
+    [Frame is ignored: False]
+    [Protocols in frame: bluetooth:packetlogger:bthci_acl:btl2cap:btatt:btgatt]
+    Character encoding: ASCII (0)
+Bluetooth
+    [Source: 00:00:00_00:00:00 (00:00:00:00:00:00)]
+    [Destination: FaiWahIntern_d6:ab:5f (70:de:f9:d6:ab:5f)]
+PacketLogger Sent ACL Data
+    Type: Sent ACL Data (0x02)
+Bluetooth HCI ACL Packet
+    .... 0100 0000 0010 = Connection Handle: 0x402
+    ..00 .... .... .... = PB Flag: First Non-automatically Flushable Packet (0)
+    00.. .... .... .... = BC Flag: Point-To-Point (0)
+    Data Total Length: 17
+    Data
+    [Connect in frame: 46204]
+    [Disconnect in frame: 47411]
+    [Source BD_ADDR: 00:00:00_00:00:00 (00:00:00:00:00:00)]
+    [Source Device Name: ]
+    [Source Role: Unknown (0)]
+    [Destination BD_ADDR: FaiWahIntern_d6:ab:5f (70:de:f9:d6:ab:5f)]
+    [Destination Device Name: ]
+    [Destination Role: Unknown (0)]
+    [Current Mode: Unknown (-1)]
+Bluetooth L2CAP Protocol
+    Length: 13
+    CID: Attribute Protocol (0x0004)
+Bluetooth Attribute Protocol
+    Opcode: Write Request (0x12)
+        0... .... = Authentication Signature: False
+        .0.. .... = Command: False
+        ..01 0010 = Method: Write Request (0x12)
+    Handle: 0x0102 (Unknown: Nordic UART Tx)
+        [Service UUID: 7dfc90007d1c495186aa8d9728f8d66c]
+        [UUID: 6e400002b5a3f393e0a9e50e24dcca9e]
+    UART Tx: U?\x01\x11?\x01\x18\x18\x17?
+
+0000  02 02 04 11 00 0d 00 04 00 12 02 01 55 aa 01 11   ............U...
+0010  a5 01 18 18 17 ff                                 ......
+
+Frame 46432: Packet, 22 bytes on wire (176 bits), 22 bytes captured (176 bits)
+    Encapsulation type: Apple Bluetooth PacketLogger (118)
+    Arrival Time: Jun 18, 2026 13:23:28.264000000 ora legale Europa occidentale
+    UTC Arrival Time: Jun 18, 2026 11:23:28.264000000 UTC
+    Epoch Arrival Time: 1781781808.264000000
+    [Time shift for this packet: 0.000000000 seconds]
+    [Time delta from previous captured frame: 0.000000000 seconds]
+    [Time delta from previous displayed frame: 60.000000 milliseconds]
+    [Time since reference or first frame: 5 hours, 14 minutes, 31.539000000 seconds]
+    Frame Number: 46432
+    Frame Length: 22 bytes (176 bits)
+    Capture Length: 22 bytes (176 bits)
+    [Frame is marked: False]
+    [Frame is ignored: False]
+    [Protocols in frame: bluetooth:packetlogger:bthci_acl:btl2cap:btatt:btgatt]
+    Character encoding: ASCII (0)
+Bluetooth
+    [Source: 00:00:00_00:00:00 (00:00:00:00:00:00)]
+    [Destination: FaiWahIntern_d6:ab:5f (70:de:f9:d6:ab:5f)]
+PacketLogger Sent ACL Data
+    Type: Sent ACL Data (0x02)
+Bluetooth HCI ACL Packet
+    .... 0100 0000 0010 = Connection Handle: 0x402
+    ..00 .... .... .... = PB Flag: First Non-automatically Flushable Packet (0)
+    00.. .... .... .... = BC Flag: Point-To-Point (0)
+    Data Total Length: 17
+    Data
+    [Connect in frame: 46204]
+    [Disconnect in frame: 47411]
+    [Source BD_ADDR: 00:00:00_00:00:00 (00:00:00:00:00:00)]
+    [Source Device Name: ]
+    [Source Role: Unknown (0)]
+    [Destination BD_ADDR: FaiWahIntern_d6:ab:5f (70:de:f9:d6:ab:5f)]
+    [Destination Device Name: ]
+    [Destination Role: Unknown (0)]
+    [Current Mode: Unknown (-1)]
+Bluetooth L2CAP Protocol
+    Length: 13
+    CID: Attribute Protocol (0x0004)
+Bluetooth Attribute Protocol
+    Opcode: Write Request (0x12)
+        0... .... = Authentication Signature: False
+        .0.. .... = Command: False
+        ..01 0010 = Method: Write Request (0x12)
+    Handle: 0x0102 (Unknown: Nordic UART Tx)
+        [Service UUID: 7dfc90007d1c495186aa8d9728f8d66c]
+        [UUID: 6e400002b5a3f393e0a9e50e24dcca9e]
+    UART Tx: U?\x01\x11?\x01\x1C\x18\x12?
+
+0000  02 02 04 11 00 0d 00 04 00 12 02 01 55 aa 01 11   ............U...
+0010  a6 01 1c 18 12 ff                                 ......
+

@@ -1,0 +1,91 @@
+<?xml version="1.0"?>
+<!-- Bafang RideSync – Connect IQ DataField
+     Replace the application id below with a UUID generated from
+     https://developer.garmin.com/connect-iq/sdk/ before Store submission.
+
+     Devices listed here are the ones currently sold in the CIQ Store and
+     confirmed to support BLE Central (Toybox.BluetoothLowEnergy) at minApiVersion 3.4.0.
+     Verify the exact product IDs against your installed SDK's devices/ folder.
+-->
+<iq:manifest xmlns:iq="com.garmin.iq" version="3">
+    <iq:application
+        entry="BafangRideSyncApp"
+        id="1c04cde9-379e-4b0e-b220-3a441c72baa5"
+        launchType="DataField"
+        minApiVersion="3.4.0"
+        name="Bafang RideSync"
+        type="datafield">
+
+        <iq:products>
+            <!-- Edge cycling computers (SDK IDs have no solar suffix; solar=same ID) -->
+            <iq:product id="edge540"/>
+            <iq:product id="edge840"/>
+            <iq:product id="edge1040"/>
+            <iq:product id="edge1050"/>
+            <iq:product id="edgeexplore2"/>
+            <iq:product id="edgemtb"/>
+            <!-- Fenix 6 series (API 3.4) -->
+            <iq:product id="fenix6"/>
+            <iq:product id="fenix6pro"/>
+            <iq:product id="fenix6s"/>
+            <iq:product id="fenix6spro"/>
+            <iq:product id="fenix6xpro"/>
+            <!-- Fenix 7 series (API 5.1) -->
+            <iq:product id="fenix7"/>
+            <iq:product id="fenix7s"/>
+            <iq:product id="fenix7x"/>
+            <iq:product id="fenix7pro"/>
+            <iq:product id="fenix7pronowifi"/>
+            <iq:product id="fenix7spro"/>
+            <iq:product id="fenix7xpro"/>
+            <iq:product id="fenix7xpronowifi"/>
+            <!-- Fenix 8 series (API 5.1) -->
+            <iq:product id="fenix843mm"/>
+            <iq:product id="fenix847mm"/>
+            <iq:product id="fenix8solar47mm"/>
+            <iq:product id="fenix8solar51mm"/>
+            <!-- Fenix E (API 5.1) -->
+            <iq:product id="fenixe"/>
+            <!-- Enduro (API 3.4 / 5.1) -->
+            <iq:product id="enduro"/>
+            <iq:product id="enduro3"/>
+            <!-- Epix 2 series (API 5.1) -->
+            <iq:product id="epix2"/>
+            <iq:product id="epix2pro42mm"/>
+            <iq:product id="epix2pro47mm"/>
+            <iq:product id="epix2pro51mm"/>
+            <!-- Forerunner (API 3.4+) -->
+            <iq:product id="fr55"/>
+            <iq:product id="fr165"/>
+            <iq:product id="fr165m"/>
+            <iq:product id="fr255"/>
+            <iq:product id="fr255m"/>
+            <iq:product id="fr255s"/>
+            <iq:product id="fr255sm"/>
+            <iq:product id="fr265"/>
+            <iq:product id="fr265s"/>
+            <iq:product id="fr57042mm"/>
+            <iq:product id="fr57047mm"/>
+            <iq:product id="fr945lte"/>
+            <iq:product id="fr955"/>
+            <iq:product id="fr965"/>
+            <iq:product id="fr970"/>
+            <!-- Venu (API 5.0+) -->
+            <iq:product id="venu2"/>
+            <iq:product id="venu2plus"/>
+            <iq:product id="venu2s"/>
+            <iq:product id="venu3"/>
+            <iq:product id="venu3s"/>
+        </iq:products>
+
+        <iq:permissions>
+            <iq:uses-permission id="com.garmin.permission.BLUETOOTH_LOW_ENERGY"/>
+            <iq:uses-permission id="com.garmin.permission.FIT_CONTRIBUTOR"/>
+        </iq:permissions>
+
+        <iq:languages>
+            <iq:language>eng</iq:language>
+            <iq:language>ita</iq:language>
+        </iq:languages>
+    </iq:application>
+</iq:manifest>

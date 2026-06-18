@@ -1,0 +1,8 @@
+project.manifest = manifest.xml
+
+# Sources and resources shared by all targets
+base.sourcePath   = source
+base.resourcePath = resources
+
+# Per-language resource overrides (add more languages as needed)
+# base.resourcePath = resources/lang/en;resources

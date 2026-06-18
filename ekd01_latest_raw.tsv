@@ -1,0 +1,206 @@
+frame.number	frame.time_relative	frame.len	bthci_acl.src.bd_addr	bthci_acl.dst.bd_addr	btl2cap.length	btatt.opcode	btatt.handle	btatt.value	data.data	_ws.col.info
+46480	18872.290000000	18	70:de:f9:d6:ab:5f	00:00:00:00:00:00	33	0x1b	0x0104			Rcvd Handle Value Notification, Handle: 0x0104 (Unknown: Nordic UART Rx)
+46481	18872.349000000	14	70:de:f9:d6:ab:5f	00:00:00:00:00:00	5	0x12	0x0022			Rcvd Write Request, Handle: 0x0022 (Unknown: Unknown: Client Characteristic Configuration)
+46482	18872.349000000	10	00:00:00:00:00:00	70:de:f9:d6:ab:5f	1	0x13	0x0022			Sent Write Response, Handle: 0x0022 (Unknown: Unknown: Client Characteristic Configuration)
+46485	18872.569000000	16	00:00:00:00:00:00	70:de:f9:d6:ab:5f	7	0x08				Sent Read By Type Request, Device Name, Handles: 0x0001..0x0005
+46487	18872.619000000	22	70:de:f9:d6:ab:5f	00:00:00:00:00:00	13	0x09	0x0003			Rcvd Read By Type Response, Attribute List Length: 1
+46489	18872.769000000	29	70:de:f9:d6:ab:5f	00:00:00:00:00:00						Rcvd 
+46490	18872.769000000	18	70:de:f9:d6:ab:5f	00:00:00:00:00:00	33	0x1b	0x0104			Rcvd Handle Value Notification, Handle: 0x0104 (Unknown: Nordic UART Rx)
+46493	18873.039000000	29	70:de:f9:d6:ab:5f	00:00:00:00:00:00						Rcvd 
+46494	18873.039000000	13	70:de:f9:d6:ab:5f	00:00:00:00:00:00	28	0x1b	0x0104			Rcvd Handle Value Notification, Handle: 0x0104 (Unknown: Nordic UART Rx)
+46499	18873.279000000	29	70:de:f9:d6:ab:5f	00:00:00:00:00:00						Rcvd 
+46500	18873.279000000	18	70:de:f9:d6:ab:5f	00:00:00:00:00:00	33	0x1b	0x0104			Rcvd Handle Value Notification, Handle: 0x0104 (Unknown: Nordic UART Rx)
+46565	18873.789000000	29	70:de:f9:d6:ab:5f	00:00:00:00:00:00						Rcvd 
+46566	18873.789000000	18	70:de:f9:d6:ab:5f	00:00:00:00:00:00	33	0x1b	0x0104			Rcvd Handle Value Notification, Handle: 0x0104 (Unknown: Nordic UART Rx)
+46569	18874.029000000	29	70:de:f9:d6:ab:5f	00:00:00:00:00:00						Rcvd 
+46570	18874.029000000	13	70:de:f9:d6:ab:5f	00:00:00:00:00:00	28	0x1b	0x0104			Rcvd Handle Value Notification, Handle: 0x0104 (Unknown: Nordic UART Rx)
+46634	18874.299000000	29	70:de:f9:d6:ab:5f	00:00:00:00:00:00						Rcvd 
+46635	18874.299000000	18	70:de:f9:d6:ab:5f	00:00:00:00:00:00	33	0x1b	0x0104			Rcvd Handle Value Notification, Handle: 0x0104 (Unknown: Nordic UART Rx)
+46637	18874.779000000	29	70:de:f9:d6:ab:5f	00:00:00:00:00:00						Rcvd 
+46638	18874.779000000	18	70:de:f9:d6:ab:5f	00:00:00:00:00:00	33	0x1b	0x0104			Rcvd Handle Value Notification, Handle: 0x0104 (Unknown: Nordic UART Rx)
+46641	18875.049000000	29	70:de:f9:d6:ab:5f	00:00:00:00:00:00						Rcvd 
+46642	18875.049000000	13	70:de:f9:d6:ab:5f	00:00:00:00:00:00	28	0x1b	0x0104			Rcvd Handle Value Notification, Handle: 0x0104 (Unknown: Nordic UART Rx)
+46643	18875.289000000	29	70:de:f9:d6:ab:5f	00:00:00:00:00:00						Rcvd 
+46644	18875.289000000	18	70:de:f9:d6:ab:5f	00:00:00:00:00:00	33	0x1b	0x0104			Rcvd Handle Value Notification, Handle: 0x0104 (Unknown: Nordic UART Rx)
+46646	18875.799000000	29	70:de:f9:d6:ab:5f	00:00:00:00:00:00						Rcvd 
+46647	18875.799000000	18	70:de:f9:d6:ab:5f	00:00:00:00:00:00	33	0x1b	0x0104			Rcvd Handle Value Notification, Handle: 0x0104 (Unknown: Nordic UART Rx)
+46710	18876.039000000	29	70:de:f9:d6:ab:5f	00:00:00:00:00:00						Rcvd 
+46711	18876.039000000	13	70:de:f9:d6:ab:5f	00:00:00:00:00:00	28	0x1b	0x0104			Rcvd Handle Value Notification, Handle: 0x0104 (Unknown: Nordic UART Rx)
+46723	18876.279000000	29	70:de:f9:d6:ab:5f	00:00:00:00:00:00						Rcvd 
+46724	18876.279000000	18	70:de:f9:d6:ab:5f	00:00:00:00:00:00	33	0x1b	0x0104			Rcvd Handle Value Notification, Handle: 0x0104 (Unknown: Nordic UART Rx)
+46726	18876.789000000	29	70:de:f9:d6:ab:5f	00:00:00:00:00:00						Rcvd 
+46727	18876.789000000	18	70:de:f9:d6:ab:5f	00:00:00:00:00:00	33	0x1b	0x0104			Rcvd Handle Value Notification, Handle: 0x0104 (Unknown: Nordic UART Rx)
+46728	18877.029000000	29	70:de:f9:d6:ab:5f	00:00:00:00:00:00						Rcvd 
+46729	18877.029000000	13	70:de:f9:d6:ab:5f	00:00:00:00:00:00	28	0x1b	0x0104			Rcvd Handle Value Notification, Handle: 0x0104 (Unknown: Nordic UART Rx)
+46732	18877.269000000	29	70:de:f9:d6:ab:5f	00:00:00:00:00:00						Rcvd 
+46733	18877.269000000	18	70:de:f9:d6:ab:5f	00:00:00:00:00:00	33	0x1b	0x0104			Rcvd Handle Value Notification, Handle: 0x0104 (Unknown: Nordic UART Rx)
+46735	18877.779000000	29	70:de:f9:d6:ab:5f	00:00:00:00:00:00						Rcvd 
+46736	18877.779000000	18	70:de:f9:d6:ab:5f	00:00:00:00:00:00	33	0x1b	0x0104			Rcvd Handle Value Notification, Handle: 0x0104 (Unknown: Nordic UART Rx)
+46737	18878.019000000	29	70:de:f9:d6:ab:5f	00:00:00:00:00:00						Rcvd 
+46738	18878.019000000	13	70:de:f9:d6:ab:5f	00:00:00:00:00:00	28	0x1b	0x0104			Rcvd Handle Value Notification, Handle: 0x0104 (Unknown: Nordic UART Rx)
+46741	18878.289000000	29	70:de:f9:d6:ab:5f	00:00:00:00:00:00						Rcvd 
+46742	18878.289000000	18	70:de:f9:d6:ab:5f	00:00:00:00:00:00	33	0x1b	0x0104			Rcvd Handle Value Notification, Handle: 0x0104 (Unknown: Nordic UART Rx)
+46744	18878.769000000	29	70:de:f9:d6:ab:5f	00:00:00:00:00:00						Rcvd 
+46745	18878.769000000	18	70:de:f9:d6:ab:5f	00:00:00:00:00:00	33	0x1b	0x0104			Rcvd Handle Value Notification, Handle: 0x0104 (Unknown: Nordic UART Rx)
+46746	18879.039000000	29	70:de:f9:d6:ab:5f	00:00:00:00:00:00						Rcvd 
+46747	18879.039000000	13	70:de:f9:d6:ab:5f	00:00:00:00:00:00	28	0x1b	0x0104			Rcvd Handle Value Notification, Handle: 0x0104 (Unknown: Nordic UART Rx)
+46750	18879.279000000	29	70:de:f9:d6:ab:5f	00:00:00:00:00:00						Rcvd 
+46751	18879.279000000	18	70:de:f9:d6:ab:5f	00:00:00:00:00:00	33	0x1b	0x0104			Rcvd Handle Value Notification, Handle: 0x0104 (Unknown: Nordic UART Rx)
+46754	18879.789000000	29	70:de:f9:d6:ab:5f	00:00:00:00:00:00						Rcvd 
+46755	18879.789000000	18	70:de:f9:d6:ab:5f	00:00:00:00:00:00	33	0x1b	0x0104			Rcvd Handle Value Notification, Handle: 0x0104 (Unknown: Nordic UART Rx)
+46756	18880.029000000	29	70:de:f9:d6:ab:5f	00:00:00:00:00:00						Rcvd 
+46757	18880.029000000	13	70:de:f9:d6:ab:5f	00:00:00:00:00:00	28	0x1b	0x0104			Rcvd Handle Value Notification, Handle: 0x0104 (Unknown: Nordic UART Rx)
+46760	18880.299000000	29	70:de:f9:d6:ab:5f	00:00:00:00:00:00						Rcvd 
+46761	18880.299000000	18	70:de:f9:d6:ab:5f	00:00:00:00:00:00	33	0x1b	0x0104			Rcvd Handle Value Notification, Handle: 0x0104 (Unknown: Nordic UART Rx)
+46763	18880.779000000	29	70:de:f9:d6:ab:5f	00:00:00:00:00:00						Rcvd 
+46764	18880.779000000	18	70:de:f9:d6:ab:5f	00:00:00:00:00:00	33	0x1b	0x0104			Rcvd Handle Value Notification, Handle: 0x0104 (Unknown: Nordic UART Rx)
+46765	18881.019000000	29	70:de:f9:d6:ab:5f	00:00:00:00:00:00						Rcvd 
+46766	18881.019000000	13	70:de:f9:d6:ab:5f	00:00:00:00:00:00	28	0x1b	0x0104			Rcvd Handle Value Notification, Handle: 0x0104 (Unknown: Nordic UART Rx)
+46769	18881.289000000	29	70:de:f9:d6:ab:5f	00:00:00:00:00:00						Rcvd 
+46770	18881.289000000	18	70:de:f9:d6:ab:5f	00:00:00:00:00:00	33	0x1b	0x0104			Rcvd Handle Value Notification, Handle: 0x0104 (Unknown: Nordic UART Rx)
+46772	18881.799000000	29	70:de:f9:d6:ab:5f	00:00:00:00:00:00						Rcvd 
+46773	18881.799000000	18	70:de:f9:d6:ab:5f	00:00:00:00:00:00	33	0x1b	0x0104			Rcvd Handle Value Notification, Handle: 0x0104 (Unknown: Nordic UART Rx)
+46774	18882.039000000	29	70:de:f9:d6:ab:5f	00:00:00:00:00:00						Rcvd 
+46775	18882.039000000	13	70:de:f9:d6:ab:5f	00:00:00:00:00:00	28	0x1b	0x0104			Rcvd Handle Value Notification, Handle: 0x0104 (Unknown: Nordic UART Rx)
+46778	18882.339000000	29	70:de:f9:d6:ab:5f	00:00:00:00:00:00						Rcvd 
+46779	18882.339000000	18	70:de:f9:d6:ab:5f	00:00:00:00:00:00	33	0x1b	0x0104			Rcvd Handle Value Notification, Handle: 0x0104 (Unknown: Nordic UART Rx)
+46782	18882.879000000	29	70:de:f9:d6:ab:5f	00:00:00:00:00:00						Rcvd 
+46783	18882.879000000	18	70:de:f9:d6:ab:5f	00:00:00:00:00:00	33	0x1b	0x0104			Rcvd Handle Value Notification, Handle: 0x0104 (Unknown: Nordic UART Rx)
+46784	18883.119000000	29	70:de:f9:d6:ab:5f	00:00:00:00:00:00						Rcvd 
+46785	18883.119000000	13	70:de:f9:d6:ab:5f	00:00:00:00:00:00	28	0x1b	0x0104			Rcvd Handle Value Notification, Handle: 0x0104 (Unknown: Nordic UART Rx)
+46788	18883.389000000	29	70:de:f9:d6:ab:5f	00:00:00:00:00:00						Rcvd 
+46789	18883.389000000	18	70:de:f9:d6:ab:5f	00:00:00:00:00:00	33	0x1b	0x0104			Rcvd Handle Value Notification, Handle: 0x0104 (Unknown: Nordic UART Rx)
+46791	18883.869000000	29	70:de:f9:d6:ab:5f	00:00:00:00:00:00						Rcvd 
+46792	18883.869000000	18	70:de:f9:d6:ab:5f	00:00:00:00:00:00	33	0x1b	0x0104			Rcvd Handle Value Notification, Handle: 0x0104 (Unknown: Nordic UART Rx)
+46793	18884.139000000	29	70:de:f9:d6:ab:5f	00:00:00:00:00:00						Rcvd 
+46794	18884.139000000	13	70:de:f9:d6:ab:5f	00:00:00:00:00:00	28	0x1b	0x0104			Rcvd Handle Value Notification, Handle: 0x0104 (Unknown: Nordic UART Rx)
+46795	18884.379000000	29	70:de:f9:d6:ab:5f	00:00:00:00:00:00						Rcvd 
+46796	18884.379000000	18	70:de:f9:d6:ab:5f	00:00:00:00:00:00	33	0x1b	0x0104			Rcvd Handle Value Notification, Handle: 0x0104 (Unknown: Nordic UART Rx)
+46800	18884.919000000	29	70:de:f9:d6:ab:5f	00:00:00:00:00:00						Rcvd 
+46801	18884.919000000	18	70:de:f9:d6:ab:5f	00:00:00:00:00:00	33	0x1b	0x0104			Rcvd Handle Value Notification, Handle: 0x0104 (Unknown: Nordic UART Rx)
+46802	18885.129000000	29	70:de:f9:d6:ab:5f	00:00:00:00:00:00						Rcvd 
+46803	18885.129000000	13	70:de:f9:d6:ab:5f	00:00:00:00:00:00	28	0x1b	0x0104			Rcvd Handle Value Notification, Handle: 0x0104 (Unknown: Nordic UART Rx)
+46804	18885.369000000	29	70:de:f9:d6:ab:5f	00:00:00:00:00:00						Rcvd 
+46805	18885.369000000	18	70:de:f9:d6:ab:5f	00:00:00:00:00:00	33	0x1b	0x0104			Rcvd Handle Value Notification, Handle: 0x0104 (Unknown: Nordic UART Rx)
+46810	18885.879000000	29	70:de:f9:d6:ab:5f	00:00:00:00:00:00						Rcvd 
+46811	18885.879000000	18	70:de:f9:d6:ab:5f	00:00:00:00:00:00	33	0x1b	0x0104			Rcvd Handle Value Notification, Handle: 0x0104 (Unknown: Nordic UART Rx)
+46812	18886.119000000	29	70:de:f9:d6:ab:5f	00:00:00:00:00:00						Rcvd 
+46813	18886.119000000	13	70:de:f9:d6:ab:5f	00:00:00:00:00:00	28	0x1b	0x0104			Rcvd Handle Value Notification, Handle: 0x0104 (Unknown: Nordic UART Rx)
+46814	18886.389000000	29	70:de:f9:d6:ab:5f	00:00:00:00:00:00						Rcvd 
+46815	18886.389000000	18	70:de:f9:d6:ab:5f	00:00:00:00:00:00	33	0x1b	0x0104			Rcvd Handle Value Notification, Handle: 0x0104 (Unknown: Nordic UART Rx)
+46819	18886.869000000	29	70:de:f9:d6:ab:5f	00:00:00:00:00:00						Rcvd 
+46820	18886.869000000	18	70:de:f9:d6:ab:5f	00:00:00:00:00:00	33	0x1b	0x0104			Rcvd Handle Value Notification, Handle: 0x0104 (Unknown: Nordic UART Rx)
+46821	18887.139000000	29	70:de:f9:d6:ab:5f	00:00:00:00:00:00						Rcvd 
+46822	18887.139000000	13	70:de:f9:d6:ab:5f	00:00:00:00:00:00	28	0x1b	0x0104			Rcvd Handle Value Notification, Handle: 0x0104 (Unknown: Nordic UART Rx)
+46823	18887.379000000	29	70:de:f9:d6:ab:5f	00:00:00:00:00:00						Rcvd 
+46824	18887.379000000	18	70:de:f9:d6:ab:5f	00:00:00:00:00:00	33	0x1b	0x0104			Rcvd Handle Value Notification, Handle: 0x0104 (Unknown: Nordic UART Rx)
+46828	18887.919000000	29	70:de:f9:d6:ab:5f	00:00:00:00:00:00						Rcvd 
+46829	18887.919000000	18	70:de:f9:d6:ab:5f	00:00:00:00:00:00	33	0x1b	0x0104			Rcvd Handle Value Notification, Handle: 0x0104 (Unknown: Nordic UART Rx)
+46830	18888.159000000	29	70:de:f9:d6:ab:5f	00:00:00:00:00:00						Rcvd 
+46831	18888.159000000	13	70:de:f9:d6:ab:5f	00:00:00:00:00:00	28	0x1b	0x0104			Rcvd Handle Value Notification, Handle: 0x0104 (Unknown: Nordic UART Rx)
+46832	18888.399000000	29	70:de:f9:d6:ab:5f	00:00:00:00:00:00						Rcvd 
+46833	18888.399000000	18	70:de:f9:d6:ab:5f	00:00:00:00:00:00	33	0x1b	0x0104			Rcvd Handle Value Notification, Handle: 0x0104 (Unknown: Nordic UART Rx)
+46837	18888.909000000	29	70:de:f9:d6:ab:5f	00:00:00:00:00:00						Rcvd 
+46838	18888.909000000	18	70:de:f9:d6:ab:5f	00:00:00:00:00:00	33	0x1b	0x0104			Rcvd Handle Value Notification, Handle: 0x0104 (Unknown: Nordic UART Rx)
+46839	18889.179000000	29	70:de:f9:d6:ab:5f	00:00:00:00:00:00						Rcvd 
+46840	18889.179000000	13	70:de:f9:d6:ab:5f	00:00:00:00:00:00	28	0x1b	0x0104			Rcvd Handle Value Notification, Handle: 0x0104 (Unknown: Nordic UART Rx)
+46841	18889.419000000	29	70:de:f9:d6:ab:5f	00:00:00:00:00:00						Rcvd 
+46842	18889.419000000	18	70:de:f9:d6:ab:5f	00:00:00:00:00:00	33	0x1b	0x0104			Rcvd Handle Value Notification, Handle: 0x0104 (Unknown: Nordic UART Rx)
+46846	18889.929000000	29	70:de:f9:d6:ab:5f	00:00:00:00:00:00						Rcvd 
+46847	18889.929000000	18	70:de:f9:d6:ab:5f	00:00:00:00:00:00	33	0x1b	0x0104			Rcvd Handle Value Notification, Handle: 0x0104 (Unknown: Nordic UART Rx)
+46848	18890.199000000	29	70:de:f9:d6:ab:5f	00:00:00:00:00:00						Rcvd 
+46849	18890.199000000	13	70:de:f9:d6:ab:5f	00:00:00:00:00:00	28	0x1b	0x0104			Rcvd Handle Value Notification, Handle: 0x0104 (Unknown: Nordic UART Rx)
+46850	18890.439000000	29	70:de:f9:d6:ab:5f	00:00:00:00:00:00						Rcvd 
+46851	18890.439000000	18	70:de:f9:d6:ab:5f	00:00:00:00:00:00	33	0x1b	0x0104			Rcvd Handle Value Notification, Handle: 0x0104 (Unknown: Nordic UART Rx)
+46855	18890.949000000	29	70:de:f9:d6:ab:5f	00:00:00:00:00:00						Rcvd 
+46856	18890.949000000	18	70:de:f9:d6:ab:5f	00:00:00:00:00:00	33	0x1b	0x0104			Rcvd Handle Value Notification, Handle: 0x0104 (Unknown: Nordic UART Rx)
+46857	18891.219000000	29	70:de:f9:d6:ab:5f	00:00:00:00:00:00						Rcvd 
+46858	18891.219000000	13	70:de:f9:d6:ab:5f	00:00:00:00:00:00	28	0x1b	0x0104			Rcvd Handle Value Notification, Handle: 0x0104 (Unknown: Nordic UART Rx)
+46859	18891.459000000	29	70:de:f9:d6:ab:5f	00:00:00:00:00:00						Rcvd 
+46860	18891.459000000	18	70:de:f9:d6:ab:5f	00:00:00:00:00:00	33	0x1b	0x0104			Rcvd Handle Value Notification, Handle: 0x0104 (Unknown: Nordic UART Rx)
+46864	18891.969000000	29	70:de:f9:d6:ab:5f	00:00:00:00:00:00						Rcvd 
+46865	18891.969000000	18	70:de:f9:d6:ab:5f	00:00:00:00:00:00	33	0x1b	0x0104			Rcvd Handle Value Notification, Handle: 0x0104 (Unknown: Nordic UART Rx)
+46866	18892.209000000	29	70:de:f9:d6:ab:5f	00:00:00:00:00:00						Rcvd 
+46867	18892.209000000	13	70:de:f9:d6:ab:5f	00:00:00:00:00:00	28	0x1b	0x0104			Rcvd Handle Value Notification, Handle: 0x0104 (Unknown: Nordic UART Rx)
+46871	18892.449000000	29	70:de:f9:d6:ab:5f	00:00:00:00:00:00						Rcvd 
+46872	18892.449000000	18	70:de:f9:d6:ab:5f	00:00:00:00:00:00	33	0x1b	0x0104			Rcvd Handle Value Notification, Handle: 0x0104 (Unknown: Nordic UART Rx)
+46883	18892.959000000	29	70:de:f9:d6:ab:5f	00:00:00:00:00:00						Rcvd 
+46884	18892.959000000	18	70:de:f9:d6:ab:5f	00:00:00:00:00:00	33	0x1b	0x0104			Rcvd Handle Value Notification, Handle: 0x0104 (Unknown: Nordic UART Rx)
+46893	18893.199000000	29	70:de:f9:d6:ab:5f	00:00:00:00:00:00						Rcvd 
+46894	18893.199000000	13	70:de:f9:d6:ab:5f	00:00:00:00:00:00	28	0x1b	0x0104			Rcvd Handle Value Notification, Handle: 0x0104 (Unknown: Nordic UART Rx)
+46902	18893.469000000	29	70:de:f9:d6:ab:5f	00:00:00:00:00:00						Rcvd 
+46903	18893.469000000	18	70:de:f9:d6:ab:5f	00:00:00:00:00:00	33	0x1b	0x0104			Rcvd Handle Value Notification, Handle: 0x0104 (Unknown: Nordic UART Rx)
+46919	18893.949000000	29	70:de:f9:d6:ab:5f	00:00:00:00:00:00						Rcvd 
+46920	18893.949000000	18	70:de:f9:d6:ab:5f	00:00:00:00:00:00	33	0x1b	0x0104			Rcvd Handle Value Notification, Handle: 0x0104 (Unknown: Nordic UART Rx)
+46923	18894.219000000	29	70:de:f9:d6:ab:5f	00:00:00:00:00:00						Rcvd 
+46924	18894.219000000	13	70:de:f9:d6:ab:5f	00:00:00:00:00:00	28	0x1b	0x0104			Rcvd Handle Value Notification, Handle: 0x0104 (Unknown: Nordic UART Rx)
+46929	18894.459000000	29	70:de:f9:d6:ab:5f	00:00:00:00:00:00						Rcvd 
+46930	18894.459000000	18	70:de:f9:d6:ab:5f	00:00:00:00:00:00	33	0x1b	0x0104			Rcvd Handle Value Notification, Handle: 0x0104 (Unknown: Nordic UART Rx)
+46959	18894.969000000	29	70:de:f9:d6:ab:5f	00:00:00:00:00:00						Rcvd 
+46960	18894.969000000	18	70:de:f9:d6:ab:5f	00:00:00:00:00:00	33	0x1b	0x0104			Rcvd Handle Value Notification, Handle: 0x0104 (Unknown: Nordic UART Rx)
+46967	18895.209000000	29	70:de:f9:d6:ab:5f	00:00:00:00:00:00						Rcvd 
+46968	18895.209000000	13	70:de:f9:d6:ab:5f	00:00:00:00:00:00	28	0x1b	0x0104			Rcvd Handle Value Notification, Handle: 0x0104 (Unknown: Nordic UART Rx)
+46973	18895.449000000	29	70:de:f9:d6:ab:5f	00:00:00:00:00:00						Rcvd 
+46974	18895.449000000	18	70:de:f9:d6:ab:5f	00:00:00:00:00:00	33	0x1b	0x0104			Rcvd Handle Value Notification, Handle: 0x0104 (Unknown: Nordic UART Rx)
+46985	18895.959000000	29	70:de:f9:d6:ab:5f	00:00:00:00:00:00						Rcvd 
+46986	18895.959000000	18	70:de:f9:d6:ab:5f	00:00:00:00:00:00	33	0x1b	0x0104			Rcvd Handle Value Notification, Handle: 0x0104 (Unknown: Nordic UART Rx)
+46989	18896.199000000	29	70:de:f9:d6:ab:5f	00:00:00:00:00:00						Rcvd 
+46990	18896.199000000	13	70:de:f9:d6:ab:5f	00:00:00:00:00:00	28	0x1b	0x0104			Rcvd Handle Value Notification, Handle: 0x0104 (Unknown: Nordic UART Rx)
+46993	18896.439000000	29	70:de:f9:d6:ab:5f	00:00:00:00:00:00						Rcvd 
+46994	18896.439000000	18	70:de:f9:d6:ab:5f	00:00:00:00:00:00	33	0x1b	0x0104			Rcvd Handle Value Notification, Handle: 0x0104 (Unknown: Nordic UART Rx)
+47093	18896.949000000	29	70:de:f9:d6:ab:5f	00:00:00:00:00:00						Rcvd 
+47094	18896.949000000	18	70:de:f9:d6:ab:5f	00:00:00:00:00:00	33	0x1b	0x0104			Rcvd Handle Value Notification, Handle: 0x0104 (Unknown: Nordic UART Rx)
+47099	18897.189000000	29	70:de:f9:d6:ab:5f	00:00:00:00:00:00						Rcvd 
+47100	18897.189000000	13	70:de:f9:d6:ab:5f	00:00:00:00:00:00	28	0x1b	0x0104			Rcvd Handle Value Notification, Handle: 0x0104 (Unknown: Nordic UART Rx)
+47104	18897.459000000	29	70:de:f9:d6:ab:5f	00:00:00:00:00:00						Rcvd 
+47105	18897.459000000	18	70:de:f9:d6:ab:5f	00:00:00:00:00:00	33	0x1b	0x0104			Rcvd Handle Value Notification, Handle: 0x0104 (Unknown: Nordic UART Rx)
+47205	18897.939000000	29	70:de:f9:d6:ab:5f	00:00:00:00:00:00						Rcvd 
+47206	18897.939000000	18	70:de:f9:d6:ab:5f	00:00:00:00:00:00	33	0x1b	0x0104			Rcvd Handle Value Notification, Handle: 0x0104 (Unknown: Nordic UART Rx)
+47215	18898.209000000	29	70:de:f9:d6:ab:5f	00:00:00:00:00:00						Rcvd 
+47216	18898.209000000	13	70:de:f9:d6:ab:5f	00:00:00:00:00:00	28	0x1b	0x0104			Rcvd Handle Value Notification, Handle: 0x0104 (Unknown: Nordic UART Rx)
+47219	18898.449000000	29	70:de:f9:d6:ab:5f	00:00:00:00:00:00						Rcvd 
+47220	18898.449000000	18	70:de:f9:d6:ab:5f	00:00:00:00:00:00	33	0x1b	0x0104			Rcvd Handle Value Notification, Handle: 0x0104 (Unknown: Nordic UART Rx)
+47233	18898.959000000	29	70:de:f9:d6:ab:5f	00:00:00:00:00:00						Rcvd 
+47234	18898.959000000	18	70:de:f9:d6:ab:5f	00:00:00:00:00:00	33	0x1b	0x0104			Rcvd Handle Value Notification, Handle: 0x0104 (Unknown: Nordic UART Rx)
+47239	18899.199000000	29	70:de:f9:d6:ab:5f	00:00:00:00:00:00						Rcvd 
+47240	18899.199000000	13	70:de:f9:d6:ab:5f	00:00:00:00:00:00	28	0x1b	0x0104			Rcvd Handle Value Notification, Handle: 0x0104 (Unknown: Nordic UART Rx)
+47242	18899.439000000	29	70:de:f9:d6:ab:5f	00:00:00:00:00:00						Rcvd 
+47243	18899.439000000	18	70:de:f9:d6:ab:5f	00:00:00:00:00:00	33	0x1b	0x0104			Rcvd Handle Value Notification, Handle: 0x0104 (Unknown: Nordic UART Rx)
+47263	18899.949000000	29	70:de:f9:d6:ab:5f	00:00:00:00:00:00						Rcvd 
+47264	18899.949000000	18	70:de:f9:d6:ab:5f	00:00:00:00:00:00	33	0x1b	0x0104			Rcvd Handle Value Notification, Handle: 0x0104 (Unknown: Nordic UART Rx)
+47272	18900.189000000	29	70:de:f9:d6:ab:5f	00:00:00:00:00:00						Rcvd 
+47273	18900.189000000	13	70:de:f9:d6:ab:5f	00:00:00:00:00:00	28	0x1b	0x0104			Rcvd Handle Value Notification, Handle: 0x0104 (Unknown: Nordic UART Rx)
+47278	18900.429000000	29	70:de:f9:d6:ab:5f	00:00:00:00:00:00						Rcvd 
+47279	18900.429000000	18	70:de:f9:d6:ab:5f	00:00:00:00:00:00	33	0x1b	0x0104			Rcvd Handle Value Notification, Handle: 0x0104 (Unknown: Nordic UART Rx)
+47285	18900.939000000	29	70:de:f9:d6:ab:5f	00:00:00:00:00:00						Rcvd 
+47286	18900.939000000	18	70:de:f9:d6:ab:5f	00:00:00:00:00:00	33	0x1b	0x0104			Rcvd Handle Value Notification, Handle: 0x0104 (Unknown: Nordic UART Rx)
+47289	18901.179000000	29	70:de:f9:d6:ab:5f	00:00:00:00:00:00						Rcvd 
+47290	18901.179000000	13	70:de:f9:d6:ab:5f	00:00:00:00:00:00	28	0x1b	0x0104			Rcvd Handle Value Notification, Handle: 0x0104 (Unknown: Nordic UART Rx)
+47292	18901.449000000	29	70:de:f9:d6:ab:5f	00:00:00:00:00:00						Rcvd 
+47293	18901.449000000	18	70:de:f9:d6:ab:5f	00:00:00:00:00:00	33	0x1b	0x0104			Rcvd Handle Value Notification, Handle: 0x0104 (Unknown: Nordic UART Rx)
+47295	18901.929000000	29	70:de:f9:d6:ab:5f	00:00:00:00:00:00						Rcvd 
+47296	18901.929000000	18	70:de:f9:d6:ab:5f	00:00:00:00:00:00	33	0x1b	0x0104			Rcvd Handle Value Notification, Handle: 0x0104 (Unknown: Nordic UART Rx)
+47299	18902.199000000	29	70:de:f9:d6:ab:5f	00:00:00:00:00:00						Rcvd 
+47300	18902.199000000	13	70:de:f9:d6:ab:5f	00:00:00:00:00:00	28	0x1b	0x0104			Rcvd Handle Value Notification, Handle: 0x0104 (Unknown: Nordic UART Rx)
+47301	18902.439000000	29	70:de:f9:d6:ab:5f	00:00:00:00:00:00						Rcvd 
+47302	18902.439000000	18	70:de:f9:d6:ab:5f	00:00:00:00:00:00	33	0x1b	0x0104			Rcvd Handle Value Notification, Handle: 0x0104 (Unknown: Nordic UART Rx)
+47376	18902.949000000	29	70:de:f9:d6:ab:5f	00:00:00:00:00:00						Rcvd 
+47377	18902.949000000	18	70:de:f9:d6:ab:5f	00:00:00:00:00:00	33	0x1b	0x0104			Rcvd Handle Value Notification, Handle: 0x0104 (Unknown: Nordic UART Rx)
+47382	18903.189000000	29	70:de:f9:d6:ab:5f	00:00:00:00:00:00						Rcvd 
+47383	18903.189000000	13	70:de:f9:d6:ab:5f	00:00:00:00:00:00	28	0x1b	0x0104			Rcvd Handle Value Notification, Handle: 0x0104 (Unknown: Nordic UART Rx)
+47384	18903.429000000	29	70:de:f9:d6:ab:5f	00:00:00:00:00:00						Rcvd 
+47385	18903.429000000	18	70:de:f9:d6:ab:5f	00:00:00:00:00:00	33	0x1b	0x0104			Rcvd Handle Value Notification, Handle: 0x0104 (Unknown: Nordic UART Rx)
+47387	18903.939000000	29	70:de:f9:d6:ab:5f	00:00:00:00:00:00						Rcvd 
+47388	18903.939000000	18	70:de:f9:d6:ab:5f	00:00:00:00:00:00	33	0x1b	0x0104			Rcvd Handle Value Notification, Handle: 0x0104 (Unknown: Nordic UART Rx)
+47389	18904.179000000	29	70:de:f9:d6:ab:5f	00:00:00:00:00:00						Rcvd 
+47390	18904.179000000	13	70:de:f9:d6:ab:5f	00:00:00:00:00:00	28	0x1b	0x0104			Rcvd Handle Value Notification, Handle: 0x0104 (Unknown: Nordic UART Rx)
+47393	18904.419000000	29	70:de:f9:d6:ab:5f	00:00:00:00:00:00						Rcvd 
+47394	18904.419000000	18	70:de:f9:d6:ab:5f	00:00:00:00:00:00	33	0x1b	0x0104			Rcvd Handle Value Notification, Handle: 0x0104 (Unknown: Nordic UART Rx)
+47396	18904.959000000	29	70:de:f9:d6:ab:5f	00:00:00:00:00:00						Rcvd 
+47397	18904.959000000	18	70:de:f9:d6:ab:5f	00:00:00:00:00:00	33	0x1b	0x0104			Rcvd Handle Value Notification, Handle: 0x0104 (Unknown: Nordic UART Rx)
+47398	18905.199000000	29	70:de:f9:d6:ab:5f	00:00:00:00:00:00						Rcvd 
+47399	18905.199000000	13	70:de:f9:d6:ab:5f	00:00:00:00:00:00	28	0x1b	0x0104			Rcvd Handle Value Notification, Handle: 0x0104 (Unknown: Nordic UART Rx)
+47402	18905.469000000	29	70:de:f9:d6:ab:5f	00:00:00:00:00:00						Rcvd 
+47403	18905.469000000	18	70:de:f9:d6:ab:5f	00:00:00:00:00:00	33	0x1b	0x0104			Rcvd Handle Value Notification, Handle: 0x0104 (Unknown: Nordic UART Rx)
+47405	18905.949000000	29	70:de:f9:d6:ab:5f	00:00:00:00:00:00						Rcvd 
+47406	18905.949000000	18	70:de:f9:d6:ab:5f	00:00:00:00:00:00	33	0x1b	0x0104			Rcvd Handle Value Notification, Handle: 0x0104 (Unknown: Nordic UART Rx)

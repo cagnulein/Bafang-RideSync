@@ -1,0 +1,13 @@
+frame.number	frame.time_relative	bthci_acl.src.bd_addr	bthci_acl.dst.bd_addr	btatt.opcode	btatt.handle	btatt.value	_ws.col.info
+46336	18870.339000000	00:00:00:00:00:00	70:de:f9:d6:ab:5f	0x12	0x0102		Sent Write Request, Handle: 0x0102 (Unknown: Nordic UART Tx)
+46342	18870.415000000	00:00:00:00:00:00	70:de:f9:d6:ab:5f	0x12	0x0102		Sent Write Request, Handle: 0x0102 (Unknown: Nordic UART Tx)
+46348	18870.490000000	00:00:00:00:00:00	70:de:f9:d6:ab:5f	0x12	0x0102		Sent Write Request, Handle: 0x0102 (Unknown: Nordic UART Tx)
+46376	18871.029000000	00:00:00:00:00:00	70:de:f9:d6:ab:5f	0x12	0x0102		Sent Write Request, Handle: 0x0102 (Unknown: Nordic UART Tx)
+46385	18871.103000000	00:00:00:00:00:00	70:de:f9:d6:ab:5f	0x12	0x0102		Sent Write Request, Handle: 0x0102 (Unknown: Nordic UART Tx)
+46391	18871.149000000	00:00:00:00:00:00	70:de:f9:d6:ab:5f	0x12	0x0102		Sent Write Request, Handle: 0x0102 (Unknown: Nordic UART Tx)
+46396	18871.209000000	00:00:00:00:00:00	70:de:f9:d6:ab:5f	0x12	0x0102		Sent Write Request, Handle: 0x0102 (Unknown: Nordic UART Tx)
+46402	18871.269000000	00:00:00:00:00:00	70:de:f9:d6:ab:5f	0x12	0x0102		Sent Write Request, Handle: 0x0102 (Unknown: Nordic UART Tx)
+46412	18871.329000000	00:00:00:00:00:00	70:de:f9:d6:ab:5f	0x12	0x0102		Sent Write Request, Handle: 0x0102 (Unknown: Nordic UART Tx)
+46420	18871.390000000	00:00:00:00:00:00	70:de:f9:d6:ab:5f	0x12	0x0102		Sent Write Request, Handle: 0x0102 (Unknown: Nordic UART Tx)
+46427	18871.479000000	00:00:00:00:00:00	70:de:f9:d6:ab:5f	0x12	0x0102		Sent Write Request, Handle: 0x0102 (Unknown: Nordic UART Tx)
+46432	18871.539000000	00:00:00:00:00:00	70:de:f9:d6:ab:5f	0x12	0x0102		Sent Write Request, Handle: 0x0102 (Unknown: Nordic UART Tx)

@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<strings>
+    <string id="AppName">Bafang RideSync</string>
+    <string id="LabelBatt">Battery</string>
+    <string id="LabelPas">Assist</string>
+    <string id="LabelSpeed">Speed</string>
+    <string id="LabelTrip">Trip</string>
+    <string id="LabelOdo">Odometer</string>
+    <string id="StatusScan">Scanning…</string>
+    <string id="StatusConn">Connecting…</string>
+    <string id="StatusInit">Init…</string>
+    <string id="StatusOk">Connected</string>
+    <string id="StatusErr">Error</string>
+</strings>

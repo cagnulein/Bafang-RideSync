@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<!-- Custom DataField – no built-in layout used; onUpdate() draws everything. -->
+<layouts>
+    <layout id="MainLayout">
+    </layout>
+</layouts>
