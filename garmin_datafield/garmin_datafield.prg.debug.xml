@@ -15,10 +15,10 @@
         <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncApp.mc" id="9" lineNum="27" parent="globals/BafangRideSyncApp" pc="268435588" symbol="onStop"/>
         <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncApp.mc" id="10" lineNum="35" parent="globals/BafangRideSyncApp" pc="268435591" symbol="getData"/>
         <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncApp.mc" id="10" lineNum="36" parent="globals/BafangRideSyncApp" pc="268435593" symbol="getData"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="11" lineNum="295" parent="globals/BafangBleDelegate" pc="268435599" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_startTimeSync&gt;"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="11" lineNum="296" parent="globals/BafangBleDelegate" pc="268435601" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_startTimeSync&gt;"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="11" lineNum="297" parent="globals/BafangBleDelegate" pc="268435608" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_startTimeSync&gt;"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="11" lineNum="298" parent="globals/BafangBleDelegate" pc="268435619" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_startTimeSync&gt;"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="11" lineNum="300" parent="globals/BafangBleDelegate" pc="268435599" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_startTimeSync&gt;"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="11" lineNum="301" parent="globals/BafangBleDelegate" pc="268435601" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_startTimeSync&gt;"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="11" lineNum="302" parent="globals/BafangBleDelegate" pc="268435608" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_startTimeSync&gt;"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="11" lineNum="303" parent="globals/BafangBleDelegate" pc="268435619" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_startTimeSync&gt;"/>
         <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="12" lineNum="139" parent="globals/BafangBleDelegate" pc="268435657" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_enableNotify&gt;"/>
         <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="12" lineNum="140" parent="globals/BafangBleDelegate" pc="268435660" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_enableNotify&gt;"/>
         <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="12" lineNum="140" parent="globals/BafangBleDelegate" pc="268435669" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_enableNotify&gt;"/>
@@ -88,310 +88,310 @@
         <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="18" lineNum="132" parent="globals/BafangBleDelegate" pc="268436448" symbol="onConnectedStateChanged"/>
         <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="18" lineNum="133" parent="globals/BafangBleDelegate" pc="268436470" symbol="onConnectedStateChanged"/>
         <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="18" lineNum="135" parent="globals/BafangBleDelegate" pc="268436480" symbol="onConnectedStateChanged"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="19" lineNum="285" parent="globals/BafangBleDelegate" pc="268436488" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_computeTimeValues&gt;"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="19" lineNum="286" parent="globals/BafangBleDelegate" pc="268436491" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_computeTimeValues&gt;"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="19" lineNum="287" parent="globals/BafangBleDelegate" pc="268436514" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_computeTimeValues&gt;"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="19" lineNum="288" parent="globals/BafangBleDelegate" pc="268436526" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_computeTimeValues&gt;"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="19" lineNum="289" parent="globals/BafangBleDelegate" pc="268436555" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_computeTimeValues&gt;"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="19" lineNum="290" parent="globals/BafangBleDelegate" pc="268436567" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_computeTimeValues&gt;"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="19" lineNum="291" parent="globals/BafangBleDelegate" pc="268436579" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_computeTimeValues&gt;"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="19" lineNum="291" parent="globals/BafangBleDelegate" pc="268436592" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_computeTimeValues&gt;"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="19" lineNum="292" parent="globals/BafangBleDelegate" pc="268436612" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_computeTimeValues&gt;"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="19" lineNum="292" parent="globals/BafangBleDelegate" pc="268436625" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_computeTimeValues&gt;"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="20" lineNum="75" parent="globals/BafangBleDelegate" pc="268436646" symbol="startScan"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="20" lineNum="76" parent="globals/BafangBleDelegate" pc="268436648" symbol="startScan"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="20" lineNum="76" parent="globals/BafangBleDelegate" pc="268436669" symbol="startScan"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="20" lineNum="77" parent="globals/BafangBleDelegate" pc="268436673" symbol="startScan"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="20" lineNum="77" parent="globals/BafangBleDelegate" pc="268436686" symbol="startScan"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="20" lineNum="78" parent="globals/BafangBleDelegate" pc="268436690" symbol="startScan"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="20" lineNum="79" parent="globals/BafangBleDelegate" pc="268436701" symbol="startScan"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="21" lineNum="309" parent="globals/BafangBleDelegate" pc="268436717" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_sendTimeSyncFrame3&gt;"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="21" lineNum="310" parent="globals/BafangBleDelegate" pc="268436719" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_sendTimeSyncFrame3&gt;"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="22" lineNum="303" parent="globals/BafangBleDelegate" pc="268436751" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_sendTimeSyncFrame2&gt;"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="22" lineNum="304" parent="globals/BafangBleDelegate" pc="268436753" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_sendTimeSyncFrame2&gt;"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="23" lineNum="317" parent="globals/BafangBleDelegate" pc="268436785" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_sendFrame&gt;"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="23" lineNum="318" parent="globals/BafangBleDelegate" pc="268436788" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_sendFrame&gt;"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="23" lineNum="318" parent="globals/BafangBleDelegate" pc="268436797" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_sendFrame&gt;"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="23" lineNum="320" parent="globals/BafangBleDelegate" pc="268436801" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_sendFrame&gt;"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="23" lineNum="322" parent="globals/BafangBleDelegate" pc="268436836" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_sendFrame&gt;"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="23" lineNum="323" parent="globals/BafangBleDelegate" pc="268436855" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_sendFrame&gt;"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="24" lineNum="342" parent="globals/BafangBleDelegate" pc="268436894" symbol="getState"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="24" lineNum="342" parent="globals/BafangBleDelegate" pc="268436896" symbol="getState"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="25" lineNum="327" parent="globals/BafangBleDelegate" pc="268436902" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_setState&gt;"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="25" lineNum="328" parent="globals/BafangBleDelegate" pc="268436904" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_setState&gt;"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="26" lineNum="84" parent="globals/BafangBleDelegate" pc="268436914" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_tryConnectBonded&gt;"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="26" lineNum="85" parent="globals/BafangBleDelegate" pc="268436917" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_tryConnectBonded&gt;"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="26" lineNum="86" parent="globals/BafangBleDelegate" pc="268436929" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_tryConnectBonded&gt;"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="26" lineNum="87" parent="globals/BafangBleDelegate" pc="268436938" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_tryConnectBonded&gt;"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="26" lineNum="88" parent="globals/BafangBleDelegate" pc="268436944" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_tryConnectBonded&gt;"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="26" lineNum="89" parent="globals/BafangBleDelegate" pc="268436948" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_tryConnectBonded&gt;"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="26" lineNum="90" parent="globals/BafangBleDelegate" pc="268436965" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_tryConnectBonded&gt;"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="26" lineNum="91" parent="globals/BafangBleDelegate" pc="268436976" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_tryConnectBonded&gt;"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="26" lineNum="92" parent="globals/BafangBleDelegate" pc="268436998" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_tryConnectBonded&gt;"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="26" lineNum="93" parent="globals/BafangBleDelegate" pc="268437013" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_tryConnectBonded&gt;"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="26" lineNum="95" parent="globals/BafangBleDelegate" pc="268437018" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_tryConnectBonded&gt;"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="26" lineNum="97" parent="globals/BafangBleDelegate" pc="268437030" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_tryConnectBonded&gt;"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="27" lineNum="185" parent="globals/BafangBleDelegate" pc="268437032" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_handleInitResponse&gt;"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="27" lineNum="186" parent="globals/BafangBleDelegate" pc="268437035" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_handleInitResponse&gt;"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="27" lineNum="187" parent="globals/BafangBleDelegate" pc="268437048" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_handleInitResponse&gt;"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="27" lineNum="188" parent="globals/BafangBleDelegate" pc="268437053" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_handleInitResponse&gt;"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="27" lineNum="195" parent="globals/BafangBleDelegate" pc="268437069" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_handleInitResponse&gt;"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="27" lineNum="202" parent="globals/BafangBleDelegate" pc="268437085" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_handleInitResponse&gt;"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="27" lineNum="211" parent="globals/BafangBleDelegate" pc="268437101" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_handleInitResponse&gt;"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="27" lineNum="218" parent="globals/BafangBleDelegate" pc="268437117" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_handleInitResponse&gt;"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="27" lineNum="225" parent="globals/BafangBleDelegate" pc="268437133" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_handleInitResponse&gt;"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="27" lineNum="231" parent="globals/BafangBleDelegate" pc="268437149" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_handleInitResponse&gt;"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="27" lineNum="239" parent="globals/BafangBleDelegate" pc="268437165" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_handleInitResponse&gt;"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="27" lineNum="247" parent="globals/BafangBleDelegate" pc="268437181" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_handleInitResponse&gt;"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="27" lineNum="256" parent="globals/BafangBleDelegate" pc="268437197" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_handleInitResponse&gt;"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="27" lineNum="190" parent="globals/BafangBleDelegate" pc="268437200" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_handleInitResponse&gt;"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="27" lineNum="191" parent="globals/BafangBleDelegate" pc="268437224" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_handleInitResponse&gt;"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="27" lineNum="192" parent="globals/BafangBleDelegate" pc="268437235" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_handleInitResponse&gt;"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="27" lineNum="194" parent="globals/BafangBleDelegate" pc="268437252" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_handleInitResponse&gt;"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="27" lineNum="197" parent="globals/BafangBleDelegate" pc="268437255" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_handleInitResponse&gt;"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="27" lineNum="198" parent="globals/BafangBleDelegate" pc="268437279" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_handleInitResponse&gt;"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="27" lineNum="199" parent="globals/BafangBleDelegate" pc="268437290" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_handleInitResponse&gt;"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="27" lineNum="201" parent="globals/BafangBleDelegate" pc="268437307" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_handleInitResponse&gt;"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="27" lineNum="204" parent="globals/BafangBleDelegate" pc="268437310" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_handleInitResponse&gt;"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="27" lineNum="206" parent="globals/BafangBleDelegate" pc="268437347" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_handleInitResponse&gt;"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="27" lineNum="207" parent="globals/BafangBleDelegate" pc="268437362" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_handleInitResponse&gt;"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="27" lineNum="208" parent="globals/BafangBleDelegate" pc="268437373" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_handleInitResponse&gt;"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="27" lineNum="210" parent="globals/BafangBleDelegate" pc="268437390" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_handleInitResponse&gt;"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="27" lineNum="213" parent="globals/BafangBleDelegate" pc="268437393" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_handleInitResponse&gt;"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="27" lineNum="214" parent="globals/BafangBleDelegate" pc="268437418" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_handleInitResponse&gt;"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="27" lineNum="215" parent="globals/BafangBleDelegate" pc="268437429" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_handleInitResponse&gt;"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="27" lineNum="217" parent="globals/BafangBleDelegate" pc="268437446" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_handleInitResponse&gt;"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="27" lineNum="220" parent="globals/BafangBleDelegate" pc="268437449" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_handleInitResponse&gt;"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="27" lineNum="221" parent="globals/BafangBleDelegate" pc="268437474" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_handleInitResponse&gt;"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="27" lineNum="222" parent="globals/BafangBleDelegate" pc="268437485" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_handleInitResponse&gt;"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="27" lineNum="224" parent="globals/BafangBleDelegate" pc="268437502" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_handleInitResponse&gt;"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="27" lineNum="227" parent="globals/BafangBleDelegate" pc="268437505" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_handleInitResponse&gt;"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="27" lineNum="228" parent="globals/BafangBleDelegate" pc="268437530" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_handleInitResponse&gt;"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="27" lineNum="230" parent="globals/BafangBleDelegate" pc="268437540" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_handleInitResponse&gt;"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="27" lineNum="233" parent="globals/BafangBleDelegate" pc="268437543" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_handleInitResponse&gt;"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="27" lineNum="235" parent="globals/BafangBleDelegate" pc="268437579" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_handleInitResponse&gt;"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="27" lineNum="236" parent="globals/BafangBleDelegate" pc="268437590" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_handleInitResponse&gt;"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="27" lineNum="238" parent="globals/BafangBleDelegate" pc="268437600" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_handleInitResponse&gt;"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="27" lineNum="241" parent="globals/BafangBleDelegate" pc="268437603" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_handleInitResponse&gt;"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="27" lineNum="243" parent="globals/BafangBleDelegate" pc="268437639" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_handleInitResponse&gt;"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="27" lineNum="244" parent="globals/BafangBleDelegate" pc="268437650" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_handleInitResponse&gt;"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="27" lineNum="246" parent="globals/BafangBleDelegate" pc="268437660" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_handleInitResponse&gt;"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="27" lineNum="249" parent="globals/BafangBleDelegate" pc="268437663" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_handleInitResponse&gt;"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="27" lineNum="251" parent="globals/BafangBleDelegate" pc="268437699" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_handleInitResponse&gt;"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="27" lineNum="252" parent="globals/BafangBleDelegate" pc="268437710" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_handleInitResponse&gt;"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="27" lineNum="253" parent="globals/BafangBleDelegate" pc="268437732" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_handleInitResponse&gt;"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="27" lineNum="255" parent="globals/BafangBleDelegate" pc="268437758" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_handleInitResponse&gt;"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="27" lineNum="257" parent="globals/BafangBleDelegate" pc="268437761" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_handleInitResponse&gt;"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="28" lineNum="52" parent="globals/BafangBleDelegate" pc="268437766" symbol="initialize"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="28" lineNum="53" parent="globals/BafangBleDelegate" pc="268437768" symbol="initialize"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="28" lineNum="54" parent="globals/BafangBleDelegate" pc="268437780" symbol="initialize"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="29" lineNum="59" parent="globals/BafangBleDelegate" pc="268437788" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_registerProfile&gt;"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="29" lineNum="61" parent="globals/BafangBleDelegate" pc="268437791" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_registerProfile&gt;"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="29" lineNum="69" parent="globals/BafangBleDelegate" pc="268437933" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_registerProfile&gt;"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="29" lineNum="70" parent="globals/BafangBleDelegate" pc="268437952" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_registerProfile&gt;"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="30" lineNum="331" parent="globals/BafangBleDelegate" pc="268437991" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_parseModel&gt;"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="30" lineNum="333" parent="globals/BafangBleDelegate" pc="268437994" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_parseModel&gt;"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="30" lineNum="334" parent="globals/BafangBleDelegate" pc="268438001" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_parseModel&gt;"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="30" lineNum="335" parent="globals/BafangBleDelegate" pc="268438017" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_parseModel&gt;"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="30" lineNum="336" parent="globals/BafangBleDelegate" pc="268438024" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_parseModel&gt;"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="30" lineNum="336" parent="globals/BafangBleDelegate" pc="268438031" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_parseModel&gt;"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="30" lineNum="337" parent="globals/BafangBleDelegate" pc="268438037" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_parseModel&gt;"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="30" lineNum="339" parent="globals/BafangBleDelegate" pc="268438065" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_parseModel&gt;"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="31" lineNum="84" parent="globals/BafangRideSyncView" pc="268438085" symbol="onLayout"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="32" lineNum="89" parent="globals/BafangRideSyncView" pc="268438088" symbol="compute"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="32" lineNum="90" parent="globals/BafangRideSyncView" pc="268438091" symbol="compute"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="32" lineNum="91" parent="globals/BafangRideSyncView" pc="268438104" symbol="compute"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="32" lineNum="92" parent="globals/BafangRideSyncView" pc="268438128" symbol="compute"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="32" lineNum="93" parent="globals/BafangRideSyncView" pc="268438153" symbol="compute"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="32" lineNum="94" parent="globals/BafangRideSyncView" pc="268438178" symbol="compute"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="32" lineNum="95" parent="globals/BafangRideSyncView" pc="268438203" symbol="compute"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="32" lineNum="96" parent="globals/BafangRideSyncView" pc="268438228" symbol="compute"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="32" lineNum="97" parent="globals/BafangRideSyncView" pc="268438252" symbol="compute"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="32" lineNum="98" parent="globals/BafangRideSyncView" pc="268438277" symbol="compute"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="32" lineNum="99" parent="globals/BafangRideSyncView" pc="268438302" symbol="compute"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="33" lineNum="102" parent="globals/BafangRideSyncView" pc="268438304" symbol="&lt;globals/BafangRideSyncView/&lt;&gt;_writeField&gt;"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="33" lineNum="104" parent="globals/BafangRideSyncView" pc="268438306" symbol="&lt;globals/BafangRideSyncView/&lt;&gt;_writeField&gt;"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="33" lineNum="105" parent="globals/BafangRideSyncView" pc="268438318" symbol="&lt;globals/BafangRideSyncView/&lt;&gt;_writeField&gt;"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="34" lineNum="36" parent="globals/BafangRideSyncView" pc="268438335" symbol="initialize"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="34" lineNum="37" parent="globals/BafangRideSyncView" pc="268438337" symbol="initialize"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="34" lineNum="38" parent="globals/BafangRideSyncView" pc="268438349" symbol="initialize"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="34" lineNum="39" parent="globals/BafangRideSyncView" pc="268438356" symbol="initialize"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="35" lineNum="63" parent="globals/BafangRideSyncView" pc="268438364" symbol="&lt;globals/BafangRideSyncView/&lt;&gt;_initBle&gt;"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="35" lineNum="64" parent="globals/BafangRideSyncView" pc="268438367" symbol="&lt;globals/BafangRideSyncView/&lt;&gt;_initBle&gt;"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="35" lineNum="65" parent="globals/BafangRideSyncView" pc="268438371" symbol="&lt;globals/BafangRideSyncView/&lt;&gt;_initBle&gt;"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="35" lineNum="66" parent="globals/BafangRideSyncView" pc="268438389" symbol="&lt;globals/BafangRideSyncView/&lt;&gt;_initBle&gt;"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="35" lineNum="68" parent="globals/BafangRideSyncView" pc="268438393" symbol="&lt;globals/BafangRideSyncView/&lt;&gt;_initBle&gt;"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="35" lineNum="69" parent="globals/BafangRideSyncView" pc="268438409" symbol="&lt;globals/BafangRideSyncView/&lt;&gt;_initBle&gt;"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="35" lineNum="70" parent="globals/BafangRideSyncView" pc="268438431" symbol="&lt;globals/BafangRideSyncView/&lt;&gt;_initBle&gt;"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="35" lineNum="73" parent="globals/BafangRideSyncView" pc="268438435" symbol="&lt;globals/BafangRideSyncView/&lt;&gt;_initBle&gt;"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="35" lineNum="74" parent="globals/BafangRideSyncView" pc="268438460" symbol="&lt;globals/BafangRideSyncView/&lt;&gt;_initBle&gt;"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="35" lineNum="75" parent="globals/BafangRideSyncView" pc="268438478" symbol="&lt;globals/BafangRideSyncView/&lt;&gt;_initBle&gt;"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="35" lineNum="76" parent="globals/BafangRideSyncView" pc="268438496" symbol="&lt;globals/BafangRideSyncView/&lt;&gt;_initBle&gt;"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="35" lineNum="77" parent="globals/BafangRideSyncView" pc="268438515" symbol="&lt;globals/BafangRideSyncView/&lt;&gt;_initBle&gt;"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="35" lineNum="78" parent="globals/BafangRideSyncView" pc="268438541" symbol="&lt;globals/BafangRideSyncView/&lt;&gt;_initBle&gt;"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="36" lineNum="111" parent="globals/BafangRideSyncView" pc="268438576" symbol="onUpdate"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="36" lineNum="112" parent="globals/BafangRideSyncView" pc="268438579" symbol="onUpdate"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="36" lineNum="113" parent="globals/BafangRideSyncView" pc="268438588" symbol="onUpdate"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="36" lineNum="114" parent="globals/BafangRideSyncView" pc="268438597" symbol="onUpdate"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="36" lineNum="117" parent="globals/BafangRideSyncView" pc="268438610" symbol="onUpdate"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="36" lineNum="118" parent="globals/BafangRideSyncView" pc="268438622" symbol="onUpdate"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="36" lineNum="121" parent="globals/BafangRideSyncView" pc="268438630" symbol="onUpdate"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="36" lineNum="122" parent="globals/BafangRideSyncView" pc="268438640" symbol="onUpdate"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="36" lineNum="123" parent="globals/BafangRideSyncView" pc="268438656" symbol="onUpdate"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="36" lineNum="124" parent="globals/BafangRideSyncView" pc="268438672" symbol="onUpdate"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="36" lineNum="125" parent="globals/BafangRideSyncView" pc="268438689" symbol="onUpdate"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="36" lineNum="126" parent="globals/BafangRideSyncView" pc="268438711" symbol="onUpdate"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="36" lineNum="127" parent="globals/BafangRideSyncView" pc="268438734" symbol="onUpdate"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="36" lineNum="128" parent="globals/BafangRideSyncView" pc="268438748" symbol="onUpdate"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="36" lineNum="131" parent="globals/BafangRideSyncView" pc="268438773" symbol="onUpdate"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="36" lineNum="132" parent="globals/BafangRideSyncView" pc="268438783" symbol="onUpdate"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="36" lineNum="133" parent="globals/BafangRideSyncView" pc="268438821" symbol="onUpdate"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="36" lineNum="134" parent="globals/BafangRideSyncView" pc="268438859" symbol="onUpdate"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="36" lineNum="135" parent="globals/BafangRideSyncView" pc="268438876" symbol="onUpdate"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="36" lineNum="136" parent="globals/BafangRideSyncView" pc="268438896" symbol="onUpdate"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="36" lineNum="137" parent="globals/BafangRideSyncView" pc="268438913" symbol="onUpdate"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="36" lineNum="140" parent="globals/BafangRideSyncView" pc="268438935" symbol="onUpdate"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="36" lineNum="141" parent="globals/BafangRideSyncView" pc="268438945" symbol="onUpdate"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="36" lineNum="142" parent="globals/BafangRideSyncView" pc="268438984" symbol="onUpdate"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="36" lineNum="143" parent="globals/BafangRideSyncView" pc="268439001" symbol="onUpdate"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="36" lineNum="145" parent="globals/BafangRideSyncView" pc="268439024" symbol="onUpdate"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="36" lineNum="146" parent="globals/BafangRideSyncView" pc="268439040" symbol="onUpdate"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="36" lineNum="150" parent="globals/BafangRideSyncView" pc="268439075" symbol="onUpdate"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="36" lineNum="151" parent="globals/BafangRideSyncView" pc="268439085" symbol="onUpdate"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="36" lineNum="154" parent="globals/BafangRideSyncView" pc="268439136" symbol="onUpdate"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="36" lineNum="155" parent="globals/BafangRideSyncView" pc="268439153" symbol="onUpdate"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="36" lineNum="158" parent="globals/BafangRideSyncView" pc="268439173" symbol="onUpdate"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="36" lineNum="159" parent="globals/BafangRideSyncView" pc="268439183" symbol="onUpdate"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="36" lineNum="162" parent="globals/BafangRideSyncView" pc="268439234" symbol="onUpdate"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="36" lineNum="163" parent="globals/BafangRideSyncView" pc="268439251" symbol="onUpdate"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="36" lineNum="166" parent="globals/BafangRideSyncView" pc="268439271" symbol="onUpdate"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="36" lineNum="167" parent="globals/BafangRideSyncView" pc="268439294" symbol="onUpdate"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="36" lineNum="168" parent="globals/BafangRideSyncView" pc="268439310" symbol="onUpdate"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="37" lineNum="44" parent="globals/BafangRideSyncView" pc="268439353" symbol="&lt;globals/BafangRideSyncView/&lt;&gt;_initFitFields&gt;"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="37" lineNum="45" parent="globals/BafangRideSyncView" pc="268439356" symbol="&lt;globals/BafangRideSyncView/&lt;&gt;_initFitFields&gt;"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="37" lineNum="45" parent="globals/BafangRideSyncView" pc="268439367" symbol="&lt;globals/BafangRideSyncView/&lt;&gt;_initFitFields&gt;"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="37" lineNum="46" parent="globals/BafangRideSyncView" pc="268439371" symbol="&lt;globals/BafangRideSyncView/&lt;&gt;_initFitFields&gt;"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="37" lineNum="48" parent="globals/BafangRideSyncView" pc="268439386" symbol="&lt;globals/BafangRideSyncView/&lt;&gt;_initFitFields&gt;"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="37" lineNum="49" parent="globals/BafangRideSyncView" pc="268439411" symbol="&lt;globals/BafangRideSyncView/&lt;&gt;_initFitFields&gt;"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="37" lineNum="50" parent="globals/BafangRideSyncView" pc="268439437" symbol="&lt;globals/BafangRideSyncView/&lt;&gt;_initFitFields&gt;"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="37" lineNum="51" parent="globals/BafangRideSyncView" pc="268439463" symbol="&lt;globals/BafangRideSyncView/&lt;&gt;_initFitFields&gt;"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="37" lineNum="52" parent="globals/BafangRideSyncView" pc="268439489" symbol="&lt;globals/BafangRideSyncView/&lt;&gt;_initFitFields&gt;"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="37" lineNum="53" parent="globals/BafangRideSyncView" pc="268439515" symbol="&lt;globals/BafangRideSyncView/&lt;&gt;_initFitFields&gt;"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="37" lineNum="54" parent="globals/BafangRideSyncView" pc="268439541" symbol="&lt;globals/BafangRideSyncView/&lt;&gt;_initFitFields&gt;"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="37" lineNum="55" parent="globals/BafangRideSyncView" pc="268439567" symbol="&lt;globals/BafangRideSyncView/&lt;&gt;_initFitFields&gt;"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="37" lineNum="56" parent="globals/BafangRideSyncView" pc="268439599" symbol="&lt;globals/BafangRideSyncView/&lt;&gt;_initFitFields&gt;"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="37" lineNum="57" parent="globals/BafangRideSyncView" pc="268439618" symbol="&lt;globals/BafangRideSyncView/&lt;&gt;_initFitFields&gt;"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/FrameParser.mc" id="38" lineNum="11" parent="globals/ParsedFrame" pc="268439657" symbol="initialize"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/FrameParser.mc" id="38" lineNum="13" parent="globals/ParsedFrame" pc="268439659" symbol="initialize"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/FrameParser.mc" id="38" lineNum="14" parent="globals/ParsedFrame" pc="268439668" symbol="initialize"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/FrameParser.mc" id="38" lineNum="15" parent="globals/ParsedFrame" pc="268439677" symbol="initialize"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/FrameParser.mc" id="38" lineNum="16" parent="globals/ParsedFrame" pc="268439686" symbol="initialize"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/FrameParser.mc" id="38" lineNum="17" parent="globals/ParsedFrame" pc="268439695" symbol="initialize"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/FrameBuilder.mc" id="39" lineNum="64" parent="globals/FrameBuilder" pc="268439705" symbol="writeByte"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/FrameBuilder.mc" id="39" lineNum="65" parent="globals/FrameBuilder" pc="268439708" symbol="writeByte"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/FrameBuilder.mc" id="39" lineNum="66" parent="globals/FrameBuilder" pc="268439713" symbol="writeByte"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/FrameBuilder.mc" id="39" lineNum="67" parent="globals/FrameBuilder" pc="268439723" symbol="writeByte"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/FrameBuilder.mc" id="40" lineNum="71" parent="globals/FrameBuilder" pc="268439742" symbol="writeU32"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/FrameBuilder.mc" id="40" lineNum="72" parent="globals/FrameBuilder" pc="268439745" symbol="writeU32"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/FrameBuilder.mc" id="40" lineNum="73" parent="globals/FrameBuilder" pc="268439750" symbol="writeU32"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/FrameBuilder.mc" id="40" lineNum="74" parent="globals/FrameBuilder" pc="268439760" symbol="writeU32"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/FrameBuilder.mc" id="40" lineNum="75" parent="globals/FrameBuilder" pc="268439774" symbol="writeU32"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/FrameBuilder.mc" id="40" lineNum="76" parent="globals/FrameBuilder" pc="268439788" symbol="writeU32"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/FrameBuilder.mc" id="40" lineNum="77" parent="globals/FrameBuilder" pc="268439802" symbol="writeU32"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/FrameBuilder.mc" id="41" lineNum="83" parent="globals/FrameBuilder" pc="268439821" symbol="initHandshake"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/FrameBuilder.mc" id="41" lineNum="84" parent="globals/FrameBuilder" pc="268439824" symbol="initHandshake"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/FrameBuilder.mc" id="41" lineNum="86" parent="globals/FrameBuilder" pc="268439831" symbol="initHandshake"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/FrameBuilder.mc" id="42" lineNum="30" parent="globals/FrameBuilder" pc="268439849" symbol="build"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/FrameBuilder.mc" id="42" lineNum="32" parent="globals/FrameBuilder" pc="268439852" symbol="build"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/FrameBuilder.mc" id="42" lineNum="33" parent="globals/FrameBuilder" pc="268439861" symbol="build"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/FrameBuilder.mc" id="42" lineNum="34" parent="globals/FrameBuilder" pc="268439868" symbol="build"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/FrameBuilder.mc" id="42" lineNum="35" parent="globals/FrameBuilder" pc="268439873" symbol="build"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/FrameBuilder.mc" id="42" lineNum="36" parent="globals/FrameBuilder" pc="268439879" symbol="build"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/FrameBuilder.mc" id="42" lineNum="37" parent="globals/FrameBuilder" pc="268439887" symbol="build"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/FrameBuilder.mc" id="42" lineNum="38" parent="globals/FrameBuilder" pc="268439894" symbol="build"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/FrameBuilder.mc" id="42" lineNum="39" parent="globals/FrameBuilder" pc="268439901" symbol="build"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/FrameBuilder.mc" id="42" lineNum="40" parent="globals/FrameBuilder" pc="268439908" symbol="build"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/FrameBuilder.mc" id="42" lineNum="41" parent="globals/FrameBuilder" pc="268439915" symbol="build"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/FrameBuilder.mc" id="42" lineNum="42" parent="globals/FrameBuilder" pc="268439922" symbol="build"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/FrameBuilder.mc" id="42" lineNum="43" parent="globals/FrameBuilder" pc="268439933" symbol="build"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/FrameBuilder.mc" id="42" lineNum="45" parent="globals/FrameBuilder" pc="268439956" symbol="build"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/FrameBuilder.mc" id="42" lineNum="46" parent="globals/FrameBuilder" pc="268439959" symbol="build"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/FrameBuilder.mc" id="42" lineNum="47" parent="globals/FrameBuilder" pc="268439974" symbol="build"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/FrameBuilder.mc" id="42" lineNum="49" parent="globals/FrameBuilder" pc="268439994" symbol="build"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/FrameBuilder.mc" id="42" lineNum="50" parent="globals/FrameBuilder" pc="268440004" symbol="build"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/FrameBuilder.mc" id="42" lineNum="51" parent="globals/FrameBuilder" pc="268440018" symbol="build"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/FrameBuilder.mc" id="42" lineNum="52" parent="globals/FrameBuilder" pc="268440038" symbol="build"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/FrameBuilder.mc" id="44" lineNum="57" parent="globals/FrameBuilder" pc="268440041" symbol="readReg"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/FrameBuilder.mc" id="44" lineNum="58" parent="globals/FrameBuilder" pc="268440044" symbol="readReg"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/FrameBuilder.mc" id="44" lineNum="59" parent="globals/FrameBuilder" pc="268440049" symbol="readReg"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/FrameBuilder.mc" id="44" lineNum="60" parent="globals/FrameBuilder" pc="268440059" symbol="readReg"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/FrameBuilder.mc" id="45" lineNum="90" parent="globals/FrameBuilder" pc="268440078" symbol="initSequence"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/FrameBuilder.mc" id="45" lineNum="91" parent="globals/FrameBuilder" pc="268440080" symbol="initSequence"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/FrameParser.mc" id="46" lineNum="49" parent="globals/FrameParser" pc="268440184" symbol="u16le"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/FrameParser.mc" id="46" lineNum="50" parent="globals/FrameParser" pc="268440186" symbol="u16le"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/FrameParser.mc" id="47" lineNum="56" parent="globals/FrameParser" pc="268440204" symbol="u32le"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/FrameParser.mc" id="47" lineNum="57" parent="globals/FrameParser" pc="268440206" symbol="u32le"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/FrameParser.mc" id="48" lineNum="38" parent="globals/FrameParser" pc="268440248" symbol="verifyChecksum"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/FrameParser.mc" id="48" lineNum="39" parent="globals/FrameParser" pc="268440251" symbol="verifyChecksum"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/FrameParser.mc" id="48" lineNum="40" parent="globals/FrameParser" pc="268440254" symbol="verifyChecksum"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/FrameParser.mc" id="48" lineNum="41" parent="globals/FrameParser" pc="268440269" symbol="verifyChecksum"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/FrameParser.mc" id="48" lineNum="43" parent="globals/FrameParser" pc="268440289" symbol="verifyChecksum"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/FrameParser.mc" id="48" lineNum="44" parent="globals/FrameParser" pc="268440299" symbol="verifyChecksum"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/FrameParser.mc" id="48" lineNum="45" parent="globals/FrameParser" pc="268440324" symbol="verifyChecksum"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/FrameParser.mc" id="50" lineNum="24" parent="globals/FrameParser" pc="268440330" symbol="parse"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/FrameParser.mc" id="50" lineNum="25" parent="globals/FrameParser" pc="268440333" symbol="parse"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/FrameParser.mc" id="50" lineNum="26" parent="globals/FrameParser" pc="268440342" symbol="parse"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/FrameParser.mc" id="50" lineNum="26" parent="globals/FrameParser" pc="268440350" symbol="parse"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/FrameParser.mc" id="50" lineNum="27" parent="globals/FrameParser" pc="268440355" symbol="parse"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/FrameParser.mc" id="50" lineNum="27" parent="globals/FrameParser" pc="268440377" symbol="parse"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/FrameParser.mc" id="50" lineNum="28" parent="globals/FrameParser" pc="268440382" symbol="parse"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/FrameParser.mc" id="50" lineNum="29" parent="globals/FrameParser" pc="268440389" symbol="parse"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/FrameParser.mc" id="50" lineNum="30" parent="globals/FrameParser" pc="268440396" symbol="parse"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/FrameParser.mc" id="50" lineNum="30" parent="globals/FrameParser" pc="268440404" symbol="parse"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/FrameParser.mc" id="50" lineNum="31" parent="globals/FrameParser" pc="268440409" symbol="parse"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/FrameParser.mc" id="50" lineNum="31" parent="globals/FrameParser" pc="268440425" symbol="parse"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/FrameParser.mc" id="50" lineNum="32" parent="globals/FrameParser" pc="268440430" symbol="parse"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/FrameParser.mc" id="51" lineNum="64" parent="globals/FrameParser" pc="268440486" symbol="byteSlice"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/FrameParser.mc" id="51" lineNum="65" parent="globals/FrameParser" pc="268440489" symbol="byteSlice"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/FrameParser.mc" id="51" lineNum="66" parent="globals/FrameParser" pc="268440496" symbol="byteSlice"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/FrameParser.mc" id="51" lineNum="67" parent="globals/FrameParser" pc="268440501" symbol="byteSlice"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/FrameParser.mc" id="51" lineNum="68" parent="globals/FrameParser" pc="268440512" symbol="byteSlice"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/FrameParser.mc" id="51" lineNum="70" parent="globals/FrameParser" pc="268440535" symbol="byteSlice"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangData.mc" id="52" lineNum="95" parent="globals/BafangData" pc="268440538" symbol="pack0609"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangData.mc" id="52" lineNum="96" parent="globals/BafangData" pc="268440541" symbol="pack0609"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangData.mc" id="52" lineNum="96" parent="globals/BafangData" pc="268440550" symbol="pack0609"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangData.mc" id="52" lineNum="97" parent="globals/BafangData" pc="268440555" symbol="pack0609"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangData.mc" id="52" lineNum="98" parent="globals/BafangData" pc="268440562" symbol="pack0609"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangData.mc" id="52" lineNum="98" parent="globals/BafangData" pc="268440578" symbol="pack0609"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangData.mc" id="52" lineNum="99" parent="globals/BafangData" pc="268440583" symbol="pack0609"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangData.mc" id="53" lineNum="84" parent="globals/BafangData" pc="268440625" symbol="pack0601"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangData.mc" id="53" lineNum="85" parent="globals/BafangData" pc="268440628" symbol="pack0601"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangData.mc" id="53" lineNum="85" parent="globals/BafangData" pc="268440637" symbol="pack0601"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangData.mc" id="53" lineNum="86" parent="globals/BafangData" pc="268440642" symbol="pack0601"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangData.mc" id="53" lineNum="87" parent="globals/BafangData" pc="268440649" symbol="pack0601"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangData.mc" id="53" lineNum="87" parent="globals/BafangData" pc="268440665" symbol="pack0601"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangData.mc" id="53" lineNum="88" parent="globals/BafangData" pc="268440670" symbol="pack0601"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangData.mc" id="54" lineNum="77" parent="globals/BafangData" pc="268440712" symbol="update0609"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangData.mc" id="54" lineNum="78" parent="globals/BafangData" pc="268440714" symbol="update0609"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangData.mc" id="54" lineNum="78" parent="globals/BafangData" pc="268440727" symbol="update0609"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangData.mc" id="54" lineNum="79" parent="globals/BafangData" pc="268440731" symbol="update0609"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangData.mc" id="55" lineNum="52" parent="globals/BafangData" pc="268440741" symbol="injectSimFrames"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangData.mc" id="55" lineNum="54" parent="globals/BafangData" pc="268440743" symbol="injectSimFrames"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangData.mc" id="55" lineNum="58" parent="globals/BafangData" pc="268440757" symbol="injectSimFrames"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangData.mc" id="55" lineNum="60" parent="globals/BafangData" pc="268440771" symbol="injectSimFrames"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangData.mc" id="55" lineNum="61" parent="globals/BafangData" pc="268440783" symbol="injectSimFrames"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangData.mc" id="55" lineNum="62" parent="globals/BafangData" pc="268440791" symbol="injectSimFrames"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangData.mc" id="57" lineNum="66" parent="globals/BafangData" pc="268440804" symbol="update0601"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangData.mc" id="57" lineNum="67" parent="globals/BafangData" pc="268440806" symbol="update0601"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangData.mc" id="57" lineNum="67" parent="globals/BafangData" pc="268440819" symbol="update0601"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangData.mc" id="57" lineNum="68" parent="globals/BafangData" pc="268440823" symbol="update0601"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangData.mc" id="57" lineNum="69" parent="globals/BafangData" pc="268440832" symbol="update0601"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangData.mc" id="57" lineNum="70" parent="globals/BafangData" pc="268440844" symbol="update0601"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangData.mc" id="57" lineNum="71" parent="globals/BafangData" pc="268440856" symbol="update0601"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangData.mc" id="57" lineNum="72" parent="globals/BafangData" pc="268440892" symbol="update0601"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangData.mc" id="57" lineNum="73" parent="globals/BafangData" pc="268440928" symbol="update0601"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/gen/006-B4534-00/source/Rez.mcgen" id="58" lineNum="13" parent="globals/Rez/Layouts" pc="268440965" symbol="MainLayout"/>
-        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/gen/006-B4534-00/source/Rez.mcgen" id="58" lineNum="14" parent="globals/Rez/Layouts" pc="268440975" symbol="MainLayout"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="19" lineNum="290" parent="globals/BafangBleDelegate" pc="268436488" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_computeTimeValues&gt;"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="19" lineNum="291" parent="globals/BafangBleDelegate" pc="268436491" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_computeTimeValues&gt;"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="19" lineNum="292" parent="globals/BafangBleDelegate" pc="268436520" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_computeTimeValues&gt;"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="19" lineNum="293" parent="globals/BafangBleDelegate" pc="268436532" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_computeTimeValues&gt;"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="19" lineNum="294" parent="globals/BafangBleDelegate" pc="268436561" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_computeTimeValues&gt;"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="19" lineNum="295" parent="globals/BafangBleDelegate" pc="268436573" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_computeTimeValues&gt;"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="19" lineNum="296" parent="globals/BafangBleDelegate" pc="268436585" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_computeTimeValues&gt;"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="19" lineNum="296" parent="globals/BafangBleDelegate" pc="268436598" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_computeTimeValues&gt;"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="19" lineNum="297" parent="globals/BafangBleDelegate" pc="268436618" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_computeTimeValues&gt;"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="19" lineNum="297" parent="globals/BafangBleDelegate" pc="268436631" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_computeTimeValues&gt;"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="20" lineNum="75" parent="globals/BafangBleDelegate" pc="268436652" symbol="startScan"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="20" lineNum="76" parent="globals/BafangBleDelegate" pc="268436654" symbol="startScan"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="20" lineNum="76" parent="globals/BafangBleDelegate" pc="268436675" symbol="startScan"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="20" lineNum="77" parent="globals/BafangBleDelegate" pc="268436679" symbol="startScan"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="20" lineNum="77" parent="globals/BafangBleDelegate" pc="268436692" symbol="startScan"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="20" lineNum="78" parent="globals/BafangBleDelegate" pc="268436696" symbol="startScan"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="20" lineNum="79" parent="globals/BafangBleDelegate" pc="268436707" symbol="startScan"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="21" lineNum="314" parent="globals/BafangBleDelegate" pc="268436723" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_sendTimeSyncFrame3&gt;"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="21" lineNum="315" parent="globals/BafangBleDelegate" pc="268436725" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_sendTimeSyncFrame3&gt;"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="22" lineNum="308" parent="globals/BafangBleDelegate" pc="268436757" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_sendTimeSyncFrame2&gt;"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="22" lineNum="309" parent="globals/BafangBleDelegate" pc="268436759" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_sendTimeSyncFrame2&gt;"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="23" lineNum="322" parent="globals/BafangBleDelegate" pc="268436791" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_sendFrame&gt;"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="23" lineNum="323" parent="globals/BafangBleDelegate" pc="268436794" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_sendFrame&gt;"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="23" lineNum="323" parent="globals/BafangBleDelegate" pc="268436803" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_sendFrame&gt;"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="23" lineNum="325" parent="globals/BafangBleDelegate" pc="268436807" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_sendFrame&gt;"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="23" lineNum="327" parent="globals/BafangBleDelegate" pc="268436842" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_sendFrame&gt;"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="23" lineNum="328" parent="globals/BafangBleDelegate" pc="268436861" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_sendFrame&gt;"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="24" lineNum="347" parent="globals/BafangBleDelegate" pc="268436900" symbol="getState"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="24" lineNum="347" parent="globals/BafangBleDelegate" pc="268436902" symbol="getState"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="25" lineNum="332" parent="globals/BafangBleDelegate" pc="268436908" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_setState&gt;"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="25" lineNum="333" parent="globals/BafangBleDelegate" pc="268436910" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_setState&gt;"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="26" lineNum="84" parent="globals/BafangBleDelegate" pc="268436920" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_tryConnectBonded&gt;"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="26" lineNum="85" parent="globals/BafangBleDelegate" pc="268436923" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_tryConnectBonded&gt;"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="26" lineNum="86" parent="globals/BafangBleDelegate" pc="268436935" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_tryConnectBonded&gt;"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="26" lineNum="87" parent="globals/BafangBleDelegate" pc="268436944" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_tryConnectBonded&gt;"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="26" lineNum="88" parent="globals/BafangBleDelegate" pc="268436950" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_tryConnectBonded&gt;"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="26" lineNum="89" parent="globals/BafangBleDelegate" pc="268436954" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_tryConnectBonded&gt;"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="26" lineNum="90" parent="globals/BafangBleDelegate" pc="268436971" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_tryConnectBonded&gt;"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="26" lineNum="91" parent="globals/BafangBleDelegate" pc="268436982" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_tryConnectBonded&gt;"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="26" lineNum="92" parent="globals/BafangBleDelegate" pc="268437004" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_tryConnectBonded&gt;"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="26" lineNum="93" parent="globals/BafangBleDelegate" pc="268437019" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_tryConnectBonded&gt;"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="26" lineNum="95" parent="globals/BafangBleDelegate" pc="268437024" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_tryConnectBonded&gt;"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="26" lineNum="97" parent="globals/BafangBleDelegate" pc="268437036" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_tryConnectBonded&gt;"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="27" lineNum="185" parent="globals/BafangBleDelegate" pc="268437038" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_handleInitResponse&gt;"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="27" lineNum="186" parent="globals/BafangBleDelegate" pc="268437041" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_handleInitResponse&gt;"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="27" lineNum="187" parent="globals/BafangBleDelegate" pc="268437054" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_handleInitResponse&gt;"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="27" lineNum="188" parent="globals/BafangBleDelegate" pc="268437059" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_handleInitResponse&gt;"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="27" lineNum="195" parent="globals/BafangBleDelegate" pc="268437075" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_handleInitResponse&gt;"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="27" lineNum="202" parent="globals/BafangBleDelegate" pc="268437091" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_handleInitResponse&gt;"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="27" lineNum="211" parent="globals/BafangBleDelegate" pc="268437107" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_handleInitResponse&gt;"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="27" lineNum="218" parent="globals/BafangBleDelegate" pc="268437123" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_handleInitResponse&gt;"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="27" lineNum="225" parent="globals/BafangBleDelegate" pc="268437139" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_handleInitResponse&gt;"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="27" lineNum="231" parent="globals/BafangBleDelegate" pc="268437155" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_handleInitResponse&gt;"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="27" lineNum="239" parent="globals/BafangBleDelegate" pc="268437171" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_handleInitResponse&gt;"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="27" lineNum="247" parent="globals/BafangBleDelegate" pc="268437187" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_handleInitResponse&gt;"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="27" lineNum="256" parent="globals/BafangBleDelegate" pc="268437203" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_handleInitResponse&gt;"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="27" lineNum="190" parent="globals/BafangBleDelegate" pc="268437206" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_handleInitResponse&gt;"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="27" lineNum="191" parent="globals/BafangBleDelegate" pc="268437230" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_handleInitResponse&gt;"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="27" lineNum="192" parent="globals/BafangBleDelegate" pc="268437241" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_handleInitResponse&gt;"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="27" lineNum="194" parent="globals/BafangBleDelegate" pc="268437258" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_handleInitResponse&gt;"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="27" lineNum="197" parent="globals/BafangBleDelegate" pc="268437261" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_handleInitResponse&gt;"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="27" lineNum="198" parent="globals/BafangBleDelegate" pc="268437285" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_handleInitResponse&gt;"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="27" lineNum="199" parent="globals/BafangBleDelegate" pc="268437296" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_handleInitResponse&gt;"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="27" lineNum="201" parent="globals/BafangBleDelegate" pc="268437313" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_handleInitResponse&gt;"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="27" lineNum="204" parent="globals/BafangBleDelegate" pc="268437316" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_handleInitResponse&gt;"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="27" lineNum="206" parent="globals/BafangBleDelegate" pc="268437353" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_handleInitResponse&gt;"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="27" lineNum="207" parent="globals/BafangBleDelegate" pc="268437368" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_handleInitResponse&gt;"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="27" lineNum="208" parent="globals/BafangBleDelegate" pc="268437379" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_handleInitResponse&gt;"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="27" lineNum="210" parent="globals/BafangBleDelegate" pc="268437396" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_handleInitResponse&gt;"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="27" lineNum="213" parent="globals/BafangBleDelegate" pc="268437399" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_handleInitResponse&gt;"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="27" lineNum="214" parent="globals/BafangBleDelegate" pc="268437424" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_handleInitResponse&gt;"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="27" lineNum="215" parent="globals/BafangBleDelegate" pc="268437435" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_handleInitResponse&gt;"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="27" lineNum="217" parent="globals/BafangBleDelegate" pc="268437452" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_handleInitResponse&gt;"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="27" lineNum="220" parent="globals/BafangBleDelegate" pc="268437455" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_handleInitResponse&gt;"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="27" lineNum="221" parent="globals/BafangBleDelegate" pc="268437480" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_handleInitResponse&gt;"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="27" lineNum="222" parent="globals/BafangBleDelegate" pc="268437491" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_handleInitResponse&gt;"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="27" lineNum="224" parent="globals/BafangBleDelegate" pc="268437508" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_handleInitResponse&gt;"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="27" lineNum="227" parent="globals/BafangBleDelegate" pc="268437511" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_handleInitResponse&gt;"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="27" lineNum="228" parent="globals/BafangBleDelegate" pc="268437536" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_handleInitResponse&gt;"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="27" lineNum="230" parent="globals/BafangBleDelegate" pc="268437546" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_handleInitResponse&gt;"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="27" lineNum="233" parent="globals/BafangBleDelegate" pc="268437549" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_handleInitResponse&gt;"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="27" lineNum="235" parent="globals/BafangBleDelegate" pc="268437585" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_handleInitResponse&gt;"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="27" lineNum="236" parent="globals/BafangBleDelegate" pc="268437596" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_handleInitResponse&gt;"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="27" lineNum="238" parent="globals/BafangBleDelegate" pc="268437606" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_handleInitResponse&gt;"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="27" lineNum="241" parent="globals/BafangBleDelegate" pc="268437609" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_handleInitResponse&gt;"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="27" lineNum="243" parent="globals/BafangBleDelegate" pc="268437645" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_handleInitResponse&gt;"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="27" lineNum="244" parent="globals/BafangBleDelegate" pc="268437656" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_handleInitResponse&gt;"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="27" lineNum="246" parent="globals/BafangBleDelegate" pc="268437666" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_handleInitResponse&gt;"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="27" lineNum="249" parent="globals/BafangBleDelegate" pc="268437669" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_handleInitResponse&gt;"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="27" lineNum="251" parent="globals/BafangBleDelegate" pc="268437705" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_handleInitResponse&gt;"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="27" lineNum="252" parent="globals/BafangBleDelegate" pc="268437716" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_handleInitResponse&gt;"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="27" lineNum="253" parent="globals/BafangBleDelegate" pc="268437738" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_handleInitResponse&gt;"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="27" lineNum="255" parent="globals/BafangBleDelegate" pc="268437764" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_handleInitResponse&gt;"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="27" lineNum="257" parent="globals/BafangBleDelegate" pc="268437767" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_handleInitResponse&gt;"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="28" lineNum="52" parent="globals/BafangBleDelegate" pc="268437772" symbol="initialize"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="28" lineNum="53" parent="globals/BafangBleDelegate" pc="268437774" symbol="initialize"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="28" lineNum="54" parent="globals/BafangBleDelegate" pc="268437786" symbol="initialize"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="29" lineNum="59" parent="globals/BafangBleDelegate" pc="268437794" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_registerProfile&gt;"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="29" lineNum="61" parent="globals/BafangBleDelegate" pc="268437797" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_registerProfile&gt;"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="29" lineNum="69" parent="globals/BafangBleDelegate" pc="268437939" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_registerProfile&gt;"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="29" lineNum="70" parent="globals/BafangBleDelegate" pc="268437958" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_registerProfile&gt;"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="30" lineNum="336" parent="globals/BafangBleDelegate" pc="268437997" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_parseModel&gt;"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="30" lineNum="338" parent="globals/BafangBleDelegate" pc="268438000" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_parseModel&gt;"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="30" lineNum="339" parent="globals/BafangBleDelegate" pc="268438007" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_parseModel&gt;"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="30" lineNum="340" parent="globals/BafangBleDelegate" pc="268438023" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_parseModel&gt;"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="30" lineNum="341" parent="globals/BafangBleDelegate" pc="268438030" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_parseModel&gt;"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="30" lineNum="341" parent="globals/BafangBleDelegate" pc="268438037" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_parseModel&gt;"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="30" lineNum="342" parent="globals/BafangBleDelegate" pc="268438043" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_parseModel&gt;"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangBleDelegate.mc" id="30" lineNum="344" parent="globals/BafangBleDelegate" pc="268438071" symbol="&lt;globals/BafangBleDelegate/&lt;&gt;_parseModel&gt;"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="31" lineNum="84" parent="globals/BafangRideSyncView" pc="268438091" symbol="onLayout"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="32" lineNum="89" parent="globals/BafangRideSyncView" pc="268438094" symbol="compute"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="32" lineNum="90" parent="globals/BafangRideSyncView" pc="268438097" symbol="compute"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="32" lineNum="91" parent="globals/BafangRideSyncView" pc="268438110" symbol="compute"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="32" lineNum="92" parent="globals/BafangRideSyncView" pc="268438134" symbol="compute"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="32" lineNum="93" parent="globals/BafangRideSyncView" pc="268438159" symbol="compute"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="32" lineNum="94" parent="globals/BafangRideSyncView" pc="268438184" symbol="compute"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="32" lineNum="95" parent="globals/BafangRideSyncView" pc="268438209" symbol="compute"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="32" lineNum="96" parent="globals/BafangRideSyncView" pc="268438234" symbol="compute"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="32" lineNum="97" parent="globals/BafangRideSyncView" pc="268438258" symbol="compute"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="32" lineNum="98" parent="globals/BafangRideSyncView" pc="268438283" symbol="compute"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="32" lineNum="99" parent="globals/BafangRideSyncView" pc="268438308" symbol="compute"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="33" lineNum="102" parent="globals/BafangRideSyncView" pc="268438310" symbol="&lt;globals/BafangRideSyncView/&lt;&gt;_writeField&gt;"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="33" lineNum="104" parent="globals/BafangRideSyncView" pc="268438312" symbol="&lt;globals/BafangRideSyncView/&lt;&gt;_writeField&gt;"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="33" lineNum="105" parent="globals/BafangRideSyncView" pc="268438324" symbol="&lt;globals/BafangRideSyncView/&lt;&gt;_writeField&gt;"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="34" lineNum="36" parent="globals/BafangRideSyncView" pc="268438341" symbol="initialize"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="34" lineNum="37" parent="globals/BafangRideSyncView" pc="268438343" symbol="initialize"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="34" lineNum="38" parent="globals/BafangRideSyncView" pc="268438355" symbol="initialize"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="34" lineNum="39" parent="globals/BafangRideSyncView" pc="268438362" symbol="initialize"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="35" lineNum="63" parent="globals/BafangRideSyncView" pc="268438370" symbol="&lt;globals/BafangRideSyncView/&lt;&gt;_initBle&gt;"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="35" lineNum="64" parent="globals/BafangRideSyncView" pc="268438373" symbol="&lt;globals/BafangRideSyncView/&lt;&gt;_initBle&gt;"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="35" lineNum="65" parent="globals/BafangRideSyncView" pc="268438377" symbol="&lt;globals/BafangRideSyncView/&lt;&gt;_initBle&gt;"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="35" lineNum="66" parent="globals/BafangRideSyncView" pc="268438395" symbol="&lt;globals/BafangRideSyncView/&lt;&gt;_initBle&gt;"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="35" lineNum="68" parent="globals/BafangRideSyncView" pc="268438399" symbol="&lt;globals/BafangRideSyncView/&lt;&gt;_initBle&gt;"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="35" lineNum="69" parent="globals/BafangRideSyncView" pc="268438415" symbol="&lt;globals/BafangRideSyncView/&lt;&gt;_initBle&gt;"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="35" lineNum="70" parent="globals/BafangRideSyncView" pc="268438437" symbol="&lt;globals/BafangRideSyncView/&lt;&gt;_initBle&gt;"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="35" lineNum="73" parent="globals/BafangRideSyncView" pc="268438441" symbol="&lt;globals/BafangRideSyncView/&lt;&gt;_initBle&gt;"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="35" lineNum="74" parent="globals/BafangRideSyncView" pc="268438466" symbol="&lt;globals/BafangRideSyncView/&lt;&gt;_initBle&gt;"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="35" lineNum="75" parent="globals/BafangRideSyncView" pc="268438484" symbol="&lt;globals/BafangRideSyncView/&lt;&gt;_initBle&gt;"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="35" lineNum="76" parent="globals/BafangRideSyncView" pc="268438502" symbol="&lt;globals/BafangRideSyncView/&lt;&gt;_initBle&gt;"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="35" lineNum="77" parent="globals/BafangRideSyncView" pc="268438521" symbol="&lt;globals/BafangRideSyncView/&lt;&gt;_initBle&gt;"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="35" lineNum="78" parent="globals/BafangRideSyncView" pc="268438547" symbol="&lt;globals/BafangRideSyncView/&lt;&gt;_initBle&gt;"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="36" lineNum="111" parent="globals/BafangRideSyncView" pc="268438582" symbol="onUpdate"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="36" lineNum="112" parent="globals/BafangRideSyncView" pc="268438585" symbol="onUpdate"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="36" lineNum="113" parent="globals/BafangRideSyncView" pc="268438594" symbol="onUpdate"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="36" lineNum="114" parent="globals/BafangRideSyncView" pc="268438603" symbol="onUpdate"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="36" lineNum="117" parent="globals/BafangRideSyncView" pc="268438616" symbol="onUpdate"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="36" lineNum="118" parent="globals/BafangRideSyncView" pc="268438628" symbol="onUpdate"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="36" lineNum="121" parent="globals/BafangRideSyncView" pc="268438636" symbol="onUpdate"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="36" lineNum="122" parent="globals/BafangRideSyncView" pc="268438646" symbol="onUpdate"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="36" lineNum="123" parent="globals/BafangRideSyncView" pc="268438662" symbol="onUpdate"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="36" lineNum="124" parent="globals/BafangRideSyncView" pc="268438678" symbol="onUpdate"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="36" lineNum="125" parent="globals/BafangRideSyncView" pc="268438695" symbol="onUpdate"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="36" lineNum="126" parent="globals/BafangRideSyncView" pc="268438717" symbol="onUpdate"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="36" lineNum="127" parent="globals/BafangRideSyncView" pc="268438740" symbol="onUpdate"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="36" lineNum="128" parent="globals/BafangRideSyncView" pc="268438754" symbol="onUpdate"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="36" lineNum="131" parent="globals/BafangRideSyncView" pc="268438779" symbol="onUpdate"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="36" lineNum="132" parent="globals/BafangRideSyncView" pc="268438789" symbol="onUpdate"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="36" lineNum="133" parent="globals/BafangRideSyncView" pc="268438827" symbol="onUpdate"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="36" lineNum="134" parent="globals/BafangRideSyncView" pc="268438865" symbol="onUpdate"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="36" lineNum="135" parent="globals/BafangRideSyncView" pc="268438882" symbol="onUpdate"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="36" lineNum="136" parent="globals/BafangRideSyncView" pc="268438902" symbol="onUpdate"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="36" lineNum="137" parent="globals/BafangRideSyncView" pc="268438919" symbol="onUpdate"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="36" lineNum="140" parent="globals/BafangRideSyncView" pc="268438941" symbol="onUpdate"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="36" lineNum="141" parent="globals/BafangRideSyncView" pc="268438951" symbol="onUpdate"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="36" lineNum="142" parent="globals/BafangRideSyncView" pc="268438990" symbol="onUpdate"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="36" lineNum="143" parent="globals/BafangRideSyncView" pc="268439007" symbol="onUpdate"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="36" lineNum="145" parent="globals/BafangRideSyncView" pc="268439030" symbol="onUpdate"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="36" lineNum="146" parent="globals/BafangRideSyncView" pc="268439046" symbol="onUpdate"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="36" lineNum="150" parent="globals/BafangRideSyncView" pc="268439081" symbol="onUpdate"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="36" lineNum="151" parent="globals/BafangRideSyncView" pc="268439091" symbol="onUpdate"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="36" lineNum="154" parent="globals/BafangRideSyncView" pc="268439142" symbol="onUpdate"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="36" lineNum="155" parent="globals/BafangRideSyncView" pc="268439159" symbol="onUpdate"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="36" lineNum="158" parent="globals/BafangRideSyncView" pc="268439179" symbol="onUpdate"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="36" lineNum="159" parent="globals/BafangRideSyncView" pc="268439189" symbol="onUpdate"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="36" lineNum="162" parent="globals/BafangRideSyncView" pc="268439240" symbol="onUpdate"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="36" lineNum="163" parent="globals/BafangRideSyncView" pc="268439257" symbol="onUpdate"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="36" lineNum="166" parent="globals/BafangRideSyncView" pc="268439277" symbol="onUpdate"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="36" lineNum="167" parent="globals/BafangRideSyncView" pc="268439300" symbol="onUpdate"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="36" lineNum="168" parent="globals/BafangRideSyncView" pc="268439316" symbol="onUpdate"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="37" lineNum="44" parent="globals/BafangRideSyncView" pc="268439359" symbol="&lt;globals/BafangRideSyncView/&lt;&gt;_initFitFields&gt;"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="37" lineNum="45" parent="globals/BafangRideSyncView" pc="268439362" symbol="&lt;globals/BafangRideSyncView/&lt;&gt;_initFitFields&gt;"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="37" lineNum="45" parent="globals/BafangRideSyncView" pc="268439373" symbol="&lt;globals/BafangRideSyncView/&lt;&gt;_initFitFields&gt;"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="37" lineNum="46" parent="globals/BafangRideSyncView" pc="268439377" symbol="&lt;globals/BafangRideSyncView/&lt;&gt;_initFitFields&gt;"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="37" lineNum="48" parent="globals/BafangRideSyncView" pc="268439392" symbol="&lt;globals/BafangRideSyncView/&lt;&gt;_initFitFields&gt;"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="37" lineNum="49" parent="globals/BafangRideSyncView" pc="268439417" symbol="&lt;globals/BafangRideSyncView/&lt;&gt;_initFitFields&gt;"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="37" lineNum="50" parent="globals/BafangRideSyncView" pc="268439443" symbol="&lt;globals/BafangRideSyncView/&lt;&gt;_initFitFields&gt;"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="37" lineNum="51" parent="globals/BafangRideSyncView" pc="268439469" symbol="&lt;globals/BafangRideSyncView/&lt;&gt;_initFitFields&gt;"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="37" lineNum="52" parent="globals/BafangRideSyncView" pc="268439495" symbol="&lt;globals/BafangRideSyncView/&lt;&gt;_initFitFields&gt;"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="37" lineNum="53" parent="globals/BafangRideSyncView" pc="268439521" symbol="&lt;globals/BafangRideSyncView/&lt;&gt;_initFitFields&gt;"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="37" lineNum="54" parent="globals/BafangRideSyncView" pc="268439547" symbol="&lt;globals/BafangRideSyncView/&lt;&gt;_initFitFields&gt;"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="37" lineNum="55" parent="globals/BafangRideSyncView" pc="268439573" symbol="&lt;globals/BafangRideSyncView/&lt;&gt;_initFitFields&gt;"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="37" lineNum="56" parent="globals/BafangRideSyncView" pc="268439605" symbol="&lt;globals/BafangRideSyncView/&lt;&gt;_initFitFields&gt;"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangRideSyncView.mc" id="37" lineNum="57" parent="globals/BafangRideSyncView" pc="268439624" symbol="&lt;globals/BafangRideSyncView/&lt;&gt;_initFitFields&gt;"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/FrameParser.mc" id="38" lineNum="11" parent="globals/ParsedFrame" pc="268439663" symbol="initialize"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/FrameParser.mc" id="38" lineNum="13" parent="globals/ParsedFrame" pc="268439665" symbol="initialize"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/FrameParser.mc" id="38" lineNum="14" parent="globals/ParsedFrame" pc="268439674" symbol="initialize"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/FrameParser.mc" id="38" lineNum="15" parent="globals/ParsedFrame" pc="268439683" symbol="initialize"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/FrameParser.mc" id="38" lineNum="16" parent="globals/ParsedFrame" pc="268439692" symbol="initialize"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/FrameParser.mc" id="38" lineNum="17" parent="globals/ParsedFrame" pc="268439701" symbol="initialize"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/FrameBuilder.mc" id="39" lineNum="64" parent="globals/FrameBuilder" pc="268439711" symbol="writeByte"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/FrameBuilder.mc" id="39" lineNum="65" parent="globals/FrameBuilder" pc="268439714" symbol="writeByte"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/FrameBuilder.mc" id="39" lineNum="66" parent="globals/FrameBuilder" pc="268439719" symbol="writeByte"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/FrameBuilder.mc" id="39" lineNum="67" parent="globals/FrameBuilder" pc="268439729" symbol="writeByte"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/FrameBuilder.mc" id="40" lineNum="71" parent="globals/FrameBuilder" pc="268439748" symbol="writeU32"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/FrameBuilder.mc" id="40" lineNum="72" parent="globals/FrameBuilder" pc="268439751" symbol="writeU32"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/FrameBuilder.mc" id="40" lineNum="73" parent="globals/FrameBuilder" pc="268439756" symbol="writeU32"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/FrameBuilder.mc" id="40" lineNum="74" parent="globals/FrameBuilder" pc="268439766" symbol="writeU32"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/FrameBuilder.mc" id="40" lineNum="75" parent="globals/FrameBuilder" pc="268439780" symbol="writeU32"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/FrameBuilder.mc" id="40" lineNum="76" parent="globals/FrameBuilder" pc="268439794" symbol="writeU32"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/FrameBuilder.mc" id="40" lineNum="77" parent="globals/FrameBuilder" pc="268439808" symbol="writeU32"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/FrameBuilder.mc" id="41" lineNum="83" parent="globals/FrameBuilder" pc="268439827" symbol="initHandshake"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/FrameBuilder.mc" id="41" lineNum="84" parent="globals/FrameBuilder" pc="268439830" symbol="initHandshake"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/FrameBuilder.mc" id="41" lineNum="86" parent="globals/FrameBuilder" pc="268439837" symbol="initHandshake"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/FrameBuilder.mc" id="42" lineNum="30" parent="globals/FrameBuilder" pc="268439855" symbol="build"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/FrameBuilder.mc" id="42" lineNum="32" parent="globals/FrameBuilder" pc="268439858" symbol="build"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/FrameBuilder.mc" id="42" lineNum="33" parent="globals/FrameBuilder" pc="268439867" symbol="build"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/FrameBuilder.mc" id="42" lineNum="34" parent="globals/FrameBuilder" pc="268439874" symbol="build"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/FrameBuilder.mc" id="42" lineNum="35" parent="globals/FrameBuilder" pc="268439879" symbol="build"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/FrameBuilder.mc" id="42" lineNum="36" parent="globals/FrameBuilder" pc="268439885" symbol="build"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/FrameBuilder.mc" id="42" lineNum="37" parent="globals/FrameBuilder" pc="268439893" symbol="build"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/FrameBuilder.mc" id="42" lineNum="38" parent="globals/FrameBuilder" pc="268439900" symbol="build"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/FrameBuilder.mc" id="42" lineNum="39" parent="globals/FrameBuilder" pc="268439907" symbol="build"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/FrameBuilder.mc" id="42" lineNum="40" parent="globals/FrameBuilder" pc="268439914" symbol="build"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/FrameBuilder.mc" id="42" lineNum="41" parent="globals/FrameBuilder" pc="268439921" symbol="build"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/FrameBuilder.mc" id="42" lineNum="42" parent="globals/FrameBuilder" pc="268439928" symbol="build"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/FrameBuilder.mc" id="42" lineNum="43" parent="globals/FrameBuilder" pc="268439939" symbol="build"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/FrameBuilder.mc" id="42" lineNum="45" parent="globals/FrameBuilder" pc="268439962" symbol="build"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/FrameBuilder.mc" id="42" lineNum="46" parent="globals/FrameBuilder" pc="268439965" symbol="build"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/FrameBuilder.mc" id="42" lineNum="47" parent="globals/FrameBuilder" pc="268439980" symbol="build"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/FrameBuilder.mc" id="42" lineNum="49" parent="globals/FrameBuilder" pc="268440000" symbol="build"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/FrameBuilder.mc" id="42" lineNum="50" parent="globals/FrameBuilder" pc="268440010" symbol="build"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/FrameBuilder.mc" id="42" lineNum="51" parent="globals/FrameBuilder" pc="268440024" symbol="build"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/FrameBuilder.mc" id="42" lineNum="52" parent="globals/FrameBuilder" pc="268440044" symbol="build"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/FrameBuilder.mc" id="44" lineNum="57" parent="globals/FrameBuilder" pc="268440047" symbol="readReg"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/FrameBuilder.mc" id="44" lineNum="58" parent="globals/FrameBuilder" pc="268440050" symbol="readReg"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/FrameBuilder.mc" id="44" lineNum="59" parent="globals/FrameBuilder" pc="268440055" symbol="readReg"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/FrameBuilder.mc" id="44" lineNum="60" parent="globals/FrameBuilder" pc="268440065" symbol="readReg"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/FrameBuilder.mc" id="45" lineNum="90" parent="globals/FrameBuilder" pc="268440084" symbol="initSequence"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/FrameBuilder.mc" id="45" lineNum="91" parent="globals/FrameBuilder" pc="268440086" symbol="initSequence"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/FrameParser.mc" id="46" lineNum="49" parent="globals/FrameParser" pc="268440190" symbol="u16le"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/FrameParser.mc" id="46" lineNum="50" parent="globals/FrameParser" pc="268440192" symbol="u16le"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/FrameParser.mc" id="47" lineNum="56" parent="globals/FrameParser" pc="268440210" symbol="u32le"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/FrameParser.mc" id="47" lineNum="57" parent="globals/FrameParser" pc="268440212" symbol="u32le"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/FrameParser.mc" id="48" lineNum="38" parent="globals/FrameParser" pc="268440254" symbol="verifyChecksum"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/FrameParser.mc" id="48" lineNum="39" parent="globals/FrameParser" pc="268440257" symbol="verifyChecksum"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/FrameParser.mc" id="48" lineNum="40" parent="globals/FrameParser" pc="268440260" symbol="verifyChecksum"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/FrameParser.mc" id="48" lineNum="41" parent="globals/FrameParser" pc="268440275" symbol="verifyChecksum"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/FrameParser.mc" id="48" lineNum="43" parent="globals/FrameParser" pc="268440295" symbol="verifyChecksum"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/FrameParser.mc" id="48" lineNum="44" parent="globals/FrameParser" pc="268440305" symbol="verifyChecksum"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/FrameParser.mc" id="48" lineNum="45" parent="globals/FrameParser" pc="268440330" symbol="verifyChecksum"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/FrameParser.mc" id="50" lineNum="24" parent="globals/FrameParser" pc="268440336" symbol="parse"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/FrameParser.mc" id="50" lineNum="25" parent="globals/FrameParser" pc="268440339" symbol="parse"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/FrameParser.mc" id="50" lineNum="26" parent="globals/FrameParser" pc="268440348" symbol="parse"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/FrameParser.mc" id="50" lineNum="26" parent="globals/FrameParser" pc="268440356" symbol="parse"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/FrameParser.mc" id="50" lineNum="27" parent="globals/FrameParser" pc="268440361" symbol="parse"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/FrameParser.mc" id="50" lineNum="27" parent="globals/FrameParser" pc="268440383" symbol="parse"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/FrameParser.mc" id="50" lineNum="28" parent="globals/FrameParser" pc="268440388" symbol="parse"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/FrameParser.mc" id="50" lineNum="29" parent="globals/FrameParser" pc="268440395" symbol="parse"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/FrameParser.mc" id="50" lineNum="30" parent="globals/FrameParser" pc="268440402" symbol="parse"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/FrameParser.mc" id="50" lineNum="30" parent="globals/FrameParser" pc="268440410" symbol="parse"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/FrameParser.mc" id="50" lineNum="31" parent="globals/FrameParser" pc="268440415" symbol="parse"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/FrameParser.mc" id="50" lineNum="31" parent="globals/FrameParser" pc="268440431" symbol="parse"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/FrameParser.mc" id="50" lineNum="32" parent="globals/FrameParser" pc="268440436" symbol="parse"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/FrameParser.mc" id="51" lineNum="64" parent="globals/FrameParser" pc="268440492" symbol="byteSlice"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/FrameParser.mc" id="51" lineNum="65" parent="globals/FrameParser" pc="268440495" symbol="byteSlice"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/FrameParser.mc" id="51" lineNum="66" parent="globals/FrameParser" pc="268440502" symbol="byteSlice"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/FrameParser.mc" id="51" lineNum="67" parent="globals/FrameParser" pc="268440507" symbol="byteSlice"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/FrameParser.mc" id="51" lineNum="68" parent="globals/FrameParser" pc="268440518" symbol="byteSlice"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/FrameParser.mc" id="51" lineNum="70" parent="globals/FrameParser" pc="268440541" symbol="byteSlice"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangData.mc" id="52" lineNum="95" parent="globals/BafangData" pc="268440544" symbol="pack0609"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangData.mc" id="52" lineNum="96" parent="globals/BafangData" pc="268440547" symbol="pack0609"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangData.mc" id="52" lineNum="96" parent="globals/BafangData" pc="268440556" symbol="pack0609"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangData.mc" id="52" lineNum="97" parent="globals/BafangData" pc="268440561" symbol="pack0609"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangData.mc" id="52" lineNum="98" parent="globals/BafangData" pc="268440568" symbol="pack0609"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangData.mc" id="52" lineNum="98" parent="globals/BafangData" pc="268440584" symbol="pack0609"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangData.mc" id="52" lineNum="99" parent="globals/BafangData" pc="268440589" symbol="pack0609"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangData.mc" id="53" lineNum="84" parent="globals/BafangData" pc="268440631" symbol="pack0601"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangData.mc" id="53" lineNum="85" parent="globals/BafangData" pc="268440634" symbol="pack0601"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangData.mc" id="53" lineNum="85" parent="globals/BafangData" pc="268440643" symbol="pack0601"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangData.mc" id="53" lineNum="86" parent="globals/BafangData" pc="268440648" symbol="pack0601"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangData.mc" id="53" lineNum="87" parent="globals/BafangData" pc="268440655" symbol="pack0601"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangData.mc" id="53" lineNum="87" parent="globals/BafangData" pc="268440671" symbol="pack0601"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangData.mc" id="53" lineNum="88" parent="globals/BafangData" pc="268440676" symbol="pack0601"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangData.mc" id="54" lineNum="77" parent="globals/BafangData" pc="268440718" symbol="update0609"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangData.mc" id="54" lineNum="78" parent="globals/BafangData" pc="268440720" symbol="update0609"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangData.mc" id="54" lineNum="78" parent="globals/BafangData" pc="268440733" symbol="update0609"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangData.mc" id="54" lineNum="79" parent="globals/BafangData" pc="268440737" symbol="update0609"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangData.mc" id="55" lineNum="52" parent="globals/BafangData" pc="268440747" symbol="injectSimFrames"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangData.mc" id="55" lineNum="54" parent="globals/BafangData" pc="268440749" symbol="injectSimFrames"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangData.mc" id="55" lineNum="58" parent="globals/BafangData" pc="268440763" symbol="injectSimFrames"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangData.mc" id="55" lineNum="60" parent="globals/BafangData" pc="268440777" symbol="injectSimFrames"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangData.mc" id="55" lineNum="61" parent="globals/BafangData" pc="268440789" symbol="injectSimFrames"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangData.mc" id="55" lineNum="62" parent="globals/BafangData" pc="268440797" symbol="injectSimFrames"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangData.mc" id="57" lineNum="66" parent="globals/BafangData" pc="268440810" symbol="update0601"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangData.mc" id="57" lineNum="67" parent="globals/BafangData" pc="268440812" symbol="update0601"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangData.mc" id="57" lineNum="67" parent="globals/BafangData" pc="268440825" symbol="update0601"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangData.mc" id="57" lineNum="68" parent="globals/BafangData" pc="268440829" symbol="update0601"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangData.mc" id="57" lineNum="69" parent="globals/BafangData" pc="268440838" symbol="update0601"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangData.mc" id="57" lineNum="70" parent="globals/BafangData" pc="268440850" symbol="update0601"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangData.mc" id="57" lineNum="71" parent="globals/BafangData" pc="268440862" symbol="update0601"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangData.mc" id="57" lineNum="72" parent="globals/BafangData" pc="268440898" symbol="update0601"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/source/BafangData.mc" id="57" lineNum="73" parent="globals/BafangData" pc="268440934" symbol="update0601"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/gen/006-B4534-00/source/Rez.mcgen" id="58" lineNum="13" parent="globals/Rez/Layouts" pc="268440971" symbol="MainLayout"/>
+        <entry filename="/Users/cagnulein/Documents/Bafang-RideSync/garmin_datafield/gen/006-B4534-00/source/Rez.mcgen" id="58" lineNum="14" parent="globals/Rez/Layouts" pc="268440981" symbol="MainLayout"/>
     </pcToLineNum>
     <symbolTable>
         <entry id="8388639" module="true" symbol="Graphics"/>
@@ -540,101 +540,101 @@
         <entry arg="true" endPc="268436322" name="status" stackId="2" startPc="268436243"/>
         <entry arg="true" endPc="268436487" name="device" stackId="1" startPc="268436326"/>
         <entry arg="true" endPc="268436487" name="state" stackId="2" startPc="268436326"/>
-        <entry endPc="268436644" name="clock" stackId="1" startPc="268436491"/>
-        <entry endPc="268436644" name="localSec" stackId="2" startPc="268436491"/>
-        <entry endPc="268436644" name="utcSec" stackId="3" startPc="268436491"/>
-        <entry arg="true" endPc="268436893" name="frame" stackId="1" startPc="268436785"/>
-        <entry endPc="268436887" name="ex" stackId="2" startPc="268436836"/>
-        <entry arg="true" endPc="268436913" name="s" stackId="1" startPc="268436902"/>
-        <entry endPc="268437031" name="iter" stackId="1" startPc="268436917"/>
-        <entry endPc="268437031" name="item" stackId="2" startPc="268436917"/>
-        <entry endPc="268437026" name="sr" stackId="3" startPc="268436944"/>
-        <entry arg="true" endPc="268437765" name="frame" stackId="1" startPc="268437032"/>
-        <entry endPc="268437764" name="initFrames" stackId="2" startPc="268437035"/>
-        <entry endPc="268437984" name="ex" stackId="1" startPc="268437933"/>
-        <entry arg="true" endPc="268438084" name="data" stackId="1" startPc="268437991"/>
-        <entry endPc="268438083" name="str" stackId="2" startPc="268437994"/>
-        <entry endPc="268438064" name="i" stackId="3" startPc="268438017"/>
-        <entry endPc="268438054" name="b" stackId="4" startPc="268438017"/>
-        <entry arg="true" endPc="268438303" name="info" stackId="1" startPc="268438088"/>
-        <entry endPc="268438303" name="d" stackId="2" startPc="268438091"/>
-        <entry arg="true" endPc="268438334" name="field" stackId="1" startPc="268438304"/>
-        <entry arg="true" endPc="268438334" name="value" stackId="2" startPc="268438304"/>
-        <entry endPc="268438569" name="ex" stackId="1" startPc="268438496"/>
-        <entry arg="true" endPc="268439352" name="dc" stackId="1" startPc="268438576"/>
-        <entry endPc="268439351" name="w" stackId="2" startPc="268438579"/>
-        <entry endPc="268439351" name="h" stackId="3" startPc="268438579"/>
-        <entry endPc="268439351" name="d" stackId="4" startPc="268438579"/>
-        <entry endPc="268439351" name="hdrH" stackId="5" startPc="268438579"/>
-        <entry endPc="268439351" name="statusColor" stackId="6" startPc="268438579"/>
-        <entry endPc="268439351" name="y1" stackId="7" startPc="268438579"/>
-        <entry endPc="268439351" name="battStr" stackId="8" startPc="268438579"/>
-        <entry endPc="268439351" name="pasStr" stackId="9" startPc="268438579"/>
-        <entry endPc="268439351" name="y2" stackId="10" startPc="268438579"/>
-        <entry endPc="268439351" name="spdStr" stackId="11" startPc="268438579"/>
-        <entry endPc="268439351" name="y3" stackId="12" startPc="268438579"/>
-        <entry endPc="268439351" name="tripStr" stackId="13" startPc="268438579"/>
-        <entry endPc="268439351" name="y4" stackId="14" startPc="268438579"/>
-        <entry endPc="268439351" name="odoStr" stackId="15" startPc="268438579"/>
-        <entry endPc="268439655" name="rec" stackId="1" startPc="268439356"/>
-        <entry endPc="268439650" name="ex" stackId="2" startPc="268439599"/>
-        <entry arg="true" endPc="268439704" name="s" stackId="1" startPc="268439657"/>
-        <entry arg="true" endPc="268439704" name="d" stackId="2" startPc="268439657"/>
-        <entry arg="true" endPc="268439704" name="o" stackId="3" startPc="268439657"/>
-        <entry arg="true" endPc="268439704" name="r" stackId="4" startPc="268439657"/>
-        <entry arg="true" endPc="268439704" name="dat" stackId="5" startPc="268439657"/>
-        <entry arg="true" endPc="268439741" name="dst" stackId="1" startPc="268439705"/>
-        <entry arg="true" endPc="268439741" name="reg" stackId="2" startPc="268439705"/>
-        <entry arg="true" endPc="268439741" name="value" stackId="3" startPc="268439705"/>
-        <entry endPc="268439741" name="d" stackId="4" startPc="268439708"/>
-        <entry arg="true" endPc="268439820" name="dst" stackId="1" startPc="268439742"/>
-        <entry arg="true" endPc="268439820" name="reg" stackId="2" startPc="268439742"/>
-        <entry arg="true" endPc="268439820" name="value" stackId="3" startPc="268439742"/>
-        <entry endPc="268439820" name="d" stackId="4" startPc="268439745"/>
-        <entry endPc="268439848" name="blob" stackId="1" startPc="268439824"/>
-        <entry arg="true" endPc="268440040" name="src" stackId="1" startPc="268439849"/>
-        <entry arg="true" endPc="268440040" name="dst" stackId="2" startPc="268439849"/>
-        <entry arg="true" endPc="268440040" name="op" stackId="3" startPc="268439849"/>
-        <entry arg="true" endPc="268440040" name="reg" stackId="4" startPc="268439849"/>
-        <entry arg="true" endPc="268440040" name="data" stackId="5" startPc="268439849"/>
-        <entry endPc="268440040" name="len" stackId="6" startPc="268439852"/>
-        <entry endPc="268440040" name="total" stackId="7" startPc="268439852"/>
-        <entry endPc="268440040" name="frame" stackId="8" startPc="268439852"/>
-        <entry endPc="268439955" name="i" stackId="9" startPc="268439933"/>
-        <entry endPc="268440040" name="sum" stackId="10" startPc="268439852"/>
-        <entry endPc="268439993" name="i" stackId="11" startPc="268439974"/>
-        <entry endPc="268440040" name="cksum" stackId="12" startPc="268439852"/>
-        <entry arg="true" endPc="268440077" name="dst" stackId="1" startPc="268440041"/>
-        <entry arg="true" endPc="268440077" name="reg" stackId="2" startPc="268440041"/>
-        <entry arg="true" endPc="268440077" name="expectedLen" stackId="3" startPc="268440041"/>
-        <entry endPc="268440077" name="d" stackId="4" startPc="268440044"/>
-        <entry arg="true" endPc="268440203" name="data" stackId="1" startPc="268440184"/>
-        <entry arg="true" endPc="268440203" name="offset" stackId="2" startPc="268440184"/>
-        <entry arg="true" endPc="268440247" name="data" stackId="1" startPc="268440204"/>
-        <entry arg="true" endPc="268440247" name="offset" stackId="2" startPc="268440204"/>
-        <entry arg="true" endPc="268440329" name="bytes" stackId="1" startPc="268440248"/>
-        <entry arg="true" endPc="268440329" name="payloadLen" stackId="2" startPc="268440248"/>
-        <entry endPc="268440329" name="sum" stackId="3" startPc="268440251"/>
-        <entry endPc="268440288" name="i" stackId="4" startPc="268440269"/>
-        <entry endPc="268440329" name="expected" stackId="5" startPc="268440251"/>
-        <entry endPc="268440329" name="got" stackId="6" startPc="268440251"/>
-        <entry arg="true" endPc="268440485" name="bytes" stackId="1" startPc="268440330"/>
-        <entry endPc="268440485" name="sz" stackId="2" startPc="268440333"/>
-        <entry endPc="268440485" name="payloadLen" stackId="3" startPc="268440333"/>
-        <entry endPc="268440485" name="expectedSz" stackId="4" startPc="268440333"/>
-        <entry arg="true" endPc="268440537" name="src" stackId="1" startPc="268440486"/>
-        <entry arg="true" endPc="268440537" name="from" stackId="2" startPc="268440486"/>
-        <entry arg="true" endPc="268440537" name="to" stackId="3" startPc="268440486"/>
-        <entry endPc="268440537" name="len" stackId="4" startPc="268440489"/>
-        <entry endPc="268440537" name="out" stackId="5" startPc="268440489"/>
-        <entry endPc="268440534" name="i" stackId="6" startPc="268440512"/>
-        <entry arg="true" endPc="268440624" name="offset" stackId="1" startPc="268440538"/>
-        <entry endPc="268440624" name="d" stackId="2" startPc="268440541"/>
-        <entry arg="true" endPc="268440711" name="offset" stackId="1" startPc="268440625"/>
-        <entry endPc="268440711" name="d" stackId="2" startPc="268440628"/>
-        <entry arg="true" endPc="268440740" name="data" stackId="1" startPc="268440712"/>
-        <entry arg="true" endPc="268440964" name="data" stackId="1" startPc="268440804"/>
-        <entry arg="true" endPc="268440977" name="dc" stackId="1" startPc="268440965"/>
+        <entry endPc="268436650" name="clock" stackId="1" startPc="268436491"/>
+        <entry endPc="268436650" name="localSec" stackId="2" startPc="268436491"/>
+        <entry endPc="268436650" name="utcSec" stackId="3" startPc="268436491"/>
+        <entry arg="true" endPc="268436899" name="frame" stackId="1" startPc="268436791"/>
+        <entry endPc="268436893" name="ex" stackId="2" startPc="268436842"/>
+        <entry arg="true" endPc="268436919" name="s" stackId="1" startPc="268436908"/>
+        <entry endPc="268437037" name="iter" stackId="1" startPc="268436923"/>
+        <entry endPc="268437037" name="item" stackId="2" startPc="268436923"/>
+        <entry endPc="268437032" name="sr" stackId="3" startPc="268436950"/>
+        <entry arg="true" endPc="268437771" name="frame" stackId="1" startPc="268437038"/>
+        <entry endPc="268437770" name="initFrames" stackId="2" startPc="268437041"/>
+        <entry endPc="268437990" name="ex" stackId="1" startPc="268437939"/>
+        <entry arg="true" endPc="268438090" name="data" stackId="1" startPc="268437997"/>
+        <entry endPc="268438089" name="str" stackId="2" startPc="268438000"/>
+        <entry endPc="268438070" name="i" stackId="3" startPc="268438023"/>
+        <entry endPc="268438060" name="b" stackId="4" startPc="268438023"/>
+        <entry arg="true" endPc="268438309" name="info" stackId="1" startPc="268438094"/>
+        <entry endPc="268438309" name="d" stackId="2" startPc="268438097"/>
+        <entry arg="true" endPc="268438340" name="field" stackId="1" startPc="268438310"/>
+        <entry arg="true" endPc="268438340" name="value" stackId="2" startPc="268438310"/>
+        <entry endPc="268438575" name="ex" stackId="1" startPc="268438502"/>
+        <entry arg="true" endPc="268439358" name="dc" stackId="1" startPc="268438582"/>
+        <entry endPc="268439357" name="w" stackId="2" startPc="268438585"/>
+        <entry endPc="268439357" name="h" stackId="3" startPc="268438585"/>
+        <entry endPc="268439357" name="d" stackId="4" startPc="268438585"/>
+        <entry endPc="268439357" name="hdrH" stackId="5" startPc="268438585"/>
+        <entry endPc="268439357" name="statusColor" stackId="6" startPc="268438585"/>
+        <entry endPc="268439357" name="y1" stackId="7" startPc="268438585"/>
+        <entry endPc="268439357" name="battStr" stackId="8" startPc="268438585"/>
+        <entry endPc="268439357" name="pasStr" stackId="9" startPc="268438585"/>
+        <entry endPc="268439357" name="y2" stackId="10" startPc="268438585"/>
+        <entry endPc="268439357" name="spdStr" stackId="11" startPc="268438585"/>
+        <entry endPc="268439357" name="y3" stackId="12" startPc="268438585"/>
+        <entry endPc="268439357" name="tripStr" stackId="13" startPc="268438585"/>
+        <entry endPc="268439357" name="y4" stackId="14" startPc="268438585"/>
+        <entry endPc="268439357" name="odoStr" stackId="15" startPc="268438585"/>
+        <entry endPc="268439661" name="rec" stackId="1" startPc="268439362"/>
+        <entry endPc="268439656" name="ex" stackId="2" startPc="268439605"/>
+        <entry arg="true" endPc="268439710" name="s" stackId="1" startPc="268439663"/>
+        <entry arg="true" endPc="268439710" name="d" stackId="2" startPc="268439663"/>
+        <entry arg="true" endPc="268439710" name="o" stackId="3" startPc="268439663"/>
+        <entry arg="true" endPc="268439710" name="r" stackId="4" startPc="268439663"/>
+        <entry arg="true" endPc="268439710" name="dat" stackId="5" startPc="268439663"/>
+        <entry arg="true" endPc="268439747" name="dst" stackId="1" startPc="268439711"/>
+        <entry arg="true" endPc="268439747" name="reg" stackId="2" startPc="268439711"/>
+        <entry arg="true" endPc="268439747" name="value" stackId="3" startPc="268439711"/>
+        <entry endPc="268439747" name="d" stackId="4" startPc="268439714"/>
+        <entry arg="true" endPc="268439826" name="dst" stackId="1" startPc="268439748"/>
+        <entry arg="true" endPc="268439826" name="reg" stackId="2" startPc="268439748"/>
+        <entry arg="true" endPc="268439826" name="value" stackId="3" startPc="268439748"/>
+        <entry endPc="268439826" name="d" stackId="4" startPc="268439751"/>
+        <entry endPc="268439854" name="blob" stackId="1" startPc="268439830"/>
+        <entry arg="true" endPc="268440046" name="src" stackId="1" startPc="268439855"/>
+        <entry arg="true" endPc="268440046" name="dst" stackId="2" startPc="268439855"/>
+        <entry arg="true" endPc="268440046" name="op" stackId="3" startPc="268439855"/>
+        <entry arg="true" endPc="268440046" name="reg" stackId="4" startPc="268439855"/>
+        <entry arg="true" endPc="268440046" name="data" stackId="5" startPc="268439855"/>
+        <entry endPc="268440046" name="len" stackId="6" startPc="268439858"/>
+        <entry endPc="268440046" name="total" stackId="7" startPc="268439858"/>
+        <entry endPc="268440046" name="frame" stackId="8" startPc="268439858"/>
+        <entry endPc="268439961" name="i" stackId="9" startPc="268439939"/>
+        <entry endPc="268440046" name="sum" stackId="10" startPc="268439858"/>
+        <entry endPc="268439999" name="i" stackId="11" startPc="268439980"/>
+        <entry endPc="268440046" name="cksum" stackId="12" startPc="268439858"/>
+        <entry arg="true" endPc="268440083" name="dst" stackId="1" startPc="268440047"/>
+        <entry arg="true" endPc="268440083" name="reg" stackId="2" startPc="268440047"/>
+        <entry arg="true" endPc="268440083" name="expectedLen" stackId="3" startPc="268440047"/>
+        <entry endPc="268440083" name="d" stackId="4" startPc="268440050"/>
+        <entry arg="true" endPc="268440209" name="data" stackId="1" startPc="268440190"/>
+        <entry arg="true" endPc="268440209" name="offset" stackId="2" startPc="268440190"/>
+        <entry arg="true" endPc="268440253" name="data" stackId="1" startPc="268440210"/>
+        <entry arg="true" endPc="268440253" name="offset" stackId="2" startPc="268440210"/>
+        <entry arg="true" endPc="268440335" name="bytes" stackId="1" startPc="268440254"/>
+        <entry arg="true" endPc="268440335" name="payloadLen" stackId="2" startPc="268440254"/>
+        <entry endPc="268440335" name="sum" stackId="3" startPc="268440257"/>
+        <entry endPc="268440294" name="i" stackId="4" startPc="268440275"/>
+        <entry endPc="268440335" name="expected" stackId="5" startPc="268440257"/>
+        <entry endPc="268440335" name="got" stackId="6" startPc="268440257"/>
+        <entry arg="true" endPc="268440491" name="bytes" stackId="1" startPc="268440336"/>
+        <entry endPc="268440491" name="sz" stackId="2" startPc="268440339"/>
+        <entry endPc="268440491" name="payloadLen" stackId="3" startPc="268440339"/>
+        <entry endPc="268440491" name="expectedSz" stackId="4" startPc="268440339"/>
+        <entry arg="true" endPc="268440543" name="src" stackId="1" startPc="268440492"/>
+        <entry arg="true" endPc="268440543" name="from" stackId="2" startPc="268440492"/>
+        <entry arg="true" endPc="268440543" name="to" stackId="3" startPc="268440492"/>
+        <entry endPc="268440543" name="len" stackId="4" startPc="268440495"/>
+        <entry endPc="268440543" name="out" stackId="5" startPc="268440495"/>
+        <entry endPc="268440540" name="i" stackId="6" startPc="268440518"/>
+        <entry arg="true" endPc="268440630" name="offset" stackId="1" startPc="268440544"/>
+        <entry endPc="268440630" name="d" stackId="2" startPc="268440547"/>
+        <entry arg="true" endPc="268440717" name="offset" stackId="1" startPc="268440631"/>
+        <entry endPc="268440717" name="d" stackId="2" startPc="268440634"/>
+        <entry arg="true" endPc="268440746" name="data" stackId="1" startPc="268440718"/>
+        <entry arg="true" endPc="268440970" name="data" stackId="1" startPc="268440810"/>
+        <entry arg="true" endPc="268440983" name="dc" stackId="1" startPc="268440971"/>
     </localVars>
     <deviceInfo deviceVersion="64e9a617e9472a32c43687e18cd12264b67a820e" partNumber="006-B4534-00"/>
     <annotations>
@@ -753,70 +753,70 @@
             <param id="state"/>
             <documentation/>
         </functionEntry>
-        <functionEntry accessMode="private" endPc="268436645" name="&lt;globals/BafangBleDelegate/&lt;&gt;_computeTimeValues&gt;" parent="BafangBleDelegate" startPc="268436488">
+        <functionEntry accessMode="private" endPc="268436651" name="&lt;globals/BafangBleDelegate/&lt;&gt;_computeTimeValues&gt;" parent="BafangBleDelegate" startPc="268436488">
             <documentation/>
         </functionEntry>
-        <functionEntry accessMode="public" endPc="268436716" name="startScan" parent="BafangBleDelegate" startPc="268436646">
+        <functionEntry accessMode="public" endPc="268436722" name="startScan" parent="BafangBleDelegate" startPc="268436652">
             <documentation/>
         </functionEntry>
-        <functionEntry accessMode="private" endPc="268436750" name="&lt;globals/BafangBleDelegate/&lt;&gt;_sendTimeSyncFrame3&gt;" parent="BafangBleDelegate" startPc="268436717">
+        <functionEntry accessMode="private" endPc="268436756" name="&lt;globals/BafangBleDelegate/&lt;&gt;_sendTimeSyncFrame3&gt;" parent="BafangBleDelegate" startPc="268436723">
             <documentation/>
         </functionEntry>
-        <functionEntry accessMode="private" endPc="268436784" name="&lt;globals/BafangBleDelegate/&lt;&gt;_sendTimeSyncFrame2&gt;" parent="BafangBleDelegate" startPc="268436751">
+        <functionEntry accessMode="private" endPc="268436790" name="&lt;globals/BafangBleDelegate/&lt;&gt;_sendTimeSyncFrame2&gt;" parent="BafangBleDelegate" startPc="268436757">
             <documentation/>
         </functionEntry>
-        <functionEntry accessMode="private" endPc="268436893" name="&lt;globals/BafangBleDelegate/&lt;&gt;_sendFrame&gt;" parent="BafangBleDelegate" startPc="268436785">
+        <functionEntry accessMode="private" endPc="268436899" name="&lt;globals/BafangBleDelegate/&lt;&gt;_sendFrame&gt;" parent="BafangBleDelegate" startPc="268436791">
             <param id="frame"/>
             <documentation/>
         </functionEntry>
-        <functionEntry accessMode="public" endPc="268436901" name="getState" parent="BafangBleDelegate" startPc="268436894">
+        <functionEntry accessMode="public" endPc="268436907" name="getState" parent="BafangBleDelegate" startPc="268436900">
             <documentation/>
         </functionEntry>
-        <functionEntry accessMode="private" endPc="268436913" name="&lt;globals/BafangBleDelegate/&lt;&gt;_setState&gt;" parent="BafangBleDelegate" startPc="268436902">
+        <functionEntry accessMode="private" endPc="268436919" name="&lt;globals/BafangBleDelegate/&lt;&gt;_setState&gt;" parent="BafangBleDelegate" startPc="268436908">
             <param id="s"/>
             <documentation/>
         </functionEntry>
-        <functionEntry accessMode="private" endPc="268437031" name="&lt;globals/BafangBleDelegate/&lt;&gt;_tryConnectBonded&gt;" parent="BafangBleDelegate" startPc="268436914">
+        <functionEntry accessMode="private" endPc="268437037" name="&lt;globals/BafangBleDelegate/&lt;&gt;_tryConnectBonded&gt;" parent="BafangBleDelegate" startPc="268436920">
             <documentation/>
         </functionEntry>
-        <functionEntry accessMode="private" endPc="268437765" name="&lt;globals/BafangBleDelegate/&lt;&gt;_handleInitResponse&gt;" parent="BafangBleDelegate" startPc="268437032">
+        <functionEntry accessMode="private" endPc="268437771" name="&lt;globals/BafangBleDelegate/&lt;&gt;_handleInitResponse&gt;" parent="BafangBleDelegate" startPc="268437038">
             <param id="frame"/>
             <documentation/>
         </functionEntry>
-        <functionEntry accessMode="public" endPc="268437787" name="initialize" parent="BafangBleDelegate" startPc="268437766">
+        <functionEntry accessMode="public" endPc="268437793" name="initialize" parent="BafangBleDelegate" startPc="268437772">
             <documentation/>
         </functionEntry>
-        <functionEntry accessMode="private" endPc="268437990" name="&lt;globals/BafangBleDelegate/&lt;&gt;_registerProfile&gt;" parent="BafangBleDelegate" startPc="268437788">
+        <functionEntry accessMode="private" endPc="268437996" name="&lt;globals/BafangBleDelegate/&lt;&gt;_registerProfile&gt;" parent="BafangBleDelegate" startPc="268437794">
             <documentation/>
         </functionEntry>
-        <functionEntry accessMode="private" endPc="268438084" name="&lt;globals/BafangBleDelegate/&lt;&gt;_parseModel&gt;" parent="BafangBleDelegate" startPc="268437991">
+        <functionEntry accessMode="private" endPc="268438090" name="&lt;globals/BafangBleDelegate/&lt;&gt;_parseModel&gt;" parent="BafangBleDelegate" startPc="268437997">
             <param id="data"/>
             <documentation/>
         </functionEntry>
-        <functionEntry accessMode="public" endPc="268438087" name="onLayout" parent="BafangRideSyncView" startPc="268438085">
+        <functionEntry accessMode="public" endPc="268438093" name="onLayout" parent="BafangRideSyncView" startPc="268438091">
             <param id="dc"/>
             <documentation/>
         </functionEntry>
-        <functionEntry accessMode="public" endPc="268438303" name="compute" parent="BafangRideSyncView" startPc="268438088">
+        <functionEntry accessMode="public" endPc="268438309" name="compute" parent="BafangRideSyncView" startPc="268438094">
             <param id="info"/>
             <documentation/>
         </functionEntry>
-        <functionEntry accessMode="private" endPc="268438334" name="&lt;globals/BafangRideSyncView/&lt;&gt;_writeField&gt;" parent="BafangRideSyncView" startPc="268438304">
+        <functionEntry accessMode="private" endPc="268438340" name="&lt;globals/BafangRideSyncView/&lt;&gt;_writeField&gt;" parent="BafangRideSyncView" startPc="268438310">
             <param id="field"/>
             <param id="value"/>
             <documentation/>
         </functionEntry>
-        <functionEntry accessMode="public" endPc="268438363" name="initialize" parent="BafangRideSyncView" startPc="268438335">
+        <functionEntry accessMode="public" endPc="268438369" name="initialize" parent="BafangRideSyncView" startPc="268438341">
             <documentation/>
         </functionEntry>
-        <functionEntry accessMode="private" endPc="268438575" name="&lt;globals/BafangRideSyncView/&lt;&gt;_initBle&gt;" parent="BafangRideSyncView" startPc="268438364">
+        <functionEntry accessMode="private" endPc="268438581" name="&lt;globals/BafangRideSyncView/&lt;&gt;_initBle&gt;" parent="BafangRideSyncView" startPc="268438370">
             <documentation/>
         </functionEntry>
-        <functionEntry accessMode="public" endPc="268439352" name="onUpdate" parent="BafangRideSyncView" startPc="268438576">
+        <functionEntry accessMode="public" endPc="268439358" name="onUpdate" parent="BafangRideSyncView" startPc="268438582">
             <param id="dc"/>
             <documentation/>
         </functionEntry>
-        <functionEntry accessMode="private" endPc="268439656" name="&lt;globals/BafangRideSyncView/&lt;&gt;_initFitFields&gt;" parent="BafangRideSyncView" startPc="268439353">
+        <functionEntry accessMode="private" endPc="268439662" name="&lt;globals/BafangRideSyncView/&lt;&gt;_initFitFields&gt;" parent="BafangRideSyncView" startPc="268439359">
             <documentation/>
         </functionEntry>
         <functionEntry accessMode="public" name="&lt;init&gt;" parent="Drawables">
@@ -828,7 +828,7 @@
         <functionEntry accessMode="public" name="&lt;init&gt;" parent="Strings">
             <documentation/>
         </functionEntry>
-        <functionEntry accessMode="public" endPc="268439704" name="initialize" parent="ParsedFrame" startPc="268439657">
+        <functionEntry accessMode="public" endPc="268439710" name="initialize" parent="ParsedFrame" startPc="268439663">
             <param id="s"/>
             <param id="d"/>
             <param id="o"/>
@@ -836,22 +836,22 @@
             <param id="dat"/>
             <documentation/>
         </functionEntry>
-        <functionEntry accessMode="public" endPc="268439741" name="writeByte" parent="FrameBuilder" startPc="268439705">
+        <functionEntry accessMode="public" endPc="268439747" name="writeByte" parent="FrameBuilder" startPc="268439711">
             <param id="dst"/>
             <param id="reg"/>
             <param id="value"/>
             <documentation/>
         </functionEntry>
-        <functionEntry accessMode="public" endPc="268439820" name="writeU32" parent="FrameBuilder" startPc="268439742">
+        <functionEntry accessMode="public" endPc="268439826" name="writeU32" parent="FrameBuilder" startPc="268439748">
             <param id="dst"/>
             <param id="reg"/>
             <param id="value"/>
             <documentation/>
         </functionEntry>
-        <functionEntry accessMode="public" endPc="268439848" name="initHandshake" parent="FrameBuilder" startPc="268439821">
+        <functionEntry accessMode="public" endPc="268439854" name="initHandshake" parent="FrameBuilder" startPc="268439827">
             <documentation/>
         </functionEntry>
-        <functionEntry accessMode="public" endPc="268440040" name="build" parent="FrameBuilder" startPc="268439849">
+        <functionEntry accessMode="public" endPc="268440046" name="build" parent="FrameBuilder" startPc="268439855">
             <param id="src"/>
             <param id="dst"/>
             <param id="op"/>
@@ -862,26 +862,26 @@
         <functionEntry accessMode="public" name="initialize" parent="FrameBuilder">
             <documentation/>
         </functionEntry>
-        <functionEntry accessMode="public" endPc="268440077" name="readReg" parent="FrameBuilder" startPc="268440041">
+        <functionEntry accessMode="public" endPc="268440083" name="readReg" parent="FrameBuilder" startPc="268440047">
             <param id="dst"/>
             <param id="reg"/>
             <param id="expectedLen"/>
             <documentation/>
         </functionEntry>
-        <functionEntry accessMode="public" endPc="268440183" name="initSequence" parent="FrameBuilder" startPc="268440078">
+        <functionEntry accessMode="public" endPc="268440189" name="initSequence" parent="FrameBuilder" startPc="268440084">
             <documentation/>
         </functionEntry>
-        <functionEntry accessMode="public" endPc="268440203" name="u16le" parent="FrameParser" startPc="268440184">
+        <functionEntry accessMode="public" endPc="268440209" name="u16le" parent="FrameParser" startPc="268440190">
             <param id="data"/>
             <param id="offset"/>
             <documentation/>
         </functionEntry>
-        <functionEntry accessMode="public" endPc="268440247" name="u32le" parent="FrameParser" startPc="268440204">
+        <functionEntry accessMode="public" endPc="268440253" name="u32le" parent="FrameParser" startPc="268440210">
             <param id="data"/>
             <param id="offset"/>
             <documentation/>
         </functionEntry>
-        <functionEntry accessMode="public" endPc="268440329" name="verifyChecksum" parent="FrameParser" startPc="268440248">
+        <functionEntry accessMode="public" endPc="268440335" name="verifyChecksum" parent="FrameParser" startPc="268440254">
             <param id="bytes"/>
             <param id="payloadLen"/>
             <documentation/>
@@ -889,39 +889,39 @@
         <functionEntry accessMode="public" name="initialize" parent="FrameParser">
             <documentation/>
         </functionEntry>
-        <functionEntry accessMode="public" endPc="268440485" name="parse" parent="FrameParser" startPc="268440330">
+        <functionEntry accessMode="public" endPc="268440491" name="parse" parent="FrameParser" startPc="268440336">
             <param id="bytes"/>
             <documentation/>
         </functionEntry>
-        <functionEntry accessMode="public" endPc="268440537" name="byteSlice" parent="FrameParser" startPc="268440486">
+        <functionEntry accessMode="public" endPc="268440543" name="byteSlice" parent="FrameParser" startPc="268440492">
             <param id="src"/>
             <param id="from"/>
             <param id="to"/>
             <documentation/>
         </functionEntry>
-        <functionEntry accessMode="public" endPc="268440624" name="pack0609" parent="BafangData" startPc="268440538">
+        <functionEntry accessMode="public" endPc="268440630" name="pack0609" parent="BafangData" startPc="268440544">
             <param id="offset"/>
             <documentation/>
         </functionEntry>
-        <functionEntry accessMode="public" endPc="268440711" name="pack0601" parent="BafangData" startPc="268440625">
+        <functionEntry accessMode="public" endPc="268440717" name="pack0601" parent="BafangData" startPc="268440631">
             <param id="offset"/>
             <documentation/>
         </functionEntry>
-        <functionEntry accessMode="public" endPc="268440740" name="update0609" parent="BafangData" startPc="268440712">
+        <functionEntry accessMode="public" endPc="268440746" name="update0609" parent="BafangData" startPc="268440718">
             <param id="data"/>
             <documentation/>
         </functionEntry>
-        <functionEntry accessMode="public" endPc="268440803" name="injectSimFrames" parent="BafangData" startPc="268440741">
+        <functionEntry accessMode="public" endPc="268440809" name="injectSimFrames" parent="BafangData" startPc="268440747">
             <documentation/>
         </functionEntry>
         <functionEntry accessMode="public" name="initialize" parent="BafangData">
             <documentation/>
         </functionEntry>
-        <functionEntry accessMode="public" endPc="268440964" name="update0601" parent="BafangData" startPc="268440804">
+        <functionEntry accessMode="public" endPc="268440970" name="update0601" parent="BafangData" startPc="268440810">
             <param id="data"/>
             <documentation/>
         </functionEntry>
-        <functionEntry accessMode="public" endPc="268440977" name="MainLayout" parent="Layouts" startPc="268440965">
+        <functionEntry accessMode="public" endPc="268440983" name="MainLayout" parent="Layouts" startPc="268440971">
             <param id="dc"/>
             <documentation/>
         </functionEntry>
