@@ -282,8 +282,13 @@ class BafangBleDelegate extends Ble.BleDelegate {
     private var _tzCache   as Number = 0;
     private var _utcCache  as Number = 0;
 
+    // Time.now().value() uses the Garmin epoch (1990-01-01).
+    // The Bafang controller expects Unix timestamps (epoch 1970-01-01).
+    // Offset = 7305 days * 86400 s/day = 631,152,000 s
+    private const GARMIN_TO_UNIX as Number = 631152000;
+
     private function _computeTimeValues() as Void {
-        _utcCache = Time.now().value();
+        _utcCache = Time.now().value() + GARMIN_TO_UNIX;
         var clock = System.getClockTime();
         var localSec = clock.hour * 3600 + clock.min * 60 + clock.sec;
         var utcSec   = _utcCache % 86400;
