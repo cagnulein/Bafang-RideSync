@@ -47,6 +47,21 @@ class BafangData {
 
     function initialize() {}
 
+    // Feed static frames captured from a real ride for Simulator testing.
+    // Values: battery=81%, PAS=1, speed=41.27 km/h, trip=115.80 km, odo=282.18 km
+    function injectSimFrames() as Void {
+        // 06 01 DATA bytes (21 bytes) – pedaling capture, checksums verified
+        update0601([0x00, 0x00, 0x00, 0x01, 0x00, 0x01, 0x09, 0x51,
+                    0x00, 0x1f, 0x10, 0x3c, 0x2d, 0x00, 0x00, 0x3a,
+                    0x6e, 0x00, 0x00, 0x00, 0x00]b);
+        // 06 09 DATA bytes (16 bytes) – tick=0x51fd, wheel config candidate=1985
+        update0609([0xfd, 0x51, 0x00, 0x00, 0xc1, 0x07, 0x5a, 0x11,
+                    0x18, 0x01, 0xde, 0x03, 0x55, 0x00, 0x01, 0x05]b);
+        model        = "EKD01_CAN_BF_N22";
+        bleConnected = true;
+        bleStatus    = "SIM";
+    }
+
     // Update from a 06 01 DATA block (must be >= 21 bytes).
     function update0601(data as Lang.ByteArray) as Void {
         if (data.size() < 21) { return; }

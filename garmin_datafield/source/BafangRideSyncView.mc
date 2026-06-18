@@ -60,6 +60,10 @@ class BafangRideSyncView extends WatchUi.DataField {
     // ── BLE setup ─────────────────────────────────────────────────────────
 
     private function _initBle() as Void {
+        if (BafangRideSyncApp.SIMULATE) {
+            BafangRideSyncApp.getData().injectSimFrames();
+            return;
+        }
         if (!(Ble has :registerProfile)) {
             BafangRideSyncApp.getData().bleStatus = "N/A";
             return;

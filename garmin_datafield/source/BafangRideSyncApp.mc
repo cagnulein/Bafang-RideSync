@@ -4,6 +4,11 @@ import Toybox.WatchUi;
 
 class BafangRideSyncApp extends Application.AppBase {
 
+    // Set to true to feed static captured frames instead of live BLE.
+    // Lets the Garmin Simulator show realistic data without a physical bike.
+    // Flip back to false before sideloading on a real device.
+    static const SIMULATE as Boolean = false;
+
     private static var _data as BafangData = new BafangData();
 
     function initialize() {
