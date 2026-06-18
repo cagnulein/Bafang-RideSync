@@ -81,14 +81,17 @@ class BafangBleDelegate extends Ble.BleDelegate {
     // ── BLE callbacks ─────────────────────────────────────────────────────
 
     function onScanResults(scanResults as Ble.Iterator) as Void {
-        for (var result = scanResults.next(); result != null; result = scanResults.next()) {
-            var name = result.getDeviceName();
+        var result = scanResults.next();
+        while (result != null) {
+            var scanResult = result as Ble.ScanResult;
+            var name = scanResult.getDeviceName();
             if (name != null && name.find(DEVICE_NAME) != null) {
                 Ble.setScanState(Ble.SCAN_STATE_OFF);
                 _setState(STATE_CONNECTING);
-                Ble.pairDevice(result);
+                Ble.pairDevice(scanResult);
                 return;
             }
+            result = scanResults.next();
         }
     }
 

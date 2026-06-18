@@ -22,3 +22,8 @@ __pycache__/
 # OS
 .DS_Store
 Thumbs.db
+/garmin_datafield/mir
+/garmin_datafield/bin/mir
+/garmin_datafield/bin
+/garmin_datafield/gen
+/garmin_datafield/internal-mir

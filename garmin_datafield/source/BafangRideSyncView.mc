@@ -4,6 +4,7 @@ import Toybox.FitContributor;
 using Toybox.Graphics as Gfx;
 import Toybox.Lang;
 import Toybox.System;
+import Toybox.Time;
 import Toybox.WatchUi;
 
 // DataField view: draws decoded e-bike data on screen; logs ALL raw bytes
@@ -41,17 +42,17 @@ class BafangRideSyncView extends WatchUi.DataField {
     // ── FIT contributor setup ─────────────────────────────────────────────
 
     private function _initFitFields() as Void {
-        if (!(FitContributor has :createField)) { return; }
+        if (!(self has :createField)) { return; }
         var rec = {:mesgType => FitContributor.MESG_TYPE_RECORD};
         try {
-            _fR01a = FitContributor.createField("r01a", 0, FitContributor.DATA_TYPE_UINT32, rec);
-            _fR01b = FitContributor.createField("r01b", 1, FitContributor.DATA_TYPE_UINT32, rec);
-            _fR01c = FitContributor.createField("r01c", 2, FitContributor.DATA_TYPE_UINT32, rec);
-            _fR01d = FitContributor.createField("r01d", 3, FitContributor.DATA_TYPE_UINT32, rec);
-            _fR01e = FitContributor.createField("r01e", 4, FitContributor.DATA_TYPE_UINT32, rec);
-            _fR09a = FitContributor.createField("r09a", 5, FitContributor.DATA_TYPE_UINT32, rec);
-            _fR09b = FitContributor.createField("r09b", 6, FitContributor.DATA_TYPE_UINT32, rec);
-            _fR09c = FitContributor.createField("r09c", 7, FitContributor.DATA_TYPE_UINT32, rec);
+            _fR01a = createField("r01a", 0, FitContributor.DATA_TYPE_UINT32, rec);
+            _fR01b = createField("r01b", 1, FitContributor.DATA_TYPE_UINT32, rec);
+            _fR01c = createField("r01c", 2, FitContributor.DATA_TYPE_UINT32, rec);
+            _fR01d = createField("r01d", 3, FitContributor.DATA_TYPE_UINT32, rec);
+            _fR01e = createField("r01e", 4, FitContributor.DATA_TYPE_UINT32, rec);
+            _fR09a = createField("r09a", 5, FitContributor.DATA_TYPE_UINT32, rec);
+            _fR09b = createField("r09b", 6, FitContributor.DATA_TYPE_UINT32, rec);
+            _fR09c = createField("r09c", 7, FitContributor.DATA_TYPE_UINT32, rec);
         } catch (ex instanceof Lang.Exception) {
             System.println("FIT createField error: " + ex.getErrorMessage());
         }
@@ -80,8 +81,7 @@ class BafangRideSyncView extends WatchUi.DataField {
 
     // ── DataField lifecycle ───────────────────────────────────────────────
 
-    function onLayout(dc as Gfx.Dc) as Boolean {
-        return true;
+    function onLayout(dc as Gfx.Dc) as Void {
     }
 
     // Called once per second during activity recording.

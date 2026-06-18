@@ -1,4 +1,4 @@
 <?xml version="1.0"?>
 <drawables>
-    <!-- No bitmap resources needed; all drawing is done in code. -->
+    <bitmap id="LauncherIcon" filename="launcher_icon.png"/>
 </drawables>

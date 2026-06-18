@@ -11,8 +11,8 @@
     <iq:application
         entry="BafangRideSyncApp"
         id="1c04cde9-379e-4b0e-b220-3a441c72baa5"
-        minApiVersion="3.4.0"
-        name="Bafang RideSync"
+        launcherIcon="@Drawables.LauncherIcon"
+        name="@Strings.AppName"
         type="datafield">
 
         <iq:products>
@@ -78,8 +78,8 @@
         </iq:products>
 
         <iq:permissions>
-            <iq:uses-permission id="com.garmin.permission.BLUETOOTH_LOW_ENERGY"/>
-            <iq:uses-permission id="com.garmin.permission.FIT_CONTRIBUTOR"/>
+            <iq:uses-permission id="BluetoothLowEnergy"/>
+            <iq:uses-permission id="FitContributor"/>
         </iq:permissions>
 
         <iq:languages>
