@@ -45,6 +45,21 @@ class BafangData {
     var bleConnected as Boolean = false;
     var bleStatus    as String  = "SCAN";  // SCAN / CONN / INIT / OK / ERR
 
+    // Diagnostics persisted to FIT on every activity record. These are useful
+    // on real devices where System.println is not available after the ride.
+    var bleState          as Number = 0;
+    var rxCount           as Number = 0;
+    var validFrameCount   as Number = 0;
+    var parseErrorCount   as Number = 0;
+    var lastParseError    as Number = 0;
+    var lastRxSize        as Number = 0;
+    var lastFrameSrc      as Number = 0;
+    var lastFrameDst      as Number = 0;
+    var lastFrameOp       as Number = 0;
+    var lastFrameReg      as Number = 0;
+    var telemetry0601Count as Number = 0;
+    var telemetry0609Count as Number = 0;
+
     function initialize() {}
 
     // Feed static frames captured from a real ride for Simulator testing.
@@ -65,6 +80,7 @@ class BafangData {
     // Update from a 06 01 DATA block (must be >= 21 bytes).
     function update0601(data as Lang.ByteArray) as Void {
         if (data.size() < 21) { return; }
+        telemetry0601Count++;
         raw0601    = data;
         pas        = data[5];
         battery    = data[7];
@@ -76,7 +92,40 @@ class BafangData {
     // Update from a 06 09 DATA block (must be >= 16 bytes).
     function update0609(data as Lang.ByteArray) as Void {
         if (data.size() < 16) { return; }
+        telemetry0609Count++;
         raw0609 = data;
+    }
+
+    function noteRx(bytes as Lang.ByteArray) as Void {
+        rxCount++;
+        lastRxSize = bytes.size();
+    }
+
+    function noteParseError(errorCode as Number) as Void {
+        parseErrorCount++;
+        lastParseError = errorCode;
+    }
+
+    function noteFrame(frame as ParsedFrame) as Void {
+        validFrameCount++;
+        lastParseError = 0;
+        lastFrameSrc = frame.src;
+        lastFrameDst = frame.dst;
+        lastFrameOp  = frame.op;
+        lastFrameReg = frame.reg;
+    }
+
+    function lastFramePacked() as Number {
+        return (lastFrameSrc & 0xff)
+             | ((lastFrameDst & 0xff) << 8)
+             | ((lastFrameOp  & 0xff) << 16)
+             | ((lastFrameReg & 0xff) << 24);
+    }
+
+    function diagFlags() as Number {
+        return (bleConnected ? 1 : 0)
+             | ((lastParseError & 0xff) << 8)
+             | ((lastRxSize & 0xffff) << 16);
     }
 
     // Pack 4 bytes starting at offset from raw0601 into a u32 LE value.

@@ -170,8 +170,14 @@ class BafangBleDelegate extends Ble.BleDelegate {
     // Main receive path – all device->phone traffic comes here.
     function onCharacteristicChanged(characteristic as Ble.Characteristic,
                                      value as Lang.ByteArray) as Void {
+        var d = BafangRideSyncApp.getData();
+        d.noteRx(value);
         var frame = FrameParser.parse(value);
-        if (frame == null) { return; }
+        if (frame == null) {
+            d.noteParseError(FrameParser.errorCode(value));
+            return;
+        }
+        d.noteFrame(frame);
 
         if (_state == STATE_RUNNING) {
             _handleTelemetry(frame);
@@ -331,6 +337,57 @@ class BafangBleDelegate extends Ble.BleDelegate {
 
     private function _setState(s as Number) as Void {
         _state = s;
+        var d = BafangRideSyncApp.getData();
+        d.bleState = s;
+        switch (s) {
+            case STATE_IDLE:
+                d.bleStatus = "IDLE";
+                break;
+            case STATE_SCANNING:
+                d.bleStatus = "SCAN";
+                break;
+            case STATE_CONNECTING:
+                d.bleStatus = "CONN";
+                break;
+            case STATE_ENABLING_NOTIFY:
+                d.bleStatus = "NTFY";
+                break;
+            case STATE_INIT_1:
+                d.bleStatus = "I1";
+                break;
+            case STATE_INIT_2:
+                d.bleStatus = "I2";
+                break;
+            case STATE_INIT_3:
+                d.bleStatus = "I3";
+                break;
+            case STATE_INIT_4:
+                d.bleStatus = "I4";
+                break;
+            case STATE_INIT_5:
+                d.bleStatus = "I5";
+                break;
+            case STATE_INIT_6:
+                d.bleStatus = "I6";
+                break;
+            case STATE_TIME_SYNC_1:
+                d.bleStatus = "T1";
+                break;
+            case STATE_TIME_SYNC_2:
+                d.bleStatus = "T2";
+                break;
+            case STATE_TIME_SYNC_3:
+                d.bleStatus = "T3";
+                break;
+            case STATE_RUNNING:
+                d.bleStatus = "OK";
+                break;
+            case STATE_ERROR:
+                d.bleStatus = "ERR";
+                break;
+            default:
+                break;
+        }
     }
 
     private function _parseModel(data as Lang.ByteArray) as Void {

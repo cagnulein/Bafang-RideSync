@@ -32,6 +32,14 @@ class BafangRideSyncView extends WatchUi.DataField {
     private var _fR09a as FitContributor.Field?;
     private var _fR09b as FitContributor.Field?;
     private var _fR09c as FitContributor.Field?;
+    private var _fDbgState as FitContributor.Field?;
+    private var _fDbgRx    as FitContributor.Field?;
+    private var _fDbgOk    as FitContributor.Field?;
+    private var _fDbgErr   as FitContributor.Field?;
+    private var _fDbgLast  as FitContributor.Field?;
+    private var _fDbgTel01 as FitContributor.Field?;
+    private var _fDbgTel09 as FitContributor.Field?;
+    private var _fDbgFlags as FitContributor.Field?;
 
     function initialize() {
         DataField.initialize();
@@ -53,6 +61,14 @@ class BafangRideSyncView extends WatchUi.DataField {
             _fR09a = createField("r09a", 5, FitContributor.DATA_TYPE_UINT32, rec);
             _fR09b = createField("r09b", 6, FitContributor.DATA_TYPE_UINT32, rec);
             _fR09c = createField("r09c", 7, FitContributor.DATA_TYPE_UINT32, rec);
+            _fDbgState = createField("dbgState", 8, FitContributor.DATA_TYPE_UINT32, rec);
+            _fDbgRx    = createField("dbgRx",    9, FitContributor.DATA_TYPE_UINT32, rec);
+            _fDbgOk    = createField("dbgOk",   10, FitContributor.DATA_TYPE_UINT32, rec);
+            _fDbgErr   = createField("dbgErr",  11, FitContributor.DATA_TYPE_UINT32, rec);
+            _fDbgLast  = createField("dbgLast", 12, FitContributor.DATA_TYPE_UINT32, rec);
+            _fDbgTel01 = createField("dbgT01",  13, FitContributor.DATA_TYPE_UINT32, rec);
+            _fDbgTel09 = createField("dbgT09",  14, FitContributor.DATA_TYPE_UINT32, rec);
+            _fDbgFlags = createField("dbgFlags",15, FitContributor.DATA_TYPE_UINT32, rec);
         } catch (ex instanceof Lang.Exception) {
             System.println("FIT createField error: " + ex.getErrorMessage());
         }
@@ -96,6 +112,14 @@ class BafangRideSyncView extends WatchUi.DataField {
         _writeField(_fR09a, d.pack0609(0));
         _writeField(_fR09b, d.pack0609(4));
         _writeField(_fR09c, d.pack0609(8));
+        _writeField(_fDbgState, d.bleState);
+        _writeField(_fDbgRx, d.rxCount);
+        _writeField(_fDbgOk, d.validFrameCount);
+        _writeField(_fDbgErr, d.parseErrorCount);
+        _writeField(_fDbgLast, d.lastFramePacked());
+        _writeField(_fDbgTel01, d.telemetry0601Count);
+        _writeField(_fDbgTel09, d.telemetry0609Count);
+        _writeField(_fDbgFlags, d.diagFlags());
         return null;
     }
 

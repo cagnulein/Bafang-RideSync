@@ -20,6 +20,12 @@ class ParsedFrame {
 
 class FrameParser {
 
+    static const ERR_NONE     = 0;
+    static const ERR_SHORT    = 1;
+    static const ERR_MAGIC    = 2;
+    static const ERR_LENGTH   = 3;
+    static const ERR_CHECKSUM = 4;
+
     // Returns a ParsedFrame or null on error.
     static function parse(bytes as Lang.ByteArray) as ParsedFrame? {
         var sz = bytes.size();
@@ -33,6 +39,16 @@ class FrameParser {
             bytes[3], bytes[4], bytes[5], bytes[6],
             byteSlice(bytes, 7, 7 + payloadLen)
         );
+    }
+
+    static function errorCode(bytes as Lang.ByteArray) as Number {
+        var sz = bytes.size();
+        if (sz < 9)                                { return ERR_SHORT; }
+        if (bytes[0] != 0x55 || bytes[1] != 0xaa) { return ERR_MAGIC; }
+        var payloadLen = bytes[2];
+        if (sz != 9 + payloadLen)                 { return ERR_LENGTH; }
+        if (!verifyChecksum(bytes, payloadLen))   { return ERR_CHECKSUM; }
+        return ERR_NONE;
     }
 
     static function verifyChecksum(bytes as Lang.ByteArray, payloadLen as Number) as Boolean {
