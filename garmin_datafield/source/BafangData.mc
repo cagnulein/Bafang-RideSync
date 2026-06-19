@@ -128,6 +128,18 @@ class BafangData {
              | ((lastRxSize & 0xffff) << 16);
     }
 
+    function diagStatusPacked() as Number {
+        return (bleConnected ? 1 : 0)
+             | ((lastParseError & 0xff) << 8)
+             | ((bleState & 0xff) << 16)
+             | ((lastRxSize & 0xff) << 24);
+    }
+
+    function diagCountsPacked() as Number {
+        return (rxCount & 0xffff)
+             | ((validFrameCount & 0xffff) << 16);
+    }
+
     // Pack 4 bytes starting at offset from raw0601 into a u32 LE value.
     // Returns null if data not yet available or offset out of range.
     function pack0601(offset as Number) as Number? {

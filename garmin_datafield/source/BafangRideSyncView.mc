@@ -16,9 +16,9 @@ import Toybox.WatchUi;
 //   f2 r01c  DATA[ 8..11]         (speed u16LE /100 @bytes1-2)
 //   f3 r01d  DATA[12..15]         (trip spans bytes 3 here and 0-2 of r01c)
 //   f4 r01e  DATA[16..19]         (odo spans bytes 3 here and 0-2 of r01d)
-//   f5 r09a  DATA[ 0.. 3] of frame 06 09  (tick counter u16LE @bytes0-1)
-//   f6 r09b  DATA[ 4.. 7]         (wheel config u16LE @bytes0-1)
-//   f7 r09c  DATA[ 8..11]         (more config)
+//   f5 dbgA  connected + parser error + RX packet size
+//   f6 dbgB  rxCount low16 + validFrameCount low16
+//   f7 dbgC  last frame src/dst/op/reg
 class BafangRideSyncView extends WatchUi.DataField {
 
     private var _delegate as BafangBleDelegate?;
@@ -29,17 +29,9 @@ class BafangRideSyncView extends WatchUi.DataField {
     private var _fR01c as FitContributor.Field?;
     private var _fR01d as FitContributor.Field?;
     private var _fR01e as FitContributor.Field?;
-    private var _fR09a as FitContributor.Field?;
-    private var _fR09b as FitContributor.Field?;
-    private var _fR09c as FitContributor.Field?;
-    private var _fDbgState as FitContributor.Field?;
-    private var _fDbgRx    as FitContributor.Field?;
-    private var _fDbgOk    as FitContributor.Field?;
-    private var _fDbgErr   as FitContributor.Field?;
-    private var _fDbgLast  as FitContributor.Field?;
-    private var _fDbgTel01 as FitContributor.Field?;
-    private var _fDbgTel09 as FitContributor.Field?;
-    private var _fDbgFlags as FitContributor.Field?;
+    private var _fDbgA as FitContributor.Field?;
+    private var _fDbgB as FitContributor.Field?;
+    private var _fDbgC as FitContributor.Field?;
 
     function initialize() {
         DataField.initialize();
@@ -58,17 +50,9 @@ class BafangRideSyncView extends WatchUi.DataField {
             _fR01c = createField("r01c", 2, FitContributor.DATA_TYPE_UINT32, rec);
             _fR01d = createField("r01d", 3, FitContributor.DATA_TYPE_UINT32, rec);
             _fR01e = createField("r01e", 4, FitContributor.DATA_TYPE_UINT32, rec);
-            _fR09a = createField("r09a", 5, FitContributor.DATA_TYPE_UINT32, rec);
-            _fR09b = createField("r09b", 6, FitContributor.DATA_TYPE_UINT32, rec);
-            _fR09c = createField("r09c", 7, FitContributor.DATA_TYPE_UINT32, rec);
-            _fDbgState = createField("dbgState", 8, FitContributor.DATA_TYPE_UINT32, rec);
-            _fDbgRx    = createField("dbgRx",    9, FitContributor.DATA_TYPE_UINT32, rec);
-            _fDbgOk    = createField("dbgOk",   10, FitContributor.DATA_TYPE_UINT32, rec);
-            _fDbgErr   = createField("dbgErr",  11, FitContributor.DATA_TYPE_UINT32, rec);
-            _fDbgLast  = createField("dbgLast", 12, FitContributor.DATA_TYPE_UINT32, rec);
-            _fDbgTel01 = createField("dbgT01",  13, FitContributor.DATA_TYPE_UINT32, rec);
-            _fDbgTel09 = createField("dbgT09",  14, FitContributor.DATA_TYPE_UINT32, rec);
-            _fDbgFlags = createField("dbgFlags",15, FitContributor.DATA_TYPE_UINT32, rec);
+            _fDbgA = createField("dbgA", 5, FitContributor.DATA_TYPE_UINT32, rec);
+            _fDbgB = createField("dbgB", 6, FitContributor.DATA_TYPE_UINT32, rec);
+            _fDbgC = createField("dbgC", 7, FitContributor.DATA_TYPE_UINT32, rec);
         } catch (ex instanceof Lang.Exception) {
             System.println("FIT createField error: " + ex.getErrorMessage());
         }
@@ -109,17 +93,9 @@ class BafangRideSyncView extends WatchUi.DataField {
         _writeField(_fR01c, d.pack0601(8));
         _writeField(_fR01d, d.pack0601(12));
         _writeField(_fR01e, d.pack0601(16));
-        _writeField(_fR09a, d.pack0609(0));
-        _writeField(_fR09b, d.pack0609(4));
-        _writeField(_fR09c, d.pack0609(8));
-        _writeField(_fDbgState, d.bleState);
-        _writeField(_fDbgRx, d.rxCount);
-        _writeField(_fDbgOk, d.validFrameCount);
-        _writeField(_fDbgErr, d.parseErrorCount);
-        _writeField(_fDbgLast, d.lastFramePacked());
-        _writeField(_fDbgTel01, d.telemetry0601Count);
-        _writeField(_fDbgTel09, d.telemetry0609Count);
-        _writeField(_fDbgFlags, d.diagFlags());
+        _writeField(_fDbgA, d.diagStatusPacked());
+        _writeField(_fDbgB, d.diagCountsPacked());
+        _writeField(_fDbgC, d.lastFramePacked());
         return null;
     }
 
