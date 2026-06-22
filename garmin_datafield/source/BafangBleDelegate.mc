@@ -2,6 +2,7 @@ using Toybox.BluetoothLowEnergy as Ble;
 import Toybox.Lang;
 import Toybox.System;
 import Toybox.Time;
+import Toybox.Timer;
 
 // BLE event delegate for the EKD01-BF display.
 //
@@ -49,9 +50,20 @@ class BafangBleDelegate extends Ble.BleDelegate {
     // For periodic time re-sync (every 5 minutes during RUNNING)
     private var _lastSync  as Number = 0;
 
+    // Init/time-sync watchdog. The state machine advances on notifications;
+    // this timer retries the pending frame if a notification never arrives.
+    private const RESPONSE_TIMEOUT_SEC as Number = 3;
+    private const MAX_RESPONSE_RETRIES as Number = 2;
+    private const WATCHDOG_PERIOD_MS   as Number = 1000;
+    private var _watchdog   as Timer.Timer? = null;
+    private var _pendingTx  as Lang.ByteArray? = null;
+    private var _lastTxAt   as Number = 0;
+    private var _retryCount as Number = 0;
+
     function initialize() {
         BleDelegate.initialize();
         _registerProfile();
+        _startWatchdog();
     }
 
     // ── Profile registration ──────────────────────────────────────────────
@@ -128,6 +140,7 @@ class BafangBleDelegate extends Ble.BleDelegate {
             _device    = null;
             _txChar    = null;
             _rxChar    = null;
+            _clearPendingTx();
             BafangRideSyncApp.getData().bleConnected = false;
             BafangRideSyncApp.getData().bleStatus    = "SCAN";
             _setState(STATE_IDLE);
@@ -150,6 +163,7 @@ class BafangBleDelegate extends Ble.BleDelegate {
 
     function onDescriptorWrite(descriptor as Ble.Descriptor, status as Ble.Status) as Void {
         if (status != Ble.STATUS_SUCCESS) {
+            _clearPendingTx();
             _setState(STATE_ERROR);
             return;
         }
@@ -255,6 +269,7 @@ class BafangBleDelegate extends Ble.BleDelegate {
                 if (frame.op == 0x05 && frame.src == FrameBuilder.DST_CTRL
                         && frame.reg == FrameBuilder.REG_UTC_EPOCH) {
                     _setState(STATE_RUNNING);
+                    _clearPendingTx();
                     BafangRideSyncApp.getData().bleStatus = "OK";
                     _lastSync = Time.now().value();
                 }
@@ -326,6 +341,13 @@ class BafangBleDelegate extends Ble.BleDelegate {
     // ── Helpers ───────────────────────────────────────────────────────────
 
     private function _sendFrame(frame as Lang.ByteArray) as Void {
+        _pendingTx = frame;
+        _lastTxAt = Time.now().value();
+        if (_txChar == null) { return; }
+        _writeFrame(frame);
+    }
+
+    private function _writeFrame(frame as Lang.ByteArray) as Void {
         if (_txChar == null) { return; }
         try {
             (_txChar as Ble.Characteristic).requestWrite(frame,
@@ -335,7 +357,42 @@ class BafangBleDelegate extends Ble.BleDelegate {
         }
     }
 
+    private function _startWatchdog() as Void {
+        if (_watchdog != null) { return; }
+        _watchdog = new Timer.Timer();
+        (_watchdog as Timer.Timer).start(method(:_onWatchdog), WATCHDOG_PERIOD_MS, true);
+    }
+
+    private function _onWatchdog() as Void {
+        if (!_stateExpectsResponse() || _pendingTx == null) { return; }
+        var now = Time.now().value();
+        if (now - _lastTxAt < RESPONSE_TIMEOUT_SEC) { return; }
+
+        if (_retryCount < MAX_RESPONSE_RETRIES) {
+            _retryCount++;
+            _lastTxAt = now;
+            _writeFrame(_pendingTx as Lang.ByteArray);
+            return;
+        }
+
+        _clearPendingTx();
+        _setState(STATE_ERROR);
+    }
+
+    private function _stateExpectsResponse() as Boolean {
+        return _state >= STATE_INIT_1 && _state <= STATE_TIME_SYNC_3;
+    }
+
+    private function _clearPendingTx() as Void {
+        _pendingTx = null;
+        _lastTxAt = 0;
+        _retryCount = 0;
+    }
+
     private function _setState(s as Number) as Void {
+        if (s != _state) {
+            _clearPendingTx();
+        }
         _state = s;
         var d = BafangRideSyncApp.getData();
         d.bleState = s;
