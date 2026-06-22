@@ -136,20 +136,30 @@ class BafangBleDelegate extends Ble.BleDelegate {
         }
     }
 
+    // Error sub-codes stored in lastParseError when _enableNotify fails.
+    // Read them from the FIT field dbgA bits 8-15 after a ride.
+    //   0xE1 = service not found (UUID mismatch or profile not registered)
+    //   0xE2 = TX characteristic not found (6e400002)
+    //   0xE3 = RX characteristic not found (6e400003)
+    //   0xE4 = CCCD descriptor not found on RX char
+    //   0xE5 = descriptor write returned non-SUCCESS status
     private function _enableNotify() as Void {
         if (_device == null) { return; }
+        var d = BafangRideSyncApp.getData();
         var svc = (_device as Ble.Device).getService(Ble.stringToUuid(SERVICE_UUID));
-        if (svc == null) { _setState(STATE_ERROR); return; }
+        if (svc == null) { d.noteParseError(0xE1); _setState(STATE_ERROR); return; }
         _txChar = svc.getCharacteristic(Ble.stringToUuid(TX_UUID));
+        if (_txChar == null) { d.noteParseError(0xE2); _setState(STATE_ERROR); return; }
         _rxChar = svc.getCharacteristic(Ble.stringToUuid(RX_UUID));
-        if (_rxChar == null || _txChar == null) { _setState(STATE_ERROR); return; }
+        if (_rxChar == null) { d.noteParseError(0xE3); _setState(STATE_ERROR); return; }
         var cccd = (_rxChar as Ble.Characteristic).getDescriptor(Ble.cccdUuid());
-        if (cccd == null) { _setState(STATE_ERROR); return; }
+        if (cccd == null) { d.noteParseError(0xE4); _setState(STATE_ERROR); return; }
         cccd.requestWrite([0x01, 0x00]b);
     }
 
     function onDescriptorWrite(descriptor as Ble.Descriptor, status as Ble.Status) as Void {
         if (status != Ble.STATUS_SUCCESS) {
+            BafangRideSyncApp.getData().noteParseError(0xE5);
             _setState(STATE_ERROR);
             return;
         }
