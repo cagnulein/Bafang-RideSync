@@ -33,10 +33,10 @@ class BafangBleDelegate extends Ble.BleDelegate {
     }
 
     // ── UUIDs ─────────────────────────────────────────────────────────────
-    // Service: 7dfc9000-7d1c-4951-86aa-8d9728f8d66c
-    // TX char (phone -> bike): 6e400002-b5a3-f393-e0a9-e50e24dcca9e
-    // RX char (bike -> phone, notify): 6e400003-b5a3-f393-e0a9-e50e24dcca9e
-    static const SERVICE_UUID = "7dfc9000-7d1c-4951-86aa-8d9728f8d66c";
+    // Nordic UART Service as reported by nRF Connect on EKD01-BF.
+    // NUS RX char (central -> bike, read/write): 6e400002-b5a3-f393-e0a9-e50e24dcca9e
+    // NUS TX char (bike -> central, notify):     6e400003-b5a3-f393-e0a9-e50e24dcca9e
+    static const SERVICE_UUID = "6e400001-b5a3-f393-e0a9-e50e24dcca9e";
     static const TX_UUID      = "6e400002-b5a3-f393-e0a9-e50e24dcca9e";
     static const RX_UUID      = "6e400003-b5a3-f393-e0a9-e50e24dcca9e";
     static const DEVICE_NAME  = "EKD01-BF";
