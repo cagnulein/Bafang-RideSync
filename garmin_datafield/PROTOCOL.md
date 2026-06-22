@@ -95,11 +95,3 @@ Examples:
 55 aa 15 10 11 06 01 00 00 00 01 00 01 09 51 00 00 00 39 2d 00 00 37 6e 00 00 00 00 5b fe
 55 aa 10 10 11 06 09 fd 51 00 00 c1 07 5a 11 18 01 de 03 55 00 01 05 e9 fb
 ```
-
-## Runtime watchdog
-
-The Garmin data field advances init and time-sync states only from valid notify responses. A `Toybox.Timer.Timer` watchdog checks the pending frame once per second while the state is between `STATE_INIT_1` and `STATE_TIME_SYNC_3`.
-
-- Response timeout: 3 seconds.
-- Retries: 2 retransmits of the same pending frame.
-- Final failure: clear the pending frame and move to `STATE_ERROR`; a real BLE disconnect still restarts scanning through `onConnectedStateChanged()`.
