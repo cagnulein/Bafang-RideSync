@@ -49,12 +49,23 @@ class BafangBleDelegate extends Ble.BleDelegate {
     // For periodic time re-sync (every 5 minutes during RUNNING)
     private var _lastSync  as Number = 0;
 
+    // Retry state for _enableNotify (getService can be null until GATT discovery completes).
+    // Retries are driven by tickRetry() called from View.compute() – no Timer needed.
+    private var _notifyRetryCount as Number = 0;
+    private const NOTIFY_MAX_RETRIES as Number = 10;
+
     function initialize() {
         BleDelegate.initialize();
         _registerProfile();
     }
 
     // ── Profile registration ──────────────────────────────────────────────
+
+    // 128-bit form of the CCCD UUID (0x2902).
+    // Some Garmin/firmware combos only resolve the descriptor via the long form.
+    static const CCCD_UUID_LONG  = "00002902-0000-1000-8000-00805f9b34fb";
+    // 0x2901 – Characteristic User Description, registered only to probe its presence.
+    static const USER_DESC_UUID  = "00002901-0000-1000-8000-00805f9b34fb";
 
     private function _registerProfile() as Void {
         try {
@@ -63,7 +74,15 @@ class BafangBleDelegate extends Ble.BleDelegate {
                 :characteristics => [
                     { :uuid => Ble.stringToUuid(TX_UUID) },
                     { :uuid => Ble.stringToUuid(RX_UUID),
-                      :descriptors => [Ble.cccdUuid()] }
+                      // Register CCCD in both short and 128-bit forms, plus User Description.
+                      // getDescriptor() only finds pre-registered UUIDs; probing all three
+                      // lets the debug screen show which ones Garmin can see on this device.
+                      :descriptors => [
+                          Ble.cccdUuid(),
+                          Ble.stringToUuid(CCCD_UUID_LONG),
+                          Ble.stringToUuid(USER_DESC_UUID)
+                      ]
+                    }
                 ]
             });
         } catch (ex instanceof Lang.Exception) {
@@ -79,14 +98,17 @@ class BafangBleDelegate extends Ble.BleDelegate {
         Ble.setScanState(Ble.SCAN_STATE_SCANNING);
     }
 
-    // Try to connect directly using a previously bonded ScanResult by address.
+    // Try to connect directly using a previously bonded device.
+    // Matches by device name (getDeviceName is available at all API levels;
+    // hasAddress was only added in API 4.0 and crashes on older firmware).
     // Returns true if the device was found and pairDevice() was called.
     private function _tryConnectBonded() as Boolean {
         var iter = Ble.getBondedDevices();
         var item = iter.next();
         while (item != null) {
             var sr = item as Ble.ScanResult;
-            if (sr.hasAddress(BafangRideSyncApp.DIRECT_CONNECT_ADDRESS)) {
+            var name = sr.getDeviceName();
+            if (name != null && (name as String).find(DEVICE_NAME) != null) {
                 _setState(STATE_CONNECTING);
                 BafangRideSyncApp.getData().bleStatus = "BOND";
                 Ble.pairDevice(sr);
@@ -120,11 +142,14 @@ class BafangBleDelegate extends Ble.BleDelegate {
     function onConnectedStateChanged(device as Ble.Device, state as Ble.ConnectionState) as Void {
         if (state == Ble.CONNECTION_STATE_CONNECTED) {
             _device = device;
+            _notifyRetryCount = 0;
             BafangRideSyncApp.getData().bleConnected = true;
             BafangRideSyncApp.getData().bleStatus    = "CONN";
+            BafangRideSyncApp.getData().notifyRetryCount = 0;
             _setState(STATE_ENABLING_NOTIFY);
             _enableNotify();
         } else {
+            _notifyRetryCount = 0;
             _device    = null;
             _txChar    = null;
             _rxChar    = null;
@@ -136,20 +161,74 @@ class BafangBleDelegate extends Ble.BleDelegate {
         }
     }
 
+    // Error sub-codes stored in lastParseError when _enableNotify fails.
+    // Read them from the FIT field dbgA bits 8-15 after a ride.
+    //   0xE1 = service not found – likely GATT discovery timing; retried via tickRetry()
+    //   0xE2 = TX characteristic not found (6e400002)
+    //   0xE3 = RX characteristic not found (6e400003)
+    //   0xE4 = CCCD not found in any form – stale GATT cache; unpair device to fix
+    //   0xE5 = descriptor write returned non-SUCCESS status
     private function _enableNotify() as Void {
         if (_device == null) { return; }
+        var d = BafangRideSyncApp.getData();
         var svc = (_device as Ble.Device).getService(Ble.stringToUuid(SERVICE_UUID));
-        if (svc == null) { _setState(STATE_ERROR); return; }
+        if (svc == null) {
+            d.noteParseError(0xE1);
+            if (_notifyRetryCount < NOTIFY_MAX_RETRIES) {
+                _notifyRetryCount++;
+                d.notifyRetryCount = _notifyRetryCount;
+            } else {
+                _setState(STATE_ERROR);
+            }
+            return;
+        }
         _txChar = svc.getCharacteristic(Ble.stringToUuid(TX_UUID));
+        if (_txChar == null) { d.noteParseError(0xE2); _setState(STATE_ERROR); return; }
         _rxChar = svc.getCharacteristic(Ble.stringToUuid(RX_UUID));
-        if (_rxChar == null || _txChar == null) { _setState(STATE_ERROR); return; }
-        var cccd = (_rxChar as Ble.Characteristic).getDescriptor(Ble.cccdUuid());
-        if (cccd == null) { _setState(STATE_ERROR); return; }
-        cccd.requestWrite([0x01, 0x00]b);
+        if (_rxChar == null) { d.noteParseError(0xE3); _setState(STATE_ERROR); return; }
+
+        // Probe all registered descriptor UUIDs so the debug screen can show which
+        // ones Garmin found in its GATT cache.  getDescriptor() only works for UUIDs
+        // declared in registerProfile(); anything not registered always returns null.
+        var rxc = _rxChar as Ble.Characteristic;
+        var dShort = rxc.getDescriptor(Ble.cccdUuid());
+        var dLong  = rxc.getDescriptor(Ble.stringToUuid(CCCD_UUID_LONG));
+        var dUser  = rxc.getDescriptor(Ble.stringToUuid(USER_DESC_UUID));
+        d.foundDescBitmask = (dShort != null ? 1 : 0)
+                           | (dLong  != null ? 2 : 0)
+                           | (dUser  != null ? 4 : 0);
+
+        // Use whichever CCCD form Garmin resolved; prefer the short form.
+        var cccd = dShort != null ? dShort : dLong;
+        if (cccd == null) {
+            // Neither CCCD form resolved – stale GATT cache (common with DIRECT_CONNECT).
+            // Retry; if retries exhausted user must unpair from watch Settings.
+            d.noteParseError(0xE4);
+            if (_notifyRetryCount < NOTIFY_MAX_RETRIES) {
+                _notifyRetryCount++;
+                d.notifyRetryCount = _notifyRetryCount;
+            } else {
+                _setState(STATE_ERROR);
+            }
+            return;
+        }
+        // Success – reset retry counter and enable notifications
+        _notifyRetryCount = 0;
+        d.notifyRetryCount = 0;
+        (cccd as Ble.Descriptor).requestWrite([0x01, 0x00]b);
+    }
+
+    // Called from View.compute() every second. Retries _enableNotify() while
+    // GATT discovery is still resolving (E1) or CCCD cache is stale (E4).
+    function tickRetry() as Void {
+        if (_state != STATE_ENABLING_NOTIFY) { return; }
+        if (_notifyRetryCount == 0) { return; }
+        _enableNotify();
     }
 
     function onDescriptorWrite(descriptor as Ble.Descriptor, status as Ble.Status) as Void {
         if (status != Ble.STATUS_SUCCESS) {
+            BafangRideSyncApp.getData().noteParseError(0xE5);
             _setState(STATE_ERROR);
             return;
         }

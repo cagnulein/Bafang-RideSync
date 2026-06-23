@@ -59,6 +59,12 @@ class BafangData {
     var lastFrameReg      as Number = 0;
     var telemetry0601Count as Number = 0;
     var telemetry0609Count as Number = 0;
+    var notifyRetryCount   as Number = 0;
+    // Bitmask set by _enableNotify() on each attempt:
+    //   bit 0 = CCCD found via Ble.cccdUuid()  (short form)
+    //   bit 1 = CCCD found via 00002902-...-34fb (128-bit form)
+    //   bit 2 = 0x2901 User Description found
+    var foundDescBitmask   as Number = 0;
 
     function initialize() {}
 
