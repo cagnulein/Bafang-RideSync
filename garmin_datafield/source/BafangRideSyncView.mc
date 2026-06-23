@@ -223,12 +223,20 @@ class BafangRideSyncView extends WatchUi.DataField {
             y += lh;
         }
 
+        // Descriptor probe results (updated on every _enableNotify() attempt)
+        if (d.foundDescBitmask != 0 || errCode == 0xE4) {
+            dc.setColor(0x777777, Gfx.COLOR_TRANSPARENT);
+            dc.drawText(cx, y, tiny, _descProbeStr(d.foundDescBitmask),
+                        Gfx.TEXT_JUSTIFY_CENTER);
+            y += lh;
+        }
+
         // Actionable hint when CCCD is persistently missing (stale bonded GATT cache)
         if (errCode == 0xE4 && d.bleState == 14) {
             dc.setColor(Gfx.COLOR_YELLOW, Gfx.COLOR_TRANSPARENT);
             dc.drawText(cx, y, tiny, "Unpair EKD01-BF", Gfx.TEXT_JUSTIFY_CENTER);
             y += lh;
-            dc.drawText(cx, y, tiny, "from watch settings", Gfx.TEXT_JUSTIFY_CENTER);
+            dc.drawText(cx, y, tiny, "in watch settings", Gfx.TEXT_JUSTIFY_CENTER);
             y += lh;
         }
 
@@ -249,5 +257,16 @@ class BafangRideSyncView extends WatchUi.DataField {
         if (errCode == 0xE4) { return "SVC:+ TX:+ RX:+ CCD:-"; }
         if (errCode == 0xE5) { return "SVC:+ TX:+ RX:+ CCD:+"; }
         return "SVC:? TX:? RX:? CCD:?";
+    }
+
+    // Decodes the descriptor probe bitmask from BafangData.foundDescBitmask:
+    //   bit 0 = short CCCD (Ble.cccdUuid())
+    //   bit 1 = long CCCD  (00002902-...-34fb)
+    //   bit 2 = User Description (0x2901)
+    private function _descProbeStr(bitmask as Number) as String {
+        var s = (bitmask & 1) != 0 ? "+" : "-";
+        var l = (bitmask & 2) != 0 ? "+" : "-";
+        var u = (bitmask & 4) != 0 ? "+" : "-";
+        return "CCDs:" + s + " CCDl:" + l + " Usr:" + u;
     }
 }
