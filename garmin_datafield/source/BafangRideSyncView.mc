@@ -87,6 +87,10 @@ class BafangRideSyncView extends WatchUi.DataField {
     // Called once per second during activity recording.
     // Writes all packed raw FIT fields; display uses decoded values.
     function compute(info as Activity.Info) as Numeric or Duration or String or Null {
+        // Drive the GATT notify retry (Toybox.Timer not available in DataFields)
+        if (_delegate != null) {
+            (_delegate as BafangBleDelegate).tickRetry();
+        }
         var d = BafangRideSyncApp.getData();
         _writeField(_fR01a, d.pack0601(0));
         _writeField(_fR01b, d.pack0601(4));

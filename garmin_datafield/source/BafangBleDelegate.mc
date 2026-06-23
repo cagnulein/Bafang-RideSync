@@ -2,7 +2,6 @@ using Toybox.BluetoothLowEnergy as Ble;
 import Toybox.Lang;
 import Toybox.System;
 import Toybox.Time;
-import Toybox.Timer;
 
 // BLE event delegate for the EKD01-BF display.
 //
@@ -50,8 +49,8 @@ class BafangBleDelegate extends Ble.BleDelegate {
     // For periodic time re-sync (every 5 minutes during RUNNING)
     private var _lastSync  as Number = 0;
 
-    // Retry state for _enableNotify (getService can be null until GATT discovery completes)
-    private var _notifyRetryTimer as Timer.Timer? = null;
+    // Retry state for _enableNotify (getService can be null until GATT discovery completes).
+    // Retries are driven by tickRetry() called from View.compute() – no Timer needed.
     private var _notifyRetryCount as Number = 0;
     private const NOTIFY_MAX_RETRIES as Number = 10;
 
@@ -126,7 +125,6 @@ class BafangBleDelegate extends Ble.BleDelegate {
     function onConnectedStateChanged(device as Ble.Device, state as Ble.ConnectionState) as Void {
         if (state == Ble.CONNECTION_STATE_CONNECTED) {
             _device = device;
-            _cancelNotifyRetry();
             _notifyRetryCount = 0;
             BafangRideSyncApp.getData().bleConnected = true;
             BafangRideSyncApp.getData().bleStatus    = "CONN";
@@ -134,7 +132,7 @@ class BafangBleDelegate extends Ble.BleDelegate {
             _setState(STATE_ENABLING_NOTIFY);
             _enableNotify();
         } else {
-            _cancelNotifyRetry();
+            _notifyRetryCount = 0;
             _device    = null;
             _txChar    = null;
             _rxChar    = null;
@@ -148,7 +146,7 @@ class BafangBleDelegate extends Ble.BleDelegate {
 
     // Error sub-codes stored in lastParseError when _enableNotify fails.
     // Read them from the FIT field dbgA bits 8-15 after a ride.
-    //   0xE1 = service not found – retried up to NOTIFY_MAX_RETRIES (GATT discovery timing)
+    //   0xE1 = service not found – retried up to NOTIFY_MAX_RETRIES via tickRetry()
     //   0xE2 = TX characteristic not found (6e400002)
     //   0xE3 = RX characteristic not found (6e400003)
     //   0xE4 = CCCD descriptor not found on RX char
@@ -158,14 +156,12 @@ class BafangBleDelegate extends Ble.BleDelegate {
         var d = BafangRideSyncApp.getData();
         var svc = (_device as Ble.Device).getService(Ble.stringToUuid(SERVICE_UUID));
         if (svc == null) {
-            // getService() can return null while GATT discovery is still in progress;
-            // retry up to NOTIFY_MAX_RETRIES times with 1 s delay before giving up.
+            // getService() can return null while GATT discovery is still in progress.
+            // tickRetry() (called every second from View.compute) will retry.
             d.noteParseError(0xE1);
             if (_notifyRetryCount < NOTIFY_MAX_RETRIES) {
                 _notifyRetryCount++;
                 d.notifyRetryCount = _notifyRetryCount;
-                if (_notifyRetryTimer == null) { _notifyRetryTimer = new Timer.Timer(); }
-                (_notifyRetryTimer as Timer.Timer).start(method(:_retryEnableNotify), 1000, false);
             } else {
                 _setState(STATE_ERROR);
             }
@@ -182,19 +178,12 @@ class BafangBleDelegate extends Ble.BleDelegate {
         cccd.requestWrite([0x01, 0x00]b);
     }
 
-    // Timer callback: retry _enableNotify after 1 s delay.
-    function _retryEnableNotify() as Void {
-        _notifyRetryTimer = null;
-        if (_state == STATE_ENABLING_NOTIFY) {
-            _enableNotify();
-        }
-    }
-
-    private function _cancelNotifyRetry() as Void {
-        if (_notifyRetryTimer != null) {
-            (_notifyRetryTimer as Timer.Timer).stop();
-            _notifyRetryTimer = null;
-        }
+    // Called from View.compute() every second. Retries _enableNotify() while
+    // GATT service discovery is still in progress (E1 error, STATE_ENABLING_NOTIFY).
+    function tickRetry() as Void {
+        if (_state != STATE_ENABLING_NOTIFY) { return; }
+        if (_notifyRetryCount == 0) { return; }
+        _enableNotify();
     }
 
     function onDescriptorWrite(descriptor as Ble.Descriptor, status as Ble.Status) as Void {
