@@ -215,11 +215,20 @@ class BafangRideSyncView extends WatchUi.DataField {
         dc.drawText(cx, y, tiny, _gattStatusStr(errCode), Gfx.TEXT_JUSTIFY_CENTER);
         y += lh;
 
-        // Retry counter (only meaningful while retrying E1)
+        // Retry counter while still attempting
         if (d.notifyRetryCount > 0) {
             dc.setColor(0x666666, Gfx.COLOR_TRANSPARENT);
             dc.drawText(cx, y, tiny, "retry " + d.notifyRetryCount + "/10",
                         Gfx.TEXT_JUSTIFY_CENTER);
+            y += lh;
+        }
+
+        // Actionable hint when CCCD is persistently missing (stale bonded GATT cache)
+        if (errCode == 0xE4 && d.bleState == 14) {
+            dc.setColor(Gfx.COLOR_YELLOW, Gfx.COLOR_TRANSPARENT);
+            dc.drawText(cx, y, tiny, "Unpair EKD01-BF", Gfx.TEXT_JUSTIFY_CENTER);
+            y += lh;
+            dc.drawText(cx, y, tiny, "from watch settings", Gfx.TEXT_JUSTIFY_CENTER);
             y += lh;
         }
 

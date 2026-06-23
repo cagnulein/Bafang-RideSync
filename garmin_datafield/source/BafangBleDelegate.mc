@@ -146,10 +146,12 @@ class BafangBleDelegate extends Ble.BleDelegate {
 
     // Error sub-codes stored in lastParseError when _enableNotify fails.
     // Read them from the FIT field dbgA bits 8-15 after a ride.
-    //   0xE1 = service not found – retried up to NOTIFY_MAX_RETRIES via tickRetry()
+    //   0xE1 = service not found – likely GATT discovery timing; retried via tickRetry()
     //   0xE2 = TX characteristic not found (6e400002)
     //   0xE3 = RX characteristic not found (6e400003)
-    //   0xE4 = CCCD descriptor not found on RX char
+    //   0xE4 = CCCD descriptor not found on RX char – likely stale GATT cache from bonded
+    //          device; retried via tickRetry(); if retries exhausted unpair EKD01-BF from
+    //          watch Settings > Sensors and re-pair to force fresh GATT discovery
     //   0xE5 = descriptor write returned non-SUCCESS status
     private function _enableNotify() as Void {
         if (_device == null) { return; }
@@ -167,19 +169,32 @@ class BafangBleDelegate extends Ble.BleDelegate {
             }
             return;
         }
-        _notifyRetryCount = 0;
-        d.notifyRetryCount = 0;
         _txChar = svc.getCharacteristic(Ble.stringToUuid(TX_UUID));
         if (_txChar == null) { d.noteParseError(0xE2); _setState(STATE_ERROR); return; }
         _rxChar = svc.getCharacteristic(Ble.stringToUuid(RX_UUID));
         if (_rxChar == null) { d.noteParseError(0xE3); _setState(STATE_ERROR); return; }
         var cccd = (_rxChar as Ble.Characteristic).getDescriptor(Ble.cccdUuid());
-        if (cccd == null) { d.noteParseError(0xE4); _setState(STATE_ERROR); return; }
+        if (cccd == null) {
+            // Descriptor missing – bonded GATT cache is likely stale (common with
+            // DIRECT_CONNECT). Retry; if all retries exhausted the user must unpair
+            // the device from watch Settings to force fresh GATT discovery.
+            d.noteParseError(0xE4);
+            if (_notifyRetryCount < NOTIFY_MAX_RETRIES) {
+                _notifyRetryCount++;
+                d.notifyRetryCount = _notifyRetryCount;
+            } else {
+                _setState(STATE_ERROR);
+            }
+            return;
+        }
+        // Success – reset retry counter and enable notifications
+        _notifyRetryCount = 0;
+        d.notifyRetryCount = 0;
         cccd.requestWrite([0x01, 0x00]b);
     }
 
     // Called from View.compute() every second. Retries _enableNotify() while
-    // GATT service discovery is still in progress (E1 error, STATE_ENABLING_NOTIFY).
+    // GATT discovery is still resolving (E1) or CCCD cache is stale (E4).
     function tickRetry() as Void {
         if (_state != STATE_ENABLING_NOTIFY) { return; }
         if (_notifyRetryCount == 0) { return; }
