@@ -98,14 +98,17 @@ class BafangBleDelegate extends Ble.BleDelegate {
         Ble.setScanState(Ble.SCAN_STATE_SCANNING);
     }
 
-    // Try to connect directly using a previously bonded ScanResult by address.
+    // Try to connect directly using a previously bonded device.
+    // Matches by device name (getDeviceName is available at all API levels;
+    // hasAddress was only added in API 4.0 and crashes on older firmware).
     // Returns true if the device was found and pairDevice() was called.
     private function _tryConnectBonded() as Boolean {
         var iter = Ble.getBondedDevices();
         var item = iter.next();
         while (item != null) {
             var sr = item as Ble.ScanResult;
-            if (sr.hasAddress(BafangRideSyncApp.DIRECT_CONNECT_ADDRESS)) {
+            var name = sr.getDeviceName();
+            if (name != null && (name as String).find(DEVICE_NAME) != null) {
                 _setState(STATE_CONNECTING);
                 BafangRideSyncApp.getData().bleStatus = "BOND";
                 Ble.pairDevice(sr);
