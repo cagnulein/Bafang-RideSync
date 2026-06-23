@@ -59,6 +59,7 @@ class BafangData {
     var lastFrameReg      as Number = 0;
     var telemetry0601Count as Number = 0;
     var telemetry0609Count as Number = 0;
+    var notifyRetryCount  as Number = 0;
 
     function initialize() {}
 

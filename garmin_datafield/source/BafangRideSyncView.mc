@@ -127,6 +127,12 @@ class BafangRideSyncView extends WatchUi.DataField {
         dc.setColor(statusColor, Gfx.COLOR_TRANSPARENT);
         dc.drawText(w - 4, 0, Gfx.FONT_TINY, d.bleStatus, Gfx.TEXT_JUSTIFY_RIGHT);
 
+        // ── Debug screen while waiting for first telemetry ────────────────
+        if (d.raw0601 == null) {
+            _drawDebugScreen(dc);
+            return;
+        }
+
         // ── Battery  |  PAS ──────────────────────────────────────────────
         var y1 = h * 16 / 100;
         var battStr = d.battery != null ? (d.battery.toString() + "%") : "--%";
@@ -169,5 +175,66 @@ class BafangRideSyncView extends WatchUi.DataField {
                         h - dc.getFontHeight(Gfx.FONT_TINY),
                         Gfx.FONT_TINY, d.model, Gfx.TEXT_JUSTIFY_CENTER);
         }
+    }
+
+    // Shown instead of ride data until the first 06 01 telemetry frame arrives.
+    // Lets you diagnose BLE init failures without needing to pull a FIT file.
+    private function _drawDebugScreen(dc as Gfx.Dc) as Void {
+        var w    = dc.getWidth();
+        var h    = dc.getHeight();
+        var d    = BafangRideSyncApp.getData();
+        var tiny = Gfx.FONT_TINY;
+        var lh   = dc.getFontHeight(tiny) + 2;
+        var cx   = w / 2;
+        var y    = h * 17 / 100;
+
+        // State label (larger, coloured by connection)
+        var stateColor = d.bleConnected ? Gfx.COLOR_GREEN : Gfx.COLOR_RED;
+        dc.setColor(stateColor, Gfx.COLOR_TRANSPARENT);
+        dc.drawText(cx, y, Gfx.FONT_SMALL, d.bleStatus, Gfx.TEXT_JUSTIFY_CENTER);
+        y += dc.getFontHeight(Gfx.FONT_SMALL) + 4;
+
+        // Init error code (0 = no error yet / still retrying)
+        var errCode = d.lastParseError;
+        if (errCode != 0) {
+            dc.setColor(Gfx.COLOR_RED, Gfx.COLOR_TRANSPARENT);
+            dc.drawText(cx, y, tiny, "Err: 0x" + errCode.format("%02X"),
+                        Gfx.TEXT_JUSTIFY_CENTER);
+        } else {
+            dc.setColor(0x555555, Gfx.COLOR_TRANSPARENT);
+            dc.drawText(cx, y, tiny, "Err: none", Gfx.TEXT_JUSTIFY_CENTER);
+        }
+        y += lh;
+
+        // GATT discovery progress (what was found / not found)
+        dc.setColor(0x888888, Gfx.COLOR_TRANSPARENT);
+        dc.drawText(cx, y, tiny, _gattStatusStr(errCode), Gfx.TEXT_JUSTIFY_CENTER);
+        y += lh;
+
+        // Retry counter (only meaningful while retrying E1)
+        if (d.notifyRetryCount > 0) {
+            dc.setColor(0x666666, Gfx.COLOR_TRANSPARENT);
+            dc.drawText(cx, y, tiny, "retry " + d.notifyRetryCount + "/10",
+                        Gfx.TEXT_JUSTIFY_CENTER);
+            y += lh;
+        }
+
+        // Raw packet counters
+        dc.setColor(0x555555, Gfx.COLOR_TRANSPARENT);
+        dc.drawText(cx, y, tiny,
+                    "RX:" + d.rxCount + " OK:" + d.validFrameCount,
+                    Gfx.TEXT_JUSTIFY_CENTER);
+    }
+
+    // Returns a short string showing which GATT objects were found/missing,
+    // derived from the init error sub-code set by _enableNotify().
+    //   + = found   - = not found   ? = not yet attempted
+    private function _gattStatusStr(errCode as Number) as String {
+        if (errCode == 0xE1) { return "SVC:- TX:? RX:? CCD:?"; }
+        if (errCode == 0xE2) { return "SVC:+ TX:- RX:? CCD:?"; }
+        if (errCode == 0xE3) { return "SVC:+ TX:+ RX:- CCD:?"; }
+        if (errCode == 0xE4) { return "SVC:+ TX:+ RX:+ CCD:-"; }
+        if (errCode == 0xE5) { return "SVC:+ TX:+ RX:+ CCD:+"; }
+        return "SVC:? TX:? RX:? CCD:?";
     }
 }
