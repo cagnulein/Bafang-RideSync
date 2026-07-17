@@ -6,32 +6,50 @@ import 'frame_builder.dart';
 import 'frame_parser.dart';
 
 enum BleState {
-  idle, scanning, connecting, enablingNotify,
-  init1, init2, init3, init4, init5, init6,
-  timeSync1, timeSync2, timeSync3,
-  running, error,
+  idle,
+  scanning,
+  connecting,
+  enablingNotify,
+  init1,
+  init2,
+  init3,
+  init4,
+  init5,
+  timeSync1,
+  timeSync2,
+  timeSync3,
+  postSync1,
+  postSync2,
+  running,
+  error,
 }
 
 class BleService {
-  static const String _serviceUuid = '7dfc9000-7d1c-4951-86aa-8d9728f8d66c';
-  static const String _txUuid      = '6e400002-b5a3-f393-e0a9-e50e24dcca9e';
-  static const String _rxUuid      = '6e400003-b5a3-f393-e0a9-e50e24dcca9e';
-  static const String _deviceName  = 'EKD01-BF';
+  static const String _serviceUuid = '6e400001-b5a3-f393-e0a9-e50e24dcca9e';
+  static const String _txUuid = '6e400002-b5a3-f393-e0a9-e50e24dcca9e';
+  static const String _rxUuid = '6e400003-b5a3-f393-e0a9-e50e24dcca9e';
+  static const String _deviceName = 'EKD01-BF';
 
   final BafangData data;
 
   BleState _state = BleState.idle;
-  BluetoothDevice?        _device;
+  BluetoothDevice? _device;
   BluetoothCharacteristic? _txChar;
   BluetoothCharacteristic? _rxChar;
 
   int _lastSync = 0;
-  int _tzCache  = 0;
+  int _tzCache = 0;
   int _utcCache = 0;
+  Uint8List? _statusChallenge1;
+  Uint8List? _statusChallenge2;
+  Uint8List? _lastHandshakeToken;
 
-  StreamSubscription<List<ScanResult>>?           _scanSub;
-  StreamSubscription<List<int>>?                  _rxSub;
-  StreamSubscription<BluetoothConnectionState>?   _connSub;
+  // Reassembly buffer: BLE notifications may carry partial UART frames.
+  final List<int> _rxBuffer = [];
+
+  StreamSubscription<List<ScanResult>>? _scanSub;
+  StreamSubscription<List<int>>? _rxSub;
+  StreamSubscription<BluetoothConnectionState>? _connSub;
 
   // Log for the debug pane (newest first, capped at 200 lines)
   final List<String> log = [];
@@ -48,7 +66,6 @@ class BleService {
     _setState(BleState.scanning, status: 'SCAN');
 
     FlutterBluePlus.startScan(
-      withServices: [Guid(_serviceUuid)],
       timeout: const Duration(seconds: 30),
     );
 
@@ -87,18 +104,22 @@ class BleService {
     _setState(BleState.connecting, status: 'CONN');
     _device = device;
 
-    _connSub?.cancel();
-    _connSub = device.connectionState.listen((s) {
-      if (s == BluetoothConnectionState.disconnected) _handleDisconnect();
-    });
-
     try {
-      await device.connect(autoConnect: false, timeout: const Duration(seconds: 10));
+      await device.connect(
+          autoConnect: false, timeout: const Duration(seconds: 10));
     } catch (e) {
       _log('Connect error: $e');
       _setState(BleState.error, status: 'ERR');
       return;
     }
+
+    // Subscribe AFTER connect() so the initial stream emission is 'connected',
+    // not 'disconnected' (which would spuriously trigger _handleDisconnect).
+    _connSub?.cancel();
+    _connSub = device.connectionState.listen((s) {
+      if (s == BluetoothConnectionState.disconnected) _handleDisconnect();
+    });
+
     await _enableNotify();
   }
 
@@ -117,7 +138,10 @@ class BleService {
 
     BluetoothService? svc;
     for (final s in services) {
-      if (s.uuid.toString().toLowerCase() == _serviceUuid) { svc = s; break; }
+      if (s.uuid.toString().toLowerCase() == _serviceUuid) {
+        svc = s;
+        break;
+      }
     }
     if (svc == null) {
       _log('Service $_serviceUuid not found');
@@ -139,6 +163,10 @@ class BleService {
     await _rxChar!.setNotifyValue(true);
     _rxSub?.cancel();
     _rxSub = _rxChar!.onValueReceived.listen(_onRx);
+    _rxBuffer.clear();
+    _statusChallenge1 = null;
+    _statusChallenge2 = null;
+    _lastHandshakeToken = null;
 
     _log('Notifications enabled – starting init sequence');
     _setState(BleState.init1);
@@ -147,18 +175,41 @@ class BleService {
 
   // ── Receive dispatch ──────────────────────────────────────────────────────
 
+  // BLE notifications may carry partial UART frames (default MTU=23 → 20-byte
+  // payload). Accumulate bytes and extract complete frames as they arrive.
   void _onRx(List<int> value) {
-    final bytes = Uint8List.fromList(value);
-    final hex   = bytes.map((b) => b.toRadixString(16).padLeft(2, '0')).join(' ');
-    _log('RX [$_stateLabel]: $hex');
+    _rxBuffer.addAll(value);
 
-    final frame = FrameParser.parse(bytes);
-    if (frame == null) { _log('  → parse failed'); return; }
+    while (_rxBuffer.length >= 9) {
+      // Re-sync on magic header if corrupted
+      if (_rxBuffer[0] != 0x55 || _rxBuffer[1] != 0xaa) {
+        _log(
+            'RX: sync lost, skipping byte 0x${_rxBuffer[0].toRadixString(16)}');
+        _rxBuffer.removeAt(0);
+        continue;
+      }
+      final payloadLen = _rxBuffer[2];
+      final frameLen = 9 + payloadLen;
+      if (_rxBuffer.length < frameLen) break; // wait for more bytes
 
-    if (_state == BleState.running) {
-      _handleTelemetry(frame);
-    } else {
-      _handleInitResponse(frame);
+      final bytes = Uint8List.fromList(_rxBuffer.sublist(0, frameLen));
+      _rxBuffer.removeRange(0, frameLen);
+
+      final hex =
+          bytes.map((b) => b.toRadixString(16).padLeft(2, '0')).join(' ');
+      _log('RX [$_stateLabel]: $hex');
+
+      final frame = FrameParser.parse(bytes);
+      if (frame == null) {
+        _log('  → parse failed');
+        continue;
+      }
+
+      if (_state == BleState.running) {
+        _handleTelemetry(frame);
+      } else {
+        _handleInitResponse(frame);
+      }
     }
   }
 
@@ -169,54 +220,80 @@ class BleService {
     switch (_state) {
       case BleState.init1:
         if (frame.op == 0x04 && frame.src == FrameBuilder.dstCtrl) {
-          _setState(BleState.init2);
-          await _sendFrame(frames[1]);
+          _statusChallenge1 = Uint8List.fromList(frame.data);
+          _log('Status challenge #1: ${_hex(frame.data)}');
+          _setState(BleState.init3);
+          await _sendHandshake(_statusChallenge1!);
         }
       case BleState.init2:
-        if (frame.op == 0x20 && frame.src == FrameBuilder.dstCtrl) {
+        if (frame.op == 0x04 && frame.src == FrameBuilder.dstCtrl) {
+          _statusChallenge2 = Uint8List.fromList(frame.data);
+          _log('Status challenge #2: ${_hex(frame.data)}');
           _setState(BleState.init3);
-          await _sendFrame(frames[2]);
+          await _sendHandshake(_statusChallenge2!);
         }
       case BleState.init3:
-        if (frame.op == 0x04 && frame.src == FrameBuilder.dstCfg && frame.reg == 0x18) {
-          _parseModel(frame.data);
-          _setState(BleState.init4);
-          await _sendFrame(frames[3]);
+        if (frame.op == 0x20 && frame.src == FrameBuilder.dstCtrl) {
+          if (frame.data.isNotEmpty && frame.data[0] == 0x00) {
+            _setState(BleState.init4);
+            await _sendFrame(frames[1]);
+          } else {
+            _log('Handshake rejected by bike. '
+                'challenge1=${_hex(_statusChallenge1)} '
+                'challenge2=${_hex(_statusChallenge2)} '
+                'lastToken=${_hex(_lastHandshakeToken)}');
+            _setState(BleState.error, status: 'ERR');
+          }
         }
       case BleState.init4:
-        if (frame.op == 0x04 && frame.src == FrameBuilder.dstCfg2) {
+        if (frame.op == 0x04 &&
+            frame.src == FrameBuilder.dstCfg &&
+            frame.reg == 0x18) {
+          _parseModel(frame.data);
           _setState(BleState.init5);
-          await _sendFrame(frames[4]);
+          await _sendFrame(frames[2]);
         }
       case BleState.init5:
-        if (frame.op == 0x05 && frame.src == FrameBuilder.dstCfg) {
-          _setState(BleState.init6);
-          await _sendFrame(frames[5]);
-        }
-      case BleState.init6:
-        if (frame.op == 0x04 && frame.src == FrameBuilder.dstCfg) {
+        if (frame.op == 0x04 && frame.src == FrameBuilder.dstCfg2) {
           await _startTimeSync();
         }
       case BleState.timeSync1:
-        if (frame.op == 0x05 && frame.src == FrameBuilder.dstCtrl &&
+        if (frame.op == 0x05 &&
+            frame.src == FrameBuilder.dstCtrl &&
             frame.reg == FrameBuilder.regLocalEpoch) {
           _setState(BleState.timeSync2);
           await _sendFrame(FrameBuilder.writeU32(
               FrameBuilder.dstCtrl, FrameBuilder.regTzOffset, _tzCache));
         }
       case BleState.timeSync2:
-        if (frame.op == 0x05 && frame.src == FrameBuilder.dstCtrl &&
+        if (frame.op == 0x05 &&
+            frame.src == FrameBuilder.dstCtrl &&
             frame.reg == FrameBuilder.regTzOffset) {
           _setState(BleState.timeSync3);
           await _sendFrame(FrameBuilder.writeU32(
               FrameBuilder.dstCtrl, FrameBuilder.regUtcEpoch, _utcCache));
         }
       case BleState.timeSync3:
-        if (frame.op == 0x05 && frame.src == FrameBuilder.dstCtrl &&
+        if (frame.op == 0x05 &&
+            frame.src == FrameBuilder.dstCtrl &&
             frame.reg == FrameBuilder.regUtcEpoch) {
+          _setState(BleState.postSync1);
+          await _sendFrame(frames[3]);
+        }
+      case BleState.postSync1:
+        if (frame.op == 0x05 &&
+            frame.src == FrameBuilder.dstCfg &&
+            frame.reg == FrameBuilder.regSetE1) {
+          _setState(BleState.postSync2);
+          await _sendFrame(frames[4]);
+        }
+      case BleState.postSync2:
+        if (frame.op == 0x04 &&
+            frame.src == FrameBuilder.dstCfg &&
+            frame.reg == FrameBuilder.regReadE0) {
           _log('Init complete – RUNNING');
           data.bleConnected = true;
-          data.bleStatus    = 'OK';
+          data.bleStatus = 'OK';
           _setState(BleState.running, status: 'OK');
           _lastSync = _nowSec();
         }
@@ -229,8 +306,11 @@ class BleService {
 
   void _handleTelemetry(ParsedFrame frame) async {
     if (frame.op == 0x06) {
-      if (frame.reg == 0x01) { data.update0601(frame.data); }
-      else if (frame.reg == 0x09) { data.update0609(frame.data); }
+      if (frame.reg == 0x01) {
+        data.update0601(frame.data);
+      } else if (frame.reg == 0x09) {
+        data.update0609(frame.data);
+      }
     }
     // Periodic re-sync every 5 minutes (mirrors Garmin code)
     if (_nowSec() - _lastSync > 300) {
@@ -244,15 +324,15 @@ class BleService {
   void _computeTimeValues() {
     final now = DateTime.now();
     _utcCache = now.toUtc().millisecondsSinceEpoch ~/ 1000;
-    _tzCache  = now.timeZoneOffset.inSeconds;
+    _tzCache = now.timeZoneOffset.inSeconds;
   }
 
   Future<void> _startTimeSync() async {
     _computeTimeValues();
     _log('Time sync: utc=$_utcCache tz=$_tzCache');
     _setState(BleState.timeSync1);
-    await _sendFrame(FrameBuilder.writeU32(
-        FrameBuilder.dstCtrl, FrameBuilder.regLocalEpoch, _utcCache - _tzCache));
+    await _sendFrame(FrameBuilder.writeU32(FrameBuilder.dstCtrl,
+        FrameBuilder.regLocalEpoch, _utcCache - _tzCache));
   }
 
   // ── Disconnect ────────────────────────────────────────────────────────────
@@ -264,8 +344,12 @@ class BleService {
     _txChar = null;
     _rxChar = null;
     _device = null;
+    _rxBuffer.clear();
+    _statusChallenge1 = null;
+    _statusChallenge2 = null;
+    _lastHandshakeToken = null;
     data.bleConnected = false;
-    data.bleStatus    = 'SCAN';
+    data.bleStatus = 'SCAN';
     _setState(BleState.idle, status: 'SCAN');
     Future.delayed(const Duration(seconds: 2), startScan);
   }
@@ -302,9 +386,28 @@ class BleService {
     data.notifyListeners();
   }
 
+  Future<void> _sendHandshake(Uint8List challenge) async {
+    _lastHandshakeToken = FrameBuilder.handshakeToken(challenge);
+    _log('Handshake token: '
+        'challenge1=${_hex(_statusChallenge1)} '
+        'challenge2=${_hex(_statusChallenge2)} '
+        'token=${_hex(_lastHandshakeToken)}');
+    await _sendFrame(FrameBuilder.initHandshake(challenge));
+  }
+
+  String _hex(List<int>? bytes) {
+    if (bytes == null || bytes.isEmpty) return '-';
+    return bytes.map((b) => b.toRadixString(16).padLeft(2, '0')).join(' ');
+  }
+
   void _log(String msg) {
     final ts = DateTime.now().toIso8601String().substring(11, 23);
-    log.insert(0, '[$ts] $msg');
+    final line = '[$ts] $msg';
+    // Also mirror the BLE protocol log to stdout so flutter run captures the
+    // exact TX/RX bytes when a device stops responding.
+    // ignore: avoid_print
+    print(line);
+    log.insert(0, line);
     if (log.length > 200) log.removeLast();
   }
 
