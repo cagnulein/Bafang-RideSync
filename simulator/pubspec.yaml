@@ -1,0 +1,15 @@
+name: bafang_ride_sync_sim
+description: Mac simulator for BafangRideSync Garmin DataField
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_blue_plus: ^1.35.0
+  provider: ^6.1.2
+
+flutter:
+  uses-material-design: true

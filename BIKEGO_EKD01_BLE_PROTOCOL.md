@@ -19,6 +19,24 @@ Le note sotto distinguono tra:
 
 ## GATT
 
+## Advertising / discovery
+
+Nei due `pklg` analizzati non risultano LE Advertising Report ricevuti dal display `70:de:f9:d6:ab:5f`.
+
+Evidenze:
+
+- cercando per indirizzo `70:de:f9:d6:ab:5f` compaiono solo eventi `LE Enhanced Connection Complete`, non pacchetti advertising;
+- cercando nei campi EIR/advertising non compaiono `EKD`, `BF`, `Bafang`, `6e4000...` o il service UUID custom `7dfc9000...`;
+- i pacchetti con `LE Set Extended Advertising ...` nel log sono comandi dell'iPhone verso il controller Bluetooth, quindi riguardano l'advertising dell'iPhone, non quello della e-bike.
+
+Quindi da questa cattura non si puo' dire che il display annunci il service UART in advertising. Il nome `EKD01-BF ` e il service custom sono stati visti dopo la connessione, tramite GATT discovery/read.
+
+Per Garmin conviene implementare discovery robusta:
+
+- filtrare per nome advertised se disponibile in una cattura reale o nello scan Garmin;
+- in alternativa connettersi ai candidati BLE e verificare via GATT la presenza del servizio `7dfc9000-7d1c-4951-86aa-8d9728f8d66c` e delle caratteristiche `6e400002...` / `6e400003...`;
+- non assumere, sulla base di questi log, che il service UUID sia presente nell'advertising packet.
+
 ### Servizi standard
 
 Il display espone almeno questi servizi:
