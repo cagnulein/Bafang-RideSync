@@ -49,6 +49,7 @@ class BleService {
 
   StreamSubscription<List<ScanResult>>? _scanSub;
   StreamSubscription<List<int>>? _rxSub;
+  final List<StreamSubscription<List<int>>> _extraNotifySubs = [];
   StreamSubscription<BluetoothConnectionState>? _connSub;
 
   // Log for the debug pane (newest first, capped at 200 lines)
@@ -59,6 +60,16 @@ class BleService {
   // ── Public API ────────────────────────────────────────────────────────────
 
   BleState get state => _state;
+
+  Future<void> setPasLevel(int level) async {
+    final clamped = level.clamp(0, 9);
+    _log('Set PAS request: $clamped');
+    if (_state != BleState.running) {
+      _log('Set PAS skipped: BLE state is $_stateLabel');
+      return;
+    }
+    await _sendFrame(FrameBuilder.writeGearLevel(clamped));
+  }
 
   void startScan() {
     if (_state != BleState.idle && _state != BleState.error) return;
@@ -93,6 +104,7 @@ class BleService {
   void dispose() {
     _scanSub?.cancel();
     _rxSub?.cancel();
+    _cancelExtraNotifySubs();
     _connSub?.cancel();
     _device?.disconnect();
   }
@@ -138,9 +150,12 @@ class BleService {
 
     BluetoothService? svc;
     for (final s in services) {
+      _log('Service: ${s.uuid}');
+      for (final c in s.characteristics) {
+        _log('  chr: ${c.uuid} props=${_props(c)}');
+      }
       if (s.uuid.toString().toLowerCase() == _serviceUuid) {
         svc = s;
-        break;
       }
     }
     if (svc == null) {
@@ -163,6 +178,7 @@ class BleService {
     await _rxChar!.setNotifyValue(true);
     _rxSub?.cancel();
     _rxSub = _rxChar!.onValueReceived.listen(_onRx);
+    await _enableExtraNotifications(services);
     _rxBuffer.clear();
     _statusChallenge1 = null;
     _statusChallenge2 = null;
@@ -319,7 +335,7 @@ class BleService {
     }
   }
 
-  // ── Time sync (exact same logic as BafangBleDelegate.mc) ─────────────────
+  // ── Time sync ────────────────────────────────────────────────────────────
 
   void _computeTimeValues() {
     final now = DateTime.now();
@@ -332,7 +348,7 @@ class BleService {
     _log('Time sync: utc=$_utcCache tz=$_tzCache');
     _setState(BleState.timeSync1);
     await _sendFrame(FrameBuilder.writeU32(FrameBuilder.dstCtrl,
-        FrameBuilder.regLocalEpoch, _utcCache - _tzCache));
+        FrameBuilder.regLocalEpoch, _utcCache + _tzCache));
   }
 
   // ── Disconnect ────────────────────────────────────────────────────────────
@@ -340,6 +356,7 @@ class BleService {
   void _handleDisconnect() {
     _log('Disconnected');
     _rxSub?.cancel();
+    _cancelExtraNotifySubs();
     _connSub?.cancel();
     _txChar = null;
     _rxChar = null;
@@ -365,6 +382,38 @@ class BleService {
     } catch (e) {
       _log('TX error: $e');
     }
+  }
+
+  Future<void> _enableExtraNotifications(
+      List<BluetoothService> services) async {
+    _cancelExtraNotifySubs();
+
+    for (final s in services) {
+      for (final c in s.characteristics) {
+        final uuid = c.uuid.toString().toLowerCase();
+        if (uuid == _rxUuid) continue;
+        if (!c.properties.notify && !c.properties.indicate) continue;
+
+        final label = '${s.uuid}/${c.uuid}';
+        try {
+          final sub = c.onValueReceived.listen((value) {
+            _log('RX extra [$label]: ${_hex(value)}');
+          });
+          _extraNotifySubs.add(sub);
+          await c.setNotifyValue(true);
+          _log('Extra notifications enabled: $label');
+        } catch (e) {
+          _log('Extra notify failed [$label]: $e');
+        }
+      }
+    }
+  }
+
+  void _cancelExtraNotifySubs() {
+    for (final sub in _extraNotifySubs) {
+      sub.cancel();
+    }
+    _extraNotifySubs.clear();
   }
 
   void _setState(BleState s, {String? status}) {
@@ -398,6 +447,18 @@ class BleService {
   String _hex(List<int>? bytes) {
     if (bytes == null || bytes.isEmpty) return '-';
     return bytes.map((b) => b.toRadixString(16).padLeft(2, '0')).join(' ');
+  }
+
+  String _props(BluetoothCharacteristic c) {
+    final p = c.properties;
+    final names = <String>[];
+    if (p.read) names.add('read');
+    if (p.write) names.add('write');
+    if (p.writeWithoutResponse) names.add('writeNoResp');
+    if (p.notify) names.add('notify');
+    if (p.indicate) names.add('indicate');
+    if (p.broadcast) names.add('broadcast');
+    return names.isEmpty ? '-' : names.join(',');
   }
 
   void _log(String msg) {

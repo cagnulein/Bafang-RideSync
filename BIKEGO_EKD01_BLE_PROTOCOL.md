@@ -163,7 +163,7 @@ Frame osservati:
 
 | Frame | Payload UART | Interpretazione |
 |---:|---|---|
-| 46385 | `55 aa 04 11 10 02 3e 0f b9 33 6a 35 fe` | set registro `0x3e`, uint32 LE `0x6a33b90f` = UTC - 7200 s |
+| 46385 | `55 aa 04 11 10 02 3e 0f b9 33 6a 35 fe` | set registro `0x3e`, uint32 LE `0x6a33b90f`; cattura storica interpretata inizialmente come UTC - 7200 s |
 | 46391 | `55 aa 04 11 10 02 42 20 1c 00 00 5a ff` | set registro `0x42`, uint32 LE `7200`, offset timezone in secondi |
 | 46396 | `55 aa 04 11 10 02 46 2f d5 33 6a f1 fd` | set registro `0x46`, uint32 LE `0x6a33d52f` = UTC epoch della cattura |
 
@@ -180,12 +180,16 @@ Implementazione suggerita:
 ```text
 utc = current Unix epoch seconds
 tz = local offset seconds, e.g. +7200 in Italy summer time
-write reg 0x3e = utc - tz
+write reg 0x3e = utc + tz
 write reg 0x42 = tz
 write reg 0x46 = utc
 ```
 
-Questa sequenza va validata in inverno/UTC+1 e su un secondo display, per capire se `0x3e` e' davvero "local-adjusted epoch" o un campo legacy.
+Aggiornamento dai test successivi: BikeGo/display si aspettano `0x3e` come
+epoch locale.
+
+Questa sequenza va comunque validata in inverno/UTC+1 e su un secondo display,
+per confermare il comportamento di `0x3e` con offset diversi.
 
 ## Telemetria realtime
 
@@ -289,13 +293,38 @@ Per una app Garmin data field, il mapping pratico consigliato e':
 |---|---|---|
 | Batteria e-bike | `06 01` DATA[7] | alta |
 | PAS/livello assistenza | `06 01` DATA[5] | alta |
+| PAS massimo candidato | `06 01` DATA[6] | media |
 | Velocita' istantanea | `06 01` DATA[9..10] u16 LE / 100 | alta |
 | Trip/odometro parziale | `06 01` DATA[11..14] u32 LE / 100 km | alta |
 | Odometer totale | `06 01` DATA[15..18] u32 LE / 100 km | alta |
 | Contatore rotazione/tick | `06 09` DATA[0..1] u16 LE | media |
+| Configurazione ruota candidata | `06 09` DATA[4..5] u16 LE | media |
 | Potenza istantanea | non identificata con certezza | bassa |
 | Cadenza | non identificata con certezza | bassa |
 | Velocita' media/max | non identificata con certezza nel giro da 5 s | bassa |
+
+## Comandi validati / candidati
+
+### Cambio PAS / livello assistenza
+
+Dal decompilato BikeGo 1.6.5, la pagina `change_gear` chiama
+`MeterManager.setGear(level)`, che scrive il livello come uint32 little-endian
+sul nodo config `0xa5`, registro `0xa4`.
+
+Frame candidato:
+
+```text
+55 aa 04 11 a5 02 a4 LEVEL_LO LEVEL_HI 00 00 CHECKSUM_LE16
+```
+
+Esempio per PAS 3:
+
+```text
+55 aa 04 11 a5 02 a4 03 00 00 00 9c fe
+```
+
+Range prudente usato nel simulatore/Garmin: `0..9`, coerente con il byte
+`06 01 DATA[6]` osservato come massimo livello nella cattura.
 
 ## Implementazione parser
 
@@ -350,7 +379,22 @@ Obiettivo data field:
 - inviare init e sync orario;
 - parsare notifiche in real time;
 - mostrare batteria, velocita', distanza/odometro e altri campi quando validati;
-- scrivere i valori nella sessione come custom fields/data fields dove consentito da Connect IQ.
+- scrivere nel FIT solo campi decodificati utili:
+  - `ebatt` u8 `%`: batteria e-bike;
+  - `epas` u8: livello PAS corrente;
+  - `epasmax` u8: massimo PAS candidato;
+  - `espd` float `km/h`: velocita' e-bike;
+  - `etrip` float `km`: trip e-bike;
+  - `eodo` float `km`: odometro totale e-bike;
+  - `etick` u16: contatore/tick candidato da `06 09`;
+  - `ewheel` u16 `mm`: configurazione ruota candidata;
+  - `dbg` u32: stato parser/connessione.
+
+Questo layout resta sotto il limite pratico dei custom record fields per una
+Connect IQ Data Field e lascia fuori i raw bytes ormai non necessari.
+
+Non scrivere potenza o cadenza come valori decodificati finche' non viene
+identificato un campo certo.
 
 Vincoli da verificare prima dello sviluppo:
 

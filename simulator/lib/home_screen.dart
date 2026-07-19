@@ -32,7 +32,7 @@ class _HomeScreenState extends State<HomeScreen> {
         body: IndexedStack(
           index: _tab,
           children: [
-            _DataTab(data: data),
+            _DataTab(data: data, bleService: widget.bleService),
             _HexTab(data: data, controller: _hexController),
             _LogTab(bleService: widget.bleService),
           ],
@@ -107,7 +107,8 @@ class _HomeScreenState extends State<HomeScreen> {
 
 class _DataTab extends StatelessWidget {
   final BafangData data;
-  const _DataTab({required this.data});
+  final BleService bleService;
+  const _DataTab({required this.data, required this.bleService});
 
   @override
   Widget build(BuildContext context) {
@@ -123,6 +124,8 @@ class _DataTab extends StatelessWidget {
         _metric('SPEED', _kmh(data.speedKmh), Colors.white),
         _metric('TRIP', _km(data.tripKm), Colors.white70),
         _metric('ODO', _km(data.odometerKm), Colors.white70),
+        const SizedBox(height: 8),
+        _pasControls(),
         const Divider(color: Colors.white12, height: 32),
         _label('TICK', data.tickCounter?.toString() ?? '--'),
         _label(
@@ -139,6 +142,58 @@ class _DataTab extends StatelessWidget {
   String _rpm(double? v) => v != null ? '${v.toStringAsFixed(1)} rpm' : '--';
   String _kmh(double? v) => v != null ? '${v.toStringAsFixed(1)} km/h' : '--';
   String _km(double? v) => v != null ? '${v.toStringAsFixed(2)} km' : '--';
+
+  Widget _pasControls() {
+    final current = data.pas ?? 0;
+    return Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+      Row(children: [
+        Expanded(
+          child: OutlinedButton.icon(
+            onPressed:
+                current > 0 ? () => bleService.setPasLevel(current - 1) : null,
+            icon: const Icon(Icons.remove, size: 16),
+            label: const Text('PAS'),
+          ),
+        ),
+        const SizedBox(width: 8),
+        Expanded(
+          child: OutlinedButton.icon(
+            onPressed:
+                current < 9 ? () => bleService.setPasLevel(current + 1) : null,
+            icon: const Icon(Icons.add, size: 16),
+            label: const Text('PAS'),
+          ),
+        ),
+      ]),
+      const SizedBox(height: 8),
+      Wrap(
+        spacing: 6,
+        runSpacing: 6,
+        children: [
+          for (var level = 0; level <= 9; level++)
+            SizedBox(
+              width: 42,
+              child: OutlinedButton(
+                onPressed: () => bleService.setPasLevel(level),
+                style: OutlinedButton.styleFrom(
+                  padding: EdgeInsets.zero,
+                  foregroundColor: data.pas == level
+                      ? Colors.lightBlueAccent
+                      : Colors.white54,
+                  side: BorderSide(
+                    color: data.pas == level
+                        ? Colors.lightBlueAccent
+                        : Colors.white24,
+                  ),
+                ),
+                child: Text('$level',
+                    style: const TextStyle(fontFamily: 'Courier')),
+              ),
+            ),
+        ],
+      ),
+    ]);
+  }
 
   Widget _metric(String label, String value, Color color) => Padding(
         padding: const EdgeInsets.symmetric(vertical: 6),

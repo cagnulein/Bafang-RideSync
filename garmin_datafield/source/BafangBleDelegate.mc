@@ -79,6 +79,13 @@ class BafangBleDelegate extends Ble.BleDelegate {
         Ble.setScanState(Ble.SCAN_STATE_SCANNING);
     }
 
+    function setPasLevel(level as Number) as Void {
+        if (_state != STATE_RUNNING) { return; }
+        if (level < 0) { level = 0; }
+        if (level > 9) { level = 9; }
+        _sendFrame(FrameBuilder.writeGearLevel(level));
+    }
+
     // Try to connect directly using a previously bonded ScanResult by address.
     // Returns true if the device was found and pairDevice() was called.
     private function _tryConnectBonded() as Boolean {
@@ -308,7 +315,7 @@ class BafangBleDelegate extends Ble.BleDelegate {
         _setState(STATE_TIME_SYNC_1);
         _sendFrame(FrameBuilder.writeU32(FrameBuilder.DST_CTRL,
                                          FrameBuilder.REG_LOCAL_EPOCH,
-                                         _utcCache - _tzCache));
+                                         _utcCache + _tzCache));
     }
 
     private function _sendTimeSyncFrame2() as Void {

@@ -82,8 +82,6 @@ class BafangData extends ChangeNotifier {
   void update0609(Uint8List data) {
     if (data.length < 16) return;
     raw0609 = data;
-    cadenceRpm = FrameParser.u16le(data, 8) / 10.0;
-    powerWatts = FrameParser.u16le(data, 10);
     notifyListeners();
   }
 

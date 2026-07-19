@@ -15,6 +15,7 @@ class FrameBuilder {
   static const int regCfg2 = 0x01;
   static const int regSetE1 = 0xe1;
   static const int regReadE0 = 0xe0;
+  static const int regSetGear = 0xa4;
 
   static const int regLocalEpoch = 0x3e;
   static const int regTzOffset = 0x42;
@@ -53,6 +54,9 @@ class FrameBuilder {
     d[3] = (value >> 24) & 0xff;
     return build(srcPhone, dst, opWrite, reg, d);
   }
+
+  static Uint8List writeGearLevel(int level) =>
+      writeU32(dstCfg, regSetGear, level);
 
   static const List<int> _bikeGoAuthKey = [
     0x32,

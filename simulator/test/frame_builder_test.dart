@@ -19,6 +19,13 @@ void main() {
       );
     }
   });
+
+  test('BikeGo gear command writes PAS level to A5/A4', () {
+    expect(
+      _hex(FrameBuilder.writeGearLevel(3)),
+      '55aa0411a502a4030000009cfe',
+    );
+  });
 }
 
 Uint8List _bytes(String hex) {

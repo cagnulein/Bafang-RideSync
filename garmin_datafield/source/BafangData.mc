@@ -2,31 +2,25 @@ import Toybox.Lang;
 
 // Shared state between BleDelegate (writer) and View (reader).
 //
-// FIT field layout (8 total, all MESG_TYPE_RECORD, packed as u32 little-endian):
+// FIT field layout (decoded bike telemetry, all MESG_TYPE_RECORD):
 //
-//  ID  Name       Covers                               Known decoded content
-//  0   r01a u32   06 01  DATA[ 0.. 3]                 b3: mode/status flag (probabile)
-//  1   r01b u32   06 01  DATA[ 4.. 7]                 b1: PAS level; b3: battery %
-//  2   r01c u32   06 01  DATA[ 8..11]                 b1..2: speed u16LE /100 km/h; b3: trip LSB
-//  3   r01d u32   06 01  DATA[12..15]                 b0..2: trip mid bytes; b3: odo LSB
-//  4   r01e u32   06 01  DATA[16..19]                 b0..2: odo mid bytes; b3: unknown
-//  5   r09a u32   06 09  DATA[ 0.. 3]                 b0..1: tick counter u16LE; b2..3: 0 (reserved)
-//  6   r09b u32   06 09  DATA[ 4.. 7]                 b0..1: ~1985 (wheel mm?); b2..3: 4442
-//  7   r09c u32   06 09  DATA[ 8..11]                 b0..1: 280; b2..3: 990
+//  ID  Name       Type    Units  Source
+//  0   ebatt      u8      %      06 01 DATA[7]
+//  1   epas       u8             06 01 DATA[5]
+//  2   epasmax    u8             06 01 DATA[6]
+//  3   espd       float   km/h   06 01 DATA[9..10] / 100
+//  4   etrip      float   km     06 01 DATA[11..14] / 100
+//  5   eodo       float   km     06 01 DATA[15..18] / 100
+//  6   etick      u16            06 09 DATA[0..1]
+//  7   ewheel     u16     mm     06 09 DATA[4..5], candidate wheel config
+//  8   dbg        u32            parser/connection diagnostics
+//  9   wstate     u8             workout probe state
+//  10  wtype      u8             workout target type
+//  11  wlow       u16            workout target low, raw Garmin/FIT value
+//  12  whigh      u16            workout target high, raw Garmin/FIT value
+//  13  whrlow     u8      bpm    normalized HR target low when target is HR
+//  14  whrhigh    u8      bpm    normalized HR target high when target is HR
 //
-//  Not logged: 06 01 DATA[20] (always 0x00 in captures)
-//              06 09 DATA[12..15] (static: 0x55, 0x00, 0x01, 0x05)
-//
-//  Extraction cheat-sheet for post-processing (Python / GoldenCheetah formula):
-//    battery  (%)    = (r01b >> 24) & 0xFF
-//    PAS level       = (r01b >> 8) & 0xFF
-//    speed (km/h)    = ((r01c >> 8) & 0xFFFF) / 100.0
-//    trip  (km)      = (((r01c >> 24) & 0xFF)
-//                       | ((r01d & 0xFFFFFF) << 8)) / 100.0
-//    odo   (km)      = (((r01d >> 24) & 0xFF)
-//                       | ((r01e & 0xFFFFFF) << 8)) / 100.0
-//    tick counter    = r09a & 0xFFFF
-
 class BafangData {
 
     // Raw DATA bytes from the last received telemetry frames.
@@ -36,9 +30,12 @@ class BafangData {
     // Decoded values for on-screen display (always up-to-date when raw* != null).
     var battery    as Number? = null;   // % (DATA[7])            CONFIRMED
     var pas        as Number? = null;   // assist level (DATA[5]) CONFIRMED
+    var pasMax     as Number? = null;   // max assist level candidate (DATA[6])
     var speedKmh   as Float?  = null;   // km/h                   CONFIRMED
     var tripKm     as Float?  = null;   // km                     CONFIRMED
     var odometerKm as Float?  = null;   // km                     CONFIRMED
+    var tickCounter as Number? = null;  // 06 09 DATA[0..1]       PROBABLE
+    var wheelCfg    as Number? = null;  // 06 09 DATA[4..5]       CANDIDATE
 
     // Session metadata
     var model        as String  = "--";
@@ -59,6 +56,19 @@ class BafangData {
     var lastFrameReg      as Number = 0;
     var telemetry0601Count as Number = 0;
     var telemetry0609Count as Number = 0;
+
+    // Workout probe. Garmin sometimes exposes current workout target data from
+    // a DataField despite the public docs saying otherwise; keep both raw and
+    // normalized values visible so the real device/simulator tells us the truth.
+    var workoutState as Number = 0;           // 0 unsupported, 1 none, 2 active, 3 error
+    var workoutErrorCount as Number = 0;
+    var workoutTargetType as Number? = null;
+    var workoutTargetLowRaw as Number? = null;
+    var workoutTargetHighRaw as Number? = null;
+    var workoutDurationType as Number? = null;
+    var workoutDurationValue as Number? = null;
+    var workoutHrLow as Number? = null;
+    var workoutHrHigh as Number? = null;
 
     function initialize() {}
 
@@ -83,6 +93,7 @@ class BafangData {
         telemetry0601Count++;
         raw0601    = data;
         pas        = data[5];
+        pasMax     = data[6];
         battery    = data[7];
         speedKmh   = FrameParser.u16le(data, 9).toFloat()  / 100.0;
         tripKm     = FrameParser.u32le(data, 11).toFloat() / 100.0;
@@ -94,6 +105,45 @@ class BafangData {
         if (data.size() < 16) { return; }
         telemetry0609Count++;
         raw0609 = data;
+        tickCounter = FrameParser.u16le(data, 0);
+        wheelCfg = FrameParser.u16le(data, 4);
+    }
+
+    function noteWorkoutUnsupported() as Void {
+        workoutState = 0;
+        _clearWorkoutTarget();
+    }
+
+    function noteWorkoutMissing() as Void {
+        workoutState = 1;
+        _clearWorkoutTarget();
+    }
+
+    function noteWorkoutError() as Void {
+        workoutState = 3;
+        workoutErrorCount++;
+        _clearWorkoutTarget();
+    }
+
+    function updateWorkoutTarget(targetType as Number?,
+                                 lowRaw as Number?,
+                                 highRaw as Number?,
+                                 durationType as Number?,
+                                 durationValue as Number?,
+                                 isHeartRate as Boolean) as Void {
+        workoutState = 2;
+        workoutTargetType = targetType;
+        workoutTargetLowRaw = lowRaw;
+        workoutTargetHighRaw = highRaw;
+        workoutDurationType = durationType;
+        workoutDurationValue = durationValue;
+        if (isHeartRate) {
+            workoutHrLow = _normalizeHrTarget(lowRaw);
+            workoutHrHigh = _normalizeHrTarget(highRaw);
+        } else {
+            workoutHrLow = null;
+            workoutHrHigh = null;
+        }
     }
 
     function noteRx(bytes as Lang.ByteArray) as Void {
@@ -140,26 +190,23 @@ class BafangData {
              | ((validFrameCount & 0xffff) << 16);
     }
 
-    // Pack 4 bytes starting at offset from raw0601 into a u32 LE value.
-    // Returns null if data not yet available or offset out of range.
-    function pack0601(offset as Number) as Number? {
-        if (raw0601 == null) { return null; }
-        var d = raw0601 as Lang.ByteArray;
-        if (offset + 3 >= d.size()) { return null; }
-        return d[offset]
-             | (d[offset + 1] << 8)
-             | (d[offset + 2] << 16)
-             | (d[offset + 3] << 24);
+    private function _clearWorkoutTarget() as Void {
+        workoutTargetType = null;
+        workoutTargetLowRaw = null;
+        workoutTargetHighRaw = null;
+        workoutDurationType = null;
+        workoutDurationValue = null;
+        workoutHrLow = null;
+        workoutHrHigh = null;
     }
 
-    // Pack 4 bytes starting at offset from raw0609 into a u32 LE value.
-    function pack0609(offset as Number) as Number? {
-        if (raw0609 == null) { return null; }
-        var d = raw0609 as Lang.ByteArray;
-        if (offset + 3 >= d.size()) { return null; }
-        return d[offset]
-             | (d[offset + 1] << 8)
-             | (d[offset + 2] << 16)
-             | (d[offset + 3] << 24);
+    private function _normalizeHrTarget(value as Number?) as Number? {
+        if (value == null) { return null; }
+        var v = value as Number;
+        if (v > 100) { v -= 100; }
+        if (v < 0) { return null; }
+        if (v > 255) { return 255; }
+        return v;
     }
+
 }

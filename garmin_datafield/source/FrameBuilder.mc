@@ -21,9 +21,10 @@ class FrameBuilder {
     static const REG_CFG2     = 0x01;
     static const REG_SET_E1   = 0xe1;
     static const REG_READ_E0  = 0xe0;
+    static const REG_SET_GEAR = 0xa4;
 
     // Time sync registers on DST_CTRL
-    static const REG_LOCAL_EPOCH = 0x3e;   // utc - tz_offset
+    static const REG_LOCAL_EPOCH = 0x3e;   // local epoch (utc + tz_offset)
     static const REG_TZ_OFFSET   = 0x42;   // timezone offset in seconds
     static const REG_UTC_EPOCH   = 0x46;   // raw UTC epoch
 
@@ -75,6 +76,11 @@ class FrameBuilder {
         d[2] = (value >> 16) & 0xff;
         d[3] = (value >> 24) & 0xff;
         return build(SRC_PHONE, dst, OP_WRITE, reg, d);
+    }
+
+    // BikeGo "change gear" command: write PAS/assist level as u32 LE to A5/A4.
+    static function writeGearLevel(level as Number) as Lang.ByteArray {
+        return writeU32(DST_CFG, REG_SET_GEAR, level);
     }
 
     // OP=0x20: fixed 16-byte handshake blob observed in the BikeGo capture.
