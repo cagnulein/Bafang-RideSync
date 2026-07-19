@@ -64,7 +64,8 @@ class BafangBleDelegate extends Ble.BleDelegate {
             Ble.registerProfile({
                 :uuid => Ble.stringToUuid(SERVICE_UUID),
                 :characteristics => [
-                    { :uuid => Ble.stringToUuid(TX_UUID) },
+                    { :uuid => Ble.stringToUuid(TX_UUID),
+                      :descriptors => [Ble.cccdUuid()] },
                     { :uuid => Ble.stringToUuid(RX_UUID),
                       :descriptors => [Ble.cccdUuid()] }
                 ]
@@ -163,18 +164,56 @@ class BafangBleDelegate extends Ble.BleDelegate {
         _txChar = svc.getCharacteristic(Ble.stringToUuid(TX_UUID));
         _rxChar = svc.getCharacteristic(Ble.stringToUuid(RX_UUID));
         if (_rxChar == null || _txChar == null) { _setError("E:CHR"); return; }
-        var cccd = (_rxChar as Ble.Characteristic).getDescriptor(Ble.cccdUuid());
-        if (cccd == null) { _setError("E:CCCD"); return; }
+        var d = BafangRideSyncApp.getData();
+        d.txDescriptorCount = _countDescriptors(_txChar);
+        d.rxDescriptorCount = _countDescriptors(_rxChar);
+        d.cccdLocation = 0;
+        d.lastDescriptorStatus = 0;
+        var cccd = _findNotifyDescriptor();
+        if (cccd == null) {
+            _setError("E:CCCD");
+            return;
+        }
         cccd.requestWrite([0x01, 0x00]b);
     }
 
-    function onDescriptorWrite(descriptor as Ble.Descriptor, status as Ble.Status) as Void {
-        if (status != Ble.STATUS_SUCCESS) {
-            _setError("E:DSC");
-            return;
+    private function _findNotifyDescriptor() as Ble.Descriptor? {
+        var cccdUuid = Ble.cccdUuid();
+        var d = BafangRideSyncApp.getData();
+        d.cccdLocation = 0;
+        var cccd = (_rxChar as Ble.Characteristic).getDescriptor(cccdUuid);
+        if (cccd != null) {
+            d.cccdLocation = 1;
+            return cccd;
         }
-        // CCCD enabled – start init
-        BafangRideSyncApp.getData().bleStatus = "INIT";
+        cccd = (_txChar as Ble.Characteristic).getDescriptor(cccdUuid);
+        if (cccd != null) {
+            d.cccdLocation = 2;
+            return cccd;
+        }
+        return null;
+    }
+
+    private function _countDescriptors(characteristic as Ble.Characteristic?) as Number {
+        if (characteristic == null) { return 0; }
+        var count = 0;
+        var iterator = (characteristic as Ble.Characteristic).getDescriptors();
+        if (iterator == null) { return 0; }
+        var descriptor = iterator.next();
+        while (descriptor != null) {
+            count++;
+            descriptor = iterator.next();
+        }
+        return count;
+    }
+
+    function onDescriptorWrite(descriptor as Ble.Descriptor, status as Ble.Status) as Void {
+        var d = BafangRideSyncApp.getData();
+        d.lastDescriptorStatus = status;
+        // Garmin's own BLE samples advance on CCCD write callback regardless of
+        // status. Keep the status visible, but let the bike prove whether notify
+        // really works during the init exchange.
+        d.bleStatus = status == Ble.STATUS_SUCCESS ? "INIT" : "DS" + status.toString();
         _statusChallenge = null;
         _rxBuffer = [];
         _setState(STATE_INIT_1);

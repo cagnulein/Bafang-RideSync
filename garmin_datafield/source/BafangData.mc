@@ -56,6 +56,10 @@ class BafangData {
     var lastFrameReg      as Number = 0;
     var telemetry0601Count as Number = 0;
     var telemetry0609Count as Number = 0;
+    var txDescriptorCount as Number = 0;
+    var rxDescriptorCount as Number = 0;
+    var cccdLocation      as Number = 0; // 0 none, 1 RX notify, 2 TX write
+    var lastDescriptorStatus as Number = 0;
 
     // Workout probe. Garmin sometimes exposes current workout target data from
     // a DataField despite the public docs saying otherwise; keep both raw and

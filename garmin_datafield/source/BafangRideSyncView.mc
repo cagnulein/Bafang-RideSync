@@ -247,7 +247,7 @@ class BafangRideSyncView extends WatchUi.DataField {
         dc.setColor(d.bleConnected ? Gfx.COLOR_GREEN : Gfx.COLOR_RED,
                     Gfx.COLOR_TRANSPARENT);
         dc.drawText(cx, h * 9 / 100, Gfx.FONT_TINY,
-                    "BAFANG " + d.bleStatus, Gfx.TEXT_JUSTIFY_CENTER);
+                    d.bleStatus, Gfx.TEXT_JUSTIFY_CENTER);
 
         // ── Battery  |  PAS ───────────────────────────────────────────────
         var y1 = h * 21 / 100;
@@ -286,11 +286,21 @@ class BafangRideSyncView extends WatchUi.DataField {
         dc.setColor(0xaaaaaa, Gfx.COLOR_TRANSPARENT);
         dc.drawText(cx, y4, Gfx.FONT_TINY, odoStr, Gfx.TEXT_JUSTIFY_CENTER);
 
-        var workoutStr = _workoutString(d);
+        var workoutStr = _bottomString(d);
         dc.setColor(d.workoutState == 2 ? Gfx.COLOR_GREEN : 0xaaaaaa,
                     Gfx.COLOR_TRANSPARENT);
         dc.drawText(cx, h * 88 / 100, Gfx.FONT_TINY, workoutStr,
                     Gfx.TEXT_JUSTIFY_CENTER);
+    }
+
+    private function _bottomString(d as BafangData) as String {
+        if (d.bleStatus.find("E:") != null || d.lastDescriptorStatus != 0) {
+            return "T" + d.txDescriptorCount.toString()
+                 + " R" + d.rxDescriptorCount.toString()
+                 + " C" + d.cccdLocation.toString()
+                 + " S" + d.lastDescriptorStatus.toString();
+        }
+        return _workoutString(d);
     }
 
     private function _workoutString(d as BafangData) as String {
