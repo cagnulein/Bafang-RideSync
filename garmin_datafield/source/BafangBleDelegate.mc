@@ -7,9 +7,8 @@ import Toybox.Time;
 //
 // State machine:
 //   IDLE -> SCANNING -> CONNECTING -> ENABLING_NOTIFY
-//        -> INIT_1..6 (init sequence frames)
-//        -> TIME_SYNC_1..3 (3 register writes)
-//        -> RUNNING (parse telemetry)
+//        -> INIT_1..5 (status challenge, auth, model/config)
+//        -> TIME_SYNC_1..3 -> POST_SYNC_1..2 -> RUNNING
 //   Any disconnection -> back to SCANNING
 class BafangBleDelegate extends Ble.BleDelegate {
 
@@ -20,16 +19,18 @@ class BafangBleDelegate extends Ble.BleDelegate {
         STATE_CONNECTING      = 2,
         STATE_ENABLING_NOTIFY = 3,
         STATE_INIT_1          = 4,   // status request to controller
-        STATE_INIT_2          = 5,   // handshake blob
+        STATE_INIT_2          = 5,   // dynamic handshake response
         STATE_INIT_3          = 6,   // read model string
         STATE_INIT_4          = 7,   // read secondary config
-        STATE_INIT_5          = 8,   // set config a5/e1
-        STATE_INIT_6          = 9,   // read config a5/e0
+        STATE_INIT_5          = 8,   // unused legacy slot
+        STATE_INIT_6          = 9,   // unused legacy slot
         STATE_TIME_SYNC_1     = 10,  // write reg 0x3e (local epoch)
         STATE_TIME_SYNC_2     = 11,  // write reg 0x42 (tz offset)
         STATE_TIME_SYNC_3     = 12,  // write reg 0x46 (utc epoch)
-        STATE_RUNNING         = 13,
-        STATE_ERROR           = 14
+        STATE_POST_SYNC_1     = 13,  // write config a5/e1
+        STATE_POST_SYNC_2     = 14,  // read config a5/e0
+        STATE_RUNNING         = 15,
+        STATE_ERROR           = 16
     }
 
     // ── UUIDs ─────────────────────────────────────────────────────────────
@@ -45,6 +46,8 @@ class BafangBleDelegate extends Ble.BleDelegate {
     private var _device    as Ble.Device? = null;
     private var _txChar    as Ble.Characteristic? = null;
     private var _rxChar    as Ble.Characteristic? = null;
+    private var _statusChallenge as Lang.ByteArray? = null;
+    private var _rxBuffer as Lang.Array<Number> = [];
 
     // For periodic time re-sync (every 5 minutes during RUNNING)
     private var _lastSync  as Number = 0;
@@ -74,7 +77,14 @@ class BafangBleDelegate extends Ble.BleDelegate {
     // Called by the View to start scanning (or direct-connect if DIRECT_CONNECT).
     function startScan() as Void {
         if (_state != STATE_IDLE && _state != STATE_ERROR) { return; }
-        if (BafangRideSyncApp.DIRECT_CONNECT && _tryConnectBonded()) { return; }
+        if (BafangRideSyncApp.DIRECT_CONNECT) {
+            try {
+                if (_tryConnectBonded()) { return; }
+            } catch (ex instanceof Lang.Exception) {
+                System.println("BLE bonded scan error: " + ex.getErrorMessage());
+                BafangRideSyncApp.getData().bleStatus = "E:BOND";
+            }
+        }
         _setState(STATE_SCANNING);
         Ble.setScanState(Ble.SCAN_STATE_SCANNING);
     }
@@ -90,6 +100,7 @@ class BafangBleDelegate extends Ble.BleDelegate {
     // Returns true if the device was found and pairDevice() was called.
     private function _tryConnectBonded() as Boolean {
         var iter = Ble.getBondedDevices();
+        if (iter == null) { return false; }
         var item = iter.next();
         while (item != null) {
             var sr = item as Ble.ScanResult;
@@ -135,6 +146,8 @@ class BafangBleDelegate extends Ble.BleDelegate {
             _device    = null;
             _txChar    = null;
             _rxChar    = null;
+            _statusChallenge = null;
+            _rxBuffer = [];
             BafangRideSyncApp.getData().bleConnected = false;
             BafangRideSyncApp.getData().bleStatus    = "SCAN";
             _setState(STATE_IDLE);
@@ -146,22 +159,24 @@ class BafangBleDelegate extends Ble.BleDelegate {
     private function _enableNotify() as Void {
         if (_device == null) { return; }
         var svc = (_device as Ble.Device).getService(Ble.stringToUuid(SERVICE_UUID));
-        if (svc == null) { _setState(STATE_ERROR); return; }
+        if (svc == null) { _setError("E:SVC"); return; }
         _txChar = svc.getCharacteristic(Ble.stringToUuid(TX_UUID));
         _rxChar = svc.getCharacteristic(Ble.stringToUuid(RX_UUID));
-        if (_rxChar == null || _txChar == null) { _setState(STATE_ERROR); return; }
+        if (_rxChar == null || _txChar == null) { _setError("E:CHR"); return; }
         var cccd = (_rxChar as Ble.Characteristic).getDescriptor(Ble.cccdUuid());
-        if (cccd == null) { _setState(STATE_ERROR); return; }
+        if (cccd == null) { _setError("E:CCCD"); return; }
         cccd.requestWrite([0x01, 0x00]b);
     }
 
     function onDescriptorWrite(descriptor as Ble.Descriptor, status as Ble.Status) as Void {
         if (status != Ble.STATUS_SUCCESS) {
-            _setState(STATE_ERROR);
+            _setError("E:DSC");
             return;
         }
         // CCCD enabled – start init
         BafangRideSyncApp.getData().bleStatus = "INIT";
+        _statusChallenge = null;
+        _rxBuffer = [];
         _setState(STATE_INIT_1);
         _sendFrame(FrameBuilder.initSequence()[0]);
     }
@@ -179,18 +194,40 @@ class BafangBleDelegate extends Ble.BleDelegate {
                                      value as Lang.ByteArray) as Void {
         var d = BafangRideSyncApp.getData();
         d.noteRx(value);
-        var frame = FrameParser.parse(value);
-        if (frame == null) {
-            d.noteParseError(FrameParser.errorCode(value));
-            return;
+        for (var i = 0; i < value.size(); i++) {
+            _rxBuffer.add(value[i]);
         }
-        d.noteFrame(frame);
 
-        if (_state == STATE_RUNNING) {
-            _handleTelemetry(frame);
-            return;
+        while (_rxBuffer.size() >= 9) {
+            if (_rxBuffer[0] != 0x55 || _rxBuffer[1] != 0xaa) {
+                _rxBuffer.remove(0);
+                d.noteParseError(10);
+                continue;
+            }
+
+            var payloadLen = _rxBuffer[2];
+            var frameLen = 9 + payloadLen;
+            if (_rxBuffer.size() < frameLen) { break; }
+
+            var bytes = new [frameLen]b;
+            for (var j = 0; j < frameLen; j++) {
+                bytes[j] = _rxBuffer[0];
+                _rxBuffer.remove(0);
+            }
+
+            var frame = FrameParser.parse(bytes);
+            if (frame == null) {
+                d.noteParseError(FrameParser.errorCode(bytes));
+                continue;
+            }
+            d.noteFrame(frame);
+
+            if (_state == STATE_RUNNING) {
+                _handleTelemetry(frame);
+            } else {
+                _handleInitResponse(frame);
+            }
         }
-        _handleInitResponse(frame);
     }
 
     // ── Init state machine ────────────────────────────────────────────────
@@ -201,15 +238,16 @@ class BafangBleDelegate extends Ble.BleDelegate {
             case STATE_INIT_1:
                 // Expect OP=0x04 from DST_CTRL
                 if (frame.op == 0x04 && frame.src == FrameBuilder.DST_CTRL) {
+                    _statusChallenge = frame.data;
                     _setState(STATE_INIT_2);
-                    _sendFrame(initFrames[1]);
+                    _sendFrame(FrameBuilder.initHandshake(frame.data));
                 }
                 break;
             case STATE_INIT_2:
                 // Expect OP=0x20 ACK from DST_CTRL
                 if (frame.op == 0x20 && frame.src == FrameBuilder.DST_CTRL) {
                     _setState(STATE_INIT_3);
-                    _sendFrame(initFrames[2]);
+                    _sendFrame(initFrames[1]);
                 }
                 break;
             case STATE_INIT_3:
@@ -218,26 +256,12 @@ class BafangBleDelegate extends Ble.BleDelegate {
                         && frame.reg == 0x18) {
                     _parseModel(frame.data);
                     _setState(STATE_INIT_4);
-                    _sendFrame(initFrames[3]);
+                    _sendFrame(initFrames[2]);
                 }
                 break;
             case STATE_INIT_4:
                 // Expect OP=0x04 REG=0x01 from DST_CFG2
                 if (frame.op == 0x04 && frame.src == FrameBuilder.DST_CFG2) {
-                    _setState(STATE_INIT_5);
-                    _sendFrame(initFrames[4]);
-                }
-                break;
-            case STATE_INIT_5:
-                // Expect OP=0x05 ACK for set config (from DST_CFG)
-                if (frame.op == 0x05 && frame.src == FrameBuilder.DST_CFG) {
-                    _setState(STATE_INIT_6);
-                    _sendFrame(initFrames[5]);
-                }
-                break;
-            case STATE_INIT_6:
-                // Expect OP=0x04 REG=0xe0 from DST_CFG
-                if (frame.op == 0x04 && frame.src == FrameBuilder.DST_CFG) {
                     _startTimeSync();
                 }
                 break;
@@ -261,6 +285,20 @@ class BafangBleDelegate extends Ble.BleDelegate {
                 // ACK for reg 0x46
                 if (frame.op == 0x05 && frame.src == FrameBuilder.DST_CTRL
                         && frame.reg == FrameBuilder.REG_UTC_EPOCH) {
+                    _setState(STATE_POST_SYNC_1);
+                    _sendFrame(initFrames[3]);
+                }
+                break;
+            case STATE_POST_SYNC_1:
+                if (frame.op == 0x05 && frame.src == FrameBuilder.DST_CFG
+                        && frame.reg == FrameBuilder.REG_SET_E1) {
+                    _setState(STATE_POST_SYNC_2);
+                    _sendFrame(initFrames[4]);
+                }
+                break;
+            case STATE_POST_SYNC_2:
+                if (frame.op == 0x04 && frame.src == FrameBuilder.DST_CFG
+                        && frame.reg == FrameBuilder.REG_READ_E0) {
                     _setState(STATE_RUNNING);
                     BafangRideSyncApp.getData().bleStatus = "OK";
                     _lastSync = Time.now().value();
@@ -339,7 +377,16 @@ class BafangBleDelegate extends Ble.BleDelegate {
                 {:writeType => Ble.WRITE_TYPE_DEFAULT});
         } catch (ex instanceof Lang.Exception) {
             System.println("BLE write error: " + ex.getErrorMessage());
+            _setError("E:WR");
         }
+    }
+
+    private function _setError(status as String) as Void {
+        _state = STATE_ERROR;
+        var d = BafangRideSyncApp.getData();
+        d.bleState = STATE_ERROR;
+        d.bleStatus = status;
+        d.parseErrorCount++;
     }
 
     private function _setState(s as Number) as Void {
@@ -385,6 +432,12 @@ class BafangBleDelegate extends Ble.BleDelegate {
                 break;
             case STATE_TIME_SYNC_3:
                 d.bleStatus = "T3";
+                break;
+            case STATE_POST_SYNC_1:
+                d.bleStatus = "P1";
+                break;
+            case STATE_POST_SYNC_2:
+                d.bleStatus = "P2";
                 break;
             case STATE_RUNNING:
                 d.bleStatus = "OK";

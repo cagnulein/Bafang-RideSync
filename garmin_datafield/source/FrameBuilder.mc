@@ -1,4 +1,5 @@
 import Toybox.Lang;
+using Toybox.Cryptography as Crypto;
 
 // Builds UART frames for the EKD01-BF protocol.
 // Frame format: 55 aa LEN SRC DST OP REG DATA[LEN] CHECKSUM_LE16
@@ -83,20 +84,32 @@ class FrameBuilder {
         return writeU32(DST_CFG, REG_SET_GEAR, level);
     }
 
-    // OP=0x20: fixed 16-byte handshake blob observed in the BikeGo capture.
-    // This may be a static auth token. Replace if a different unit requires
-    // a different value (reverse-engineer the generation if needed).
-    static function initHandshake() as Lang.ByteArray {
-        var blob = [0xac, 0x8f, 0x09, 0x2a, 0xfb, 0xaa, 0x90, 0xe7,
-                    0x92, 0xc9, 0xf8, 0xdc, 0xff, 0x88, 0x6d, 0x58]b;
-        return build(SRC_PHONE, DST_CTRL, OP_HANDSHAKE, 0x00, blob);
+    static function handshakeToken(challenge as Lang.ByteArray) as Lang.ByteArray {
+        var block = new [16]b;
+        for (var i = 0; i < challenge.size() && i < 4; i++) {
+            block[i] = challenge[i];
+        }
+        var key = [0x32, 0x43, 0x54, 0x44, 0x55, 0x34, 0x30, 0x71,
+                   0x4e, 0x79, 0x43, 0x67, 0x54, 0x6a, 0x62, 0x31]b;
+        var cipher = new Crypto.Cipher({
+            :algorithm => Crypto.CIPHER_AES128,
+            :mode => Crypto.MODE_ECB,
+            :key => key
+        });
+        return cipher.encrypt(block);
+    }
+
+    // OP=0x20: BikeGo dynamic auth token. DATA is AES-128-ECB over the
+    // 4-byte status challenge followed by 12 zero bytes.
+    static function initHandshake(challenge as Lang.ByteArray) as Lang.ByteArray {
+        return build(SRC_PHONE, DST_CTRL, OP_HANDSHAKE, 0x00,
+                     handshakeToken(challenge));
     }
 
     // Convenience: full init sequence as an array of frames (in order).
     static function initSequence() as Lang.Array {
         return [
             readReg(DST_CTRL, REG_STATUS,  0x04),   // state request to controller
-            initHandshake(),                          // 16-byte auth blob
             readReg(DST_CFG,  REG_MODEL,   0x18),   // read model string (24 bytes)
             readReg(DST_CFG2, REG_CFG2,    0x1a),   // secondary config (26 bytes)
             writeByte(DST_CFG, REG_SET_E1, 0x01),   // set config a5/e1 = 0x01
