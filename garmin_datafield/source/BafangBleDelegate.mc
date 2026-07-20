@@ -49,6 +49,8 @@ class BafangBleDelegate extends Ble.BleDelegate {
     private var _cccdDescriptor as Ble.Descriptor? = null;
     private var _statusChallenge as Lang.ByteArray? = null;
     private var _rxBuffer as Lang.Array<Number> = [];
+    private var _purgedBondOnce as Boolean = false;
+    private const FORCE_PURGE_BOND_ONCE as Boolean = true;
 
     // For periodic time re-sync (every 5 minutes during RUNNING)
     private var _lastSync  as Number = 0;
@@ -65,7 +67,8 @@ class BafangBleDelegate extends Ble.BleDelegate {
             Ble.registerProfile({
                 :uuid => Ble.stringToUuid(SERVICE_UUID),
                 :characteristics => [
-                    { :uuid => Ble.stringToUuid(TX_UUID) },
+                    { :uuid => Ble.stringToUuid(TX_UUID),
+                      :descriptors => [Ble.cccdUuid()] },
                     { :uuid => Ble.stringToUuid(RX_UUID),
                       :descriptors => [Ble.cccdUuid()] }
                 ]
@@ -108,6 +111,7 @@ class BafangBleDelegate extends Ble.BleDelegate {
             if (sr.hasAddress(BafangRideSyncApp.DIRECT_CONNECT_ADDRESS)) {
                 _setState(STATE_CONNECTING);
                 BafangRideSyncApp.getData().bleStatus = "BOND";
+                _useSecureBondStrategy();
                 Ble.pairDevice(sr);
                 return true;
             }
@@ -129,10 +133,19 @@ class BafangBleDelegate extends Ble.BleDelegate {
             if (match) {
                 Ble.setScanState(Ble.SCAN_STATE_OFF);
                 _setState(STATE_CONNECTING);
+                _useSecureBondStrategy();
                 Ble.pairDevice(scanResult);
                 return;
             }
             result = scanResults.next();
+        }
+    }
+
+    private function _useSecureBondStrategy() as Void {
+        try {
+            Ble.setConnectionStrategy(Ble.CONNECTION_STRATEGY_SECURE_PAIR_BOND);
+        } catch (ex instanceof Lang.Exception) {
+            System.println("BLE secure bond strategy error: " + ex.getErrorMessage());
         }
     }
 
@@ -141,6 +154,17 @@ class BafangBleDelegate extends Ble.BleDelegate {
             _device = device;
             BafangRideSyncApp.getData().bleConnected = true;
             BafangRideSyncApp.getData().bleStatus    = "CONN";
+            if (FORCE_PURGE_BOND_ONCE && !_purgedBondOnce) {
+                _purgedBondOnce = true;
+                BafangRideSyncApp.getData().bleStatus = "PURGE";
+                try {
+                    Ble.unpairDevice(device);
+                } catch (ex instanceof Lang.Exception) {
+                    System.println("BLE unpair error: " + ex.getErrorMessage());
+                    _setError("E:PRG");
+                }
+                return;
+            }
             _setState(STATE_ENABLING_NOTIFY);
             _enableNotify();
         } else {
