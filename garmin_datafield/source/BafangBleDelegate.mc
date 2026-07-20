@@ -2,6 +2,7 @@ using Toybox.BluetoothLowEnergy as Ble;
 import Toybox.Lang;
 import Toybox.System;
 import Toybox.Time;
+import Toybox.Timer;
 
 // BLE event delegate for the EKD01-BF display.
 //
@@ -50,7 +51,9 @@ class BafangBleDelegate extends Ble.BleDelegate {
     private var _statusChallenge as Lang.ByteArray? = null;
     private var _rxBuffer as Lang.Array<Number> = [];
     private var _purgedBondOnce as Boolean = false;
+    private var _purgeTimer as Timer.Timer? = null;
     private const FORCE_PURGE_BOND_ONCE as Boolean = true;
+    private const PURGE_FALLBACK_DELAY_MS as Number = 2500;
 
     // For periodic time re-sync (every 5 minutes during RUNNING)
     private var _lastSync  as Number = 0;
@@ -149,6 +152,36 @@ class BafangBleDelegate extends Ble.BleDelegate {
         }
     }
 
+    private function _schedulePurgeFallback() as Void {
+        _stopPurgeTimer();
+        _purgeTimer = new Timer.Timer();
+        (_purgeTimer as Timer.Timer).start(method(:_finishPurgeFallback),
+                                           PURGE_FALLBACK_DELAY_MS,
+                                           false);
+    }
+
+    private function _finishPurgeFallback() as Void {
+        _stopPurgeTimer();
+        if (_state == STATE_ERROR) { return; }
+        _device = null;
+        _txChar = null;
+        _rxChar = null;
+        _cccdDescriptor = null;
+        _statusChallenge = null;
+        _rxBuffer = [];
+        BafangRideSyncApp.getData().bleConnected = false;
+        BafangRideSyncApp.getData().bleStatus = "SCAN";
+        _setState(STATE_IDLE);
+        startScan();
+    }
+
+    private function _stopPurgeTimer() as Void {
+        if (_purgeTimer != null) {
+            (_purgeTimer as Timer.Timer).stop();
+            _purgeTimer = null;
+        }
+    }
+
     function onConnectedStateChanged(device as Ble.Device, state as Ble.ConnectionState) as Void {
         if (state == Ble.CONNECTION_STATE_CONNECTED) {
             _device = device;
@@ -159,6 +192,7 @@ class BafangBleDelegate extends Ble.BleDelegate {
                 BafangRideSyncApp.getData().bleStatus = "PURGE";
                 try {
                     Ble.unpairDevice(device);
+                    _schedulePurgeFallback();
                 } catch (ex instanceof Lang.Exception) {
                     System.println("BLE unpair error: " + ex.getErrorMessage());
                     _setError("E:PRG");
@@ -168,6 +202,7 @@ class BafangBleDelegate extends Ble.BleDelegate {
             _setState(STATE_ENABLING_NOTIFY);
             _enableNotify();
         } else {
+            _stopPurgeTimer();
             _device    = null;
             _txChar    = null;
             _rxChar    = null;
