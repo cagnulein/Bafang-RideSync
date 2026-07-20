@@ -298,7 +298,9 @@ class BafangRideSyncView extends WatchUi.DataField {
             return "T" + d.txDescriptorCount.toString()
                  + " R" + d.rxDescriptorCount.toString()
                  + " C" + d.cccdLocation.toString()
-                 + " S" + d.lastDescriptorStatus.toString();
+                 + " S" + d.lastDescriptorStatus.toString()
+                 + " A" + d.cccdWriteAttempts.toString()
+                 + " W" + d.lastTxWriteStatus.toString();
         }
         return _workoutString(d);
     }

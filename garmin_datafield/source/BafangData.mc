@@ -60,6 +60,8 @@ class BafangData {
     var rxDescriptorCount as Number = 0;
     var cccdLocation      as Number = 0; // 0 none, 1 RX notify, 2 TX write
     var lastDescriptorStatus as Number = 0;
+    var cccdWriteAttempts as Number = 0;
+    var lastTxWriteStatus as Number = 0;
 
     // Workout probe. Garmin sometimes exposes current workout target data from
     // a DataField despite the public docs saying otherwise; keep both raw and

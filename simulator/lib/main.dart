@@ -1,4 +1,6 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:flutter_blue_plus/flutter_blue_plus.dart';
 import 'package:provider/provider.dart';
 import 'bafang_data.dart';
 import 'ble_service.dart';
@@ -22,17 +24,26 @@ class BafangSimApp extends StatefulWidget {
 
 class _BafangSimAppState extends State<BafangSimApp> {
   late final BleService _bleService;
+  StreamSubscription<BluetoothAdapterState>? _adapterSub;
 
   @override
   void initState() {
     super.initState();
     _bleService = BleService(context.read<BafangData>());
-    // Auto-start BLE scan on launch; comment out if you only want sim mode
-    Future.microtask(_bleService.startScan);
+    // Wait for adapter to be poweredOn before scanning (needed on macOS for
+    // the permission dialog to appear and CoreBluetooth to initialise).
+    _adapterSub = FlutterBluePlus.adapterState.listen((state) {
+      if (state == BluetoothAdapterState.on) {
+        _adapterSub?.cancel();
+        _adapterSub = null;
+        _bleService.startScan();
+      }
+    });
   }
 
   @override
   void dispose() {
+    _adapterSub?.cancel();
     _bleService.dispose();
     super.dispose();
   }

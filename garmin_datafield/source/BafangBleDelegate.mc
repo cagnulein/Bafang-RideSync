@@ -46,6 +46,7 @@ class BafangBleDelegate extends Ble.BleDelegate {
     private var _device    as Ble.Device? = null;
     private var _txChar    as Ble.Characteristic? = null;
     private var _rxChar    as Ble.Characteristic? = null;
+    private var _cccdDescriptor as Ble.Descriptor? = null;
     private var _statusChallenge as Lang.ByteArray? = null;
     private var _rxBuffer as Lang.Array<Number> = [];
 
@@ -64,8 +65,7 @@ class BafangBleDelegate extends Ble.BleDelegate {
             Ble.registerProfile({
                 :uuid => Ble.stringToUuid(SERVICE_UUID),
                 :characteristics => [
-                    { :uuid => Ble.stringToUuid(TX_UUID),
-                      :descriptors => [Ble.cccdUuid()] },
+                    { :uuid => Ble.stringToUuid(TX_UUID) },
                     { :uuid => Ble.stringToUuid(RX_UUID),
                       :descriptors => [Ble.cccdUuid()] }
                 ]
@@ -147,6 +147,7 @@ class BafangBleDelegate extends Ble.BleDelegate {
             _device    = null;
             _txChar    = null;
             _rxChar    = null;
+            _cccdDescriptor = null;
             _statusChallenge = null;
             _rxBuffer = [];
             BafangRideSyncApp.getData().bleConnected = false;
@@ -159,6 +160,7 @@ class BafangBleDelegate extends Ble.BleDelegate {
 
     private function _enableNotify() as Void {
         if (_device == null) { return; }
+        BafangRideSyncApp.getData().bleStatus = "NTFY";
         var svc = (_device as Ble.Device).getService(Ble.stringToUuid(SERVICE_UUID));
         if (svc == null) { _setError("E:SVC"); return; }
         _txChar = svc.getCharacteristic(Ble.stringToUuid(TX_UUID));
@@ -169,12 +171,15 @@ class BafangBleDelegate extends Ble.BleDelegate {
         d.rxDescriptorCount = _countDescriptors(_rxChar);
         d.cccdLocation = 0;
         d.lastDescriptorStatus = 0;
+        d.cccdWriteAttempts = 0;
+        d.lastTxWriteStatus = 0;
         var cccd = _findNotifyDescriptor();
         if (cccd == null) {
             _setError("E:CCCD");
             return;
         }
-        cccd.requestWrite([0x01, 0x00]b);
+        _cccdDescriptor = cccd;
+        _writeCccd();
     }
 
     private function _findNotifyDescriptor() as Ble.Descriptor? {
@@ -207,13 +212,28 @@ class BafangBleDelegate extends Ble.BleDelegate {
         return count;
     }
 
+    private function _writeCccd() as Void {
+        if (_cccdDescriptor == null) {
+            _setError("E:CCCD");
+            return;
+        }
+        BafangRideSyncApp.getData().cccdWriteAttempts++;
+        try {
+            (_cccdDescriptor as Ble.Descriptor).requestWrite([0x01, 0x00]b);
+        } catch (ex instanceof Lang.Exception) {
+            System.println("BLE CCCD write error: " + ex.getErrorMessage());
+            _setError("E:DSX");
+        }
+    }
+
     function onDescriptorWrite(descriptor as Ble.Descriptor, status as Ble.Status) as Void {
         var d = BafangRideSyncApp.getData();
         d.lastDescriptorStatus = status;
-        // Garmin's own BLE samples advance on CCCD write callback regardless of
-        // status. Keep the status visible, but let the bike prove whether notify
-        // really works during the init exchange.
-        d.bleStatus = status == Ble.STATUS_SUCCESS ? "INIT" : "DS" + status.toString();
+        if (status != Ble.STATUS_SUCCESS) {
+            _setError("E:DS" + status.toString());
+            return;
+        }
+        d.bleStatus = "INIT";
         _statusChallenge = null;
         _rxBuffer = [];
         _setState(STATE_INIT_1);
@@ -225,7 +245,8 @@ class BafangBleDelegate extends Ble.BleDelegate {
     // the state machine via onCharacteristicChanged.
     function onCharacteristicWrite(characteristic as Ble.Characteristic,
                                    status as Ble.Status) as Void {
-        // No-op: state advances on RX notify.
+        BafangRideSyncApp.getData().lastTxWriteStatus = status;
+        // State advances on RX notify.
     }
 
     // Main receive path – all device->phone traffic comes here.
@@ -285,8 +306,12 @@ class BafangBleDelegate extends Ble.BleDelegate {
             case STATE_INIT_2:
                 // Expect OP=0x20 ACK from DST_CTRL
                 if (frame.op == 0x20 && frame.src == FrameBuilder.DST_CTRL) {
-                    _setState(STATE_INIT_3);
-                    _sendFrame(initFrames[1]);
+                    if (frame.data.size() > 0 && frame.data[0] == 0x00) {
+                        _setState(STATE_INIT_3);
+                        _sendFrame(initFrames[1]);
+                    } else {
+                        _setError("E:HS");
+                    }
                 }
                 break;
             case STATE_INIT_3:
@@ -413,7 +438,7 @@ class BafangBleDelegate extends Ble.BleDelegate {
         if (_txChar == null) { return; }
         try {
             (_txChar as Ble.Characteristic).requestWrite(frame,
-                {:writeType => Ble.WRITE_TYPE_DEFAULT});
+                {:writeType => Ble.WRITE_TYPE_WITH_RESPONSE});
         } catch (ex instanceof Lang.Exception) {
             System.println("BLE write error: " + ex.getErrorMessage());
             _setError("E:WR");
