@@ -97,6 +97,7 @@ class BafangRideSyncView extends WatchUi.DataField {
         try {
             _delegate = new BafangBleDelegate();
             Ble.setDelegate(_delegate);
+            (_delegate as BafangBleDelegate).registerProfile();
             (_delegate as BafangBleDelegate).startScan();
         } catch (ex instanceof Lang.Exception) {
             System.println("BLE init error: " + ex.getErrorMessage());
@@ -113,6 +114,9 @@ class BafangRideSyncView extends WatchUi.DataField {
     // Writes compact decoded FIT fields; display uses the same decoded values.
     function compute(info as Activity.Info) as Numeric or Duration or String or Null {
         var d = BafangRideSyncApp.getData();
+        if (_delegate != null) {
+            (_delegate as BafangBleDelegate).pump();
+        }
         _probeWorkoutStep(d);
         _writeField(_fBatt, d.battery);
         _writeField(_fPas, d.pas);
@@ -239,6 +243,11 @@ class BafangRideSyncView extends WatchUi.DataField {
         dc.setColor(Gfx.COLOR_BLACK, Gfx.COLOR_BLACK);
         dc.clear();
 
+        if (w != h) {
+            _drawDebug(dc, d, w, h);
+            return;
+        }
+
         // Round watches clip aggressively near the edges, so keep all text
         // inside a conservative center column.
         var cx = w / 2;
@@ -293,6 +302,76 @@ class BafangRideSyncView extends WatchUi.DataField {
                     Gfx.TEXT_JUSTIFY_CENTER);
     }
 
+    private function _drawDebug(dc as Gfx.Dc, d as BafangData,
+                                w as Number, h as Number) as Void {
+        var y = 8;
+        var line = 24;
+        dc.setColor(Gfx.COLOR_WHITE, Gfx.COLOR_TRANSPARENT);
+        dc.drawText(8, y, Gfx.FONT_SMALL,
+                    "Bafang BLE " + d.bleStatus, Gfx.TEXT_JUSTIFY_LEFT);
+        y += line;
+        dc.setColor(d.bleConnected ? Gfx.COLOR_GREEN : Gfx.COLOR_RED,
+                    Gfx.COLOR_TRANSPARENT);
+        dc.drawText(8, y, Gfx.FONT_TINY,
+                    "conn=" + (d.bleConnected ? "1" : "0")
+                    + " state=" + d.bleState.toString()
+                    + " attempt=" + d.bleAttemptIndex.toString()
+                    + "/" + d.bleAttemptCount.toString()
+                    + " lock=" + d.bleLockedAttempt.toString(),
+                    Gfx.TEXT_JUSTIFY_LEFT);
+        y += line;
+        dc.setColor(Gfx.COLOR_WHITE, Gfx.COLOR_TRANSPARENT);
+        dc.drawText(8, y, Gfx.FONT_TINY,
+                    "mode=" + (d.bleConnectionMode == 1 ? "secure" : "default")
+                    + " target=" + (d.cccdTarget == 1 ? "rx" : "tx")
+                    + " cccd=" + (d.cccdWriteMode == 1 ? "notify" : "ind"),
+                    Gfx.TEXT_JUSTIFY_LEFT);
+        y += line;
+        dc.drawText(8, y, Gfx.FONT_TINY,
+                    "profile ready=" + (d.profileReady ? "1" : "0")
+                    + " status=" + d.profileStatus.toString()
+                    + " count=" + d.profileRegisterCount.toString(),
+                    Gfx.TEXT_JUSTIFY_LEFT);
+        y += line;
+        dc.drawText(8, y, Gfx.FONT_TINY,
+                    "desc T" + d.txDescriptorCount.toString()
+                    + " R" + d.rxDescriptorCount.toString()
+                    + " loc=" + d.cccdLocation.toString()
+                    + " s=" + d.lastDescriptorStatus.toString()
+                    + " a=" + d.cccdWriteAttempts.toString(),
+                    Gfx.TEXT_JUSTIFY_LEFT);
+        y += line;
+        dc.drawText(8, y, Gfx.FONT_TINY,
+                    "write=" + d.lastTxWriteStatus.toString()
+                    + " fail=" + d.bleLastFailureStatus.toString()
+                    + " restarts=" + d.bleRestartCount.toString(),
+                    Gfx.TEXT_JUSTIFY_LEFT);
+        y += line;
+        dc.drawText(8, y, Gfx.FONT_TINY,
+                    "rx count=" + d.rxCount.toString()
+                    + " size=" + d.lastRxSize.toString()
+                    + " valid=" + d.validFrameCount.toString()
+                    + " parse=" + d.parseErrorCount.toString()
+                    + "/" + d.lastParseError.toString(),
+                    Gfx.TEXT_JUSTIFY_LEFT);
+        y += line;
+        dc.drawText(8, y, Gfx.FONT_TINY,
+                    "frame src=" + d.lastFrameSrc.toString()
+                    + " dst=" + d.lastFrameDst.toString()
+                    + " op=" + d.lastFrameOp.toString()
+                    + " reg=" + d.lastFrameReg.toString(),
+                    Gfx.TEXT_JUSTIFY_LEFT);
+        y += line;
+        dc.drawText(8, y, Gfx.FONT_TINY,
+                    "batt=" + _numString(d.battery)
+                    + " pas=" + _numString(d.pas)
+                    + " spd=" + (d.speedKmh != null ? d.speedKmh.format("%.1f") : "-"),
+                    Gfx.TEXT_JUSTIFY_LEFT);
+        y += line;
+        dc.setColor(0xaaaaaa, Gfx.COLOR_TRANSPARENT);
+        dc.drawText(8, y, Gfx.FONT_TINY, _workoutString(d), Gfx.TEXT_JUSTIFY_LEFT);
+    }
+
     private function _bottomString(d as BafangData) as String {
         if (d.bleStatus.find("E:") != null || d.lastDescriptorStatus != 0) {
             return "T" + d.txDescriptorCount.toString()
@@ -300,6 +379,7 @@ class BafangRideSyncView extends WatchUi.DataField {
                  + " C" + d.cccdLocation.toString()
                  + " S" + d.lastDescriptorStatus.toString()
                  + " A" + d.cccdWriteAttempts.toString()
+                 + " M" + d.cccdWriteMode.toString()
                  + " W" + d.lastTxWriteStatus.toString();
         }
         return _workoutString(d);

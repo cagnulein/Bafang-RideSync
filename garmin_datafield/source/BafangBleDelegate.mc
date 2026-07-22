@@ -49,35 +49,43 @@ class BafangBleDelegate extends Ble.BleDelegate {
     private var _cccdDescriptor as Ble.Descriptor? = null;
     private var _statusChallenge as Lang.ByteArray? = null;
     private var _rxBuffer as Lang.Array<Number> = [];
+    private var _lockedAttempt as Number = -1;
+    private var _scanRequested as Boolean = false;
+    private var _profileRegistered as Boolean = false;
+    private const ATTEMPT_COUNT as Number = 1;
 
     // For periodic time re-sync (every 5 minutes during RUNNING)
     private var _lastSync  as Number = 0;
 
     function initialize() {
         BleDelegate.initialize();
-        _registerProfile();
     }
 
     // ── Profile registration ──────────────────────────────────────────────
 
-    private function _registerProfile() as Void {
+    function registerProfile() as Void {
         try {
+            BafangRideSyncApp.getData().bleStatus = "PROF";
             Ble.registerProfile({
                 :uuid => Ble.stringToUuid(SERVICE_UUID),
                 :characteristics => [
-                    { :uuid => Ble.stringToUuid(TX_UUID),
-                      :descriptors => [Ble.cccdUuid()] },
-                    { :uuid => Ble.stringToUuid(RX_UUID),
-                      :descriptors => [Ble.cccdUuid()] }
+                    { :uuid => Ble.stringToUuid(TX_UUID) },
+                    { :uuid => Ble.stringToUuid(RX_UUID) }
                 ]
             });
+            _profileRegistered = true;
+            BafangRideSyncApp.getData().profileReady = true;
+            BafangRideSyncApp.getData().profileStatus = -2;
+            BafangRideSyncApp.getData().profileRegisterCount++;
         } catch (ex instanceof Lang.Exception) {
             System.println("BLE registerProfile error: " + ex.getErrorMessage());
+            _setError("E:PROF");
         }
     }
 
     // Called by the View to start scanning (or direct-connect if DIRECT_CONNECT).
     function startScan() as Void {
+        _scanRequested = true;
         if (_state != STATE_IDLE && _state != STATE_ERROR) { return; }
         if (BafangRideSyncApp.DIRECT_CONNECT) {
             try {
@@ -89,6 +97,26 @@ class BafangBleDelegate extends Ble.BleDelegate {
         }
         _setState(STATE_SCANNING);
         Ble.setScanState(Ble.SCAN_STATE_SCANNING);
+    }
+
+    function onProfileRegister(uuid as Ble.Uuid, status as Ble.Status) as Void {
+        var d = BafangRideSyncApp.getData();
+        d.profileStatus = status;
+        d.profileReady = status == Ble.STATUS_SUCCESS;
+        d.profileRegisterCount++;
+        if (status != Ble.STATUS_SUCCESS) {
+            _setError("E:PF" + status.toString());
+            return;
+        }
+        _profileRegistered = true;
+        d.bleStatus = "PREG";
+        if (_scanRequested) {
+            _setState(STATE_IDLE);
+            startScan();
+        }
+    }
+
+    function pump() as Void {
     }
 
     function setPasLevel(level as Number) as Void {
@@ -109,7 +137,6 @@ class BafangBleDelegate extends Ble.BleDelegate {
             if (sr.hasAddress(BafangRideSyncApp.DIRECT_CONNECT_ADDRESS)) {
                 _setState(STATE_CONNECTING);
                 BafangRideSyncApp.getData().bleStatus = "BOND";
-                _useSecureBondStrategy();
                 Ble.pairDevice(sr);
                 return true;
             }
@@ -131,19 +158,10 @@ class BafangBleDelegate extends Ble.BleDelegate {
             if (match) {
                 Ble.setScanState(Ble.SCAN_STATE_OFF);
                 _setState(STATE_CONNECTING);
-                _useSecureBondStrategy();
                 Ble.pairDevice(scanResult);
                 return;
             }
             result = scanResults.next();
-        }
-    }
-
-    private function _useSecureBondStrategy() as Void {
-        try {
-            Ble.setConnectionStrategy(Ble.CONNECTION_STRATEGY_SECURE_PAIR_BOND);
-        } catch (ex instanceof Lang.Exception) {
-            System.println("BLE secure bond strategy error: " + ex.getErrorMessage());
         }
     }
 
@@ -178,34 +196,45 @@ class BafangBleDelegate extends Ble.BleDelegate {
         _rxChar = svc.getCharacteristic(Ble.stringToUuid(RX_UUID));
         if (_rxChar == null || _txChar == null) { _setError("E:CHR"); return; }
         var d = BafangRideSyncApp.getData();
-        d.txDescriptorCount = _countDescriptors(_txChar);
-        d.rxDescriptorCount = _countDescriptors(_rxChar);
+        d.txDescriptorCount = -1;
+        d.rxDescriptorCount = -1;
         d.cccdLocation = 0;
         d.lastDescriptorStatus = 0;
         d.cccdWriteAttempts = 0;
         d.lastTxWriteStatus = 0;
-        var cccd = _findNotifyDescriptor();
+        d.cccdWriteMode = 1;
+        d.cccdTarget = 1;
+        d.bleAttemptIndex = 0;
+        d.bleAttemptCount = ATTEMPT_COUNT;
+        d.bleConnectionMode = 0;
+        d.bleLockedAttempt = _lockedAttempt;
+        var cccd = (_rxChar as Ble.Characteristic).getDescriptor(Ble.cccdUuid());
         if (cccd == null) {
             _setError("E:CCCD");
             return;
         }
+        d.cccdLocation = 1;
         _cccdDescriptor = cccd;
         _writeCccd();
     }
 
-    private function _findNotifyDescriptor() as Ble.Descriptor? {
+    private function _findNotifyDescriptor(target as Number) as Ble.Descriptor? {
         var cccdUuid = Ble.cccdUuid();
         var d = BafangRideSyncApp.getData();
         d.cccdLocation = 0;
-        var cccd = (_rxChar as Ble.Characteristic).getDescriptor(cccdUuid);
-        if (cccd != null) {
-            d.cccdLocation = 1;
-            return cccd;
+        if (target == 1 && _rxChar != null) {
+            var rxCccd = (_rxChar as Ble.Characteristic).getDescriptor(cccdUuid);
+            if (rxCccd != null) {
+                d.cccdLocation = 1;
+                return rxCccd;
+            }
         }
-        cccd = (_txChar as Ble.Characteristic).getDescriptor(cccdUuid);
-        if (cccd != null) {
-            d.cccdLocation = 2;
-            return cccd;
+        if (target == 2 && _txChar != null) {
+            var txCccd = (_txChar as Ble.Characteristic).getDescriptor(cccdUuid);
+            if (txCccd != null) {
+                d.cccdLocation = 2;
+                return txCccd;
+            }
         }
         return null;
     }
@@ -241,9 +270,11 @@ class BafangBleDelegate extends Ble.BleDelegate {
         var d = BafangRideSyncApp.getData();
         d.lastDescriptorStatus = status;
         if (status != Ble.STATUS_SUCCESS) {
+            d.bleLastFailureStatus = status;
             _setError("E:DS" + status.toString());
             return;
         }
+        _lockAttempt();
         d.bleStatus = "INIT";
         _statusChallenge = null;
         _rxBuffer = [];
@@ -264,6 +295,7 @@ class BafangBleDelegate extends Ble.BleDelegate {
     function onCharacteristicChanged(characteristic as Ble.Characteristic,
                                      value as Lang.ByteArray) as Void {
         var d = BafangRideSyncApp.getData();
+        _lockAttempt();
         d.noteRx(value);
         for (var i = 0; i < value.size(); i++) {
             _rxBuffer.add(value[i]);
@@ -454,6 +486,12 @@ class BafangBleDelegate extends Ble.BleDelegate {
             System.println("BLE write error: " + ex.getErrorMessage());
             _setError("E:WR");
         }
+    }
+
+    private function _lockAttempt() as Void {
+        if (_lockedAttempt >= 0) { return; }
+        _lockedAttempt = 0;
+        BafangRideSyncApp.getData().bleLockedAttempt = _lockedAttempt;
     }
 
     private function _setError(status as String) as Void {

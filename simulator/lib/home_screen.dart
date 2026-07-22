@@ -1,9 +1,8 @@
-import 'dart:typed_data';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'bafang_data.dart';
 import 'ble_service.dart';
+import 'screens/workout_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   final BleService bleService;
@@ -15,13 +14,6 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   int _tab = 0;
-  final _hexController = TextEditingController();
-
-  @override
-  void dispose() {
-    _hexController.dispose();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -33,8 +25,7 @@ class _HomeScreenState extends State<HomeScreen> {
           index: _tab,
           children: [
             _DataTab(data: data, bleService: widget.bleService),
-            _HexTab(data: data, controller: _hexController),
-            _LogTab(bleService: widget.bleService),
+            const WorkoutScreen(),
           ],
         ),
         bottomNavigationBar: NavigationBar(
@@ -44,8 +35,7 @@ class _HomeScreenState extends State<HomeScreen> {
           destinations: const [
             NavigationDestination(icon: Icon(Icons.speed), label: 'Data'),
             NavigationDestination(
-                icon: Icon(Icons.terminal), label: 'Hex inject'),
-            NavigationDestination(icon: Icon(Icons.article), label: 'BLE log'),
+                icon: Icon(Icons.directions_bike), label: 'Workout'),
           ],
         ),
       );
@@ -230,7 +220,7 @@ class _DataTab extends StatelessWidget {
         ]),
       );
 
-  Widget _hexBlock(String title, Uint8List bytes) {
+  Widget _hexBlock(String title, List<int> bytes) {
     final rows = <String>[];
     for (int i = 0; i < bytes.length; i += 8) {
       final end = (i + 8).clamp(0, bytes.length);
@@ -238,8 +228,6 @@ class _DataTab extends StatelessWidget {
           .sublist(i, end)
           .map((b) => b.toRadixString(16).padLeft(2, '0'))
           .join(' ');
-      final idxs =
-          List.generate(end - i, (j) => '[${i + j}]'.padLeft(4)).join(' ');
       rows.add('  $hex');
     }
     return Padding(
@@ -253,175 +241,5 @@ class _DataTab extends StatelessWidget {
                 color: Colors.white24, fontFamily: 'Courier', fontSize: 11)),
       ]),
     );
-  }
-}
-
-// ── Hex inject tab ────────────────────────────────────────────────────────────
-
-class _HexTab extends StatefulWidget {
-  final BafangData data;
-  final TextEditingController controller;
-  const _HexTab({required this.data, required this.controller});
-
-  @override
-  State<_HexTab> createState() => _HexTabState();
-}
-
-class _HexTabState extends State<_HexTab> {
-  String _result = '';
-
-  void _inject() {
-    final ok = widget.data.injectHex(widget.controller.text);
-    setState(() => _result = ok ? '✓ Injected' : '✗ Parse failed');
-  }
-
-  void _preset(String hex) {
-    widget.controller.text = hex;
-    _inject();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      padding: const EdgeInsets.all(20),
-      child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
-        const Text('Paste a full frame (55 aa …) or raw DATA bytes:',
-            style: TextStyle(
-                color: Colors.white54, fontFamily: 'Courier', fontSize: 12)),
-        const SizedBox(height: 8),
-        TextField(
-          controller: widget.controller,
-          maxLines: 4,
-          style: const TextStyle(
-              color: Colors.greenAccent, fontFamily: 'Courier', fontSize: 13),
-          decoration: InputDecoration(
-            filled: true,
-            fillColor: const Color(0xFF1a1a1a),
-            border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(4),
-                borderSide: const BorderSide(color: Colors.white24)),
-            hintText: 'e.g.  55 aa 15 10 11 06 01 00 00 00 01 …',
-            hintStyle: const TextStyle(
-                color: Colors.white24, fontFamily: 'Courier', fontSize: 12),
-          ),
-        ),
-        const SizedBox(height: 8),
-        Row(children: [
-          Expanded(
-              child: ElevatedButton(
-            onPressed: _inject,
-            style: ElevatedButton.styleFrom(
-                backgroundColor: const Color(0xFF003300)),
-            child:
-                const Text('Inject', style: TextStyle(fontFamily: 'Courier')),
-          )),
-          const SizedBox(width: 8),
-          ElevatedButton(
-            onPressed: () {
-              widget.controller.clear();
-              setState(() => _result = '');
-            },
-            style: ElevatedButton.styleFrom(
-                backgroundColor: const Color(0xFF330000)),
-            child: const Text('Clear', style: TextStyle(fontFamily: 'Courier')),
-          ),
-        ]),
-        if (_result.isNotEmpty) ...[
-          const SizedBox(height: 8),
-          Text(_result,
-              style: TextStyle(
-                  color: _result.startsWith('✓')
-                      ? Colors.greenAccent
-                      : Colors.redAccent,
-                  fontFamily: 'Courier',
-                  fontSize: 13)),
-        ],
-        const Divider(color: Colors.white12, height: 32),
-        const Text('Presets:',
-            style: TextStyle(
-                color: Colors.white38, fontFamily: 'Courier', fontSize: 12)),
-        const SizedBox(height: 8),
-        _presetBtn(
-            'Sim 06 01 (battery=81%, PAS=1, speed=41.27)',
-            '55 aa 15 10 11 06 01 '
-                '00 00 00 01 00 01 09 51 '
-                '00 1f 10 3c 2d 00 00 3a 6e 00 00 00 00 '
-                'XX XX'), // user should fill checksum or use raw DATA below
-        const SizedBox(height: 4),
-        _presetBtn(
-            'Raw 06 01 DATA (21 bytes)',
-            '00 00 00 01 00 01 09 51 '
-                '00 1f 10 3c 2d 00 00 3a 6e 00 00 00 00'),
-        const SizedBox(height: 4),
-        _presetBtn('Raw 06 09 DATA (16 bytes)',
-            'fd 51 00 00 c1 07 5a 11 18 01 de 03 55 00 01 05'),
-        const SizedBox(height: 16),
-        const Text(
-          'Tip: copy payload bytes from ekd01_payloads.txt / ekd01_0104_verbose_hex.txt '
-          'and paste here. Full frames are checksummed; raw DATA bytes are injected directly.',
-          style: TextStyle(
-              color: Colors.white24, fontFamily: 'Courier', fontSize: 11),
-        ),
-      ]),
-    );
-  }
-
-  Widget _presetBtn(String label, String hex) => OutlinedButton(
-        onPressed: () => _preset(hex),
-        style: OutlinedButton.styleFrom(
-          side: const BorderSide(color: Colors.white24),
-          alignment: Alignment.centerLeft,
-        ),
-        child: Text(label,
-            style: const TextStyle(
-                color: Colors.white54, fontFamily: 'Courier', fontSize: 11)),
-      );
-}
-
-// ── BLE log tab ───────────────────────────────────────────────────────────────
-
-class _LogTab extends StatelessWidget {
-  final BleService bleService;
-  const _LogTab({required this.bleService});
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(children: [
-      Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
-        child: Row(mainAxisAlignment: MainAxisAlignment.end, children: [
-          TextButton.icon(
-            icon: const Icon(Icons.copy, size: 14, color: Colors.white38),
-            label: const Text('Copy',
-                style: TextStyle(color: Colors.white38, fontSize: 12)),
-            onPressed: () {
-              Clipboard.setData(
-                  ClipboardData(text: bleService.log.reversed.join('\n')));
-            },
-          ),
-        ]),
-      ),
-      Expanded(
-        child: StatefulBuilder(builder: (ctx, refresh) {
-          return ListView.builder(
-            reverse: true,
-            padding: const EdgeInsets.symmetric(horizontal: 12),
-            itemCount: bleService.log.length,
-            itemBuilder: (_, i) => Text(
-              bleService.log[i],
-              style: TextStyle(
-                fontFamily: 'Courier',
-                fontSize: 11,
-                color: bleService.log[i].contains('TX')
-                    ? Colors.lightBlueAccent
-                    : bleService.log[i].contains('RX')
-                        ? Colors.greenAccent
-                        : Colors.white38,
-              ),
-            ),
-          );
-        }),
-      ),
-    ]);
   }
 }

@@ -55,6 +55,9 @@ class BleService {
   // Log for the debug pane (newest first, capped at 200 lines)
   final List<String> log = [];
 
+  // Called after each 0x0601 telemetry frame — wired to WorkoutService.onBikeTelemetry
+  void Function()? onTelemetry0601;
+
   BleService(this.data);
 
   // ── Public API ────────────────────────────────────────────────────────────
@@ -324,6 +327,7 @@ class BleService {
     if (frame.op == 0x06) {
       if (frame.reg == 0x01) {
         data.update0601(frame.data);
+        onTelemetry0601?.call();
       } else if (frame.reg == 0x09) {
         data.update0609(frame.data);
       }

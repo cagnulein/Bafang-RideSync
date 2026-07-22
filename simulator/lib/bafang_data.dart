@@ -8,6 +8,7 @@ class BafangData extends ChangeNotifier {
 
   int? battery;
   int? pas;
+  int? pasMax;
   int? powerWatts;
   double? cadenceRpm;
   double? speedKmh;
@@ -72,6 +73,7 @@ class BafangData extends ChangeNotifier {
     if (data.length < 21) return;
     raw0601 = data;
     pas = data[5];
+    pasMax = data[6];
     battery = data[7];
     speedKmh = FrameParser.u16le(data, 9) / 100.0;
     tripKm = FrameParser.u32le(data, 11) / 100.0;

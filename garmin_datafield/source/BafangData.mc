@@ -62,6 +62,17 @@ class BafangData {
     var lastDescriptorStatus as Number = 0;
     var cccdWriteAttempts as Number = 0;
     var lastTxWriteStatus as Number = 0;
+    var cccdWriteMode as Number = 1; // 1 notify, 2 indicate
+    var cccdTarget as Number = 1;    // 1 RX notify char, 2 TX write char
+    var bleAttemptIndex as Number = 0;
+    var bleAttemptCount as Number = 0;
+    var bleConnectionMode as Number = 0; // 0 default, 1 secure bond
+    var bleRestartCount as Number = 0;
+    var bleLockedAttempt as Number = -1;
+    var bleLastFailureStatus as Number = 0;
+    var profileStatus as Number = -1; // -2 = registerProfile returned, no callback seen
+    var profileReady as Boolean = false;
+    var profileRegisterCount as Number = 0;
 
     // Workout probe. Garmin sometimes exposes current workout target data from
     // a DataField despite the public docs saying otherwise; keep both raw and
