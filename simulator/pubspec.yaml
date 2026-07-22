@@ -14,6 +14,7 @@ dependencies:
   permission_handler: ^11.3.0
   path_provider: ^2.1.0
   share_plus: ^13.0.0
+  shared_preferences: ^2.3.0
   flutter_map: ^7.0.2
   latlong2: ^0.9.0
 
@@ -21,6 +22,13 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^5.0.0
+  flutter_launcher_icons: ^0.14.3
+
+flutter_launcher_icons:
+  ios: true
+  android: false
+  image_path: "assets/icon.png"
+  remove_alpha_ios: true
 
 flutter:
   uses-material-design: true

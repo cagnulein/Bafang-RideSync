@@ -58,13 +58,13 @@ class _PlanScreenState extends State<PlanScreen> {
       builder: (ctx) => SimpleDialog(
         backgroundColor: const Color(0xFF1a1a1a),
         title: const Text('Load plan',
-            style: TextStyle(color: Colors.white, fontFamily: 'Courier')),
+            style: TextStyle(color: Colors.white)),
         children: paths.map((p) {
           final name = p.split('/').last.replaceAll('.brsplan', '');
           return SimpleDialogOption(
             child: Text(name,
                 style: const TextStyle(
-                    color: Colors.white70, fontFamily: 'Courier')),
+                    color: Colors.white70)),
             onPressed: () => Navigator.pop(ctx, p),
           );
         }).toList(),
@@ -77,6 +77,7 @@ class _PlanScreenState extends State<PlanScreen> {
         _plan = loaded;
         _dirty = false;
       });
+      ws.loadPlan(loaded);
     }
   }
 
@@ -91,7 +92,7 @@ class _PlanScreenState extends State<PlanScreen> {
         title: TextField(
           controller: TextEditingController(text: _plan.name),
           style: const TextStyle(
-              color: Colors.white, fontFamily: 'Courier', fontSize: 16),
+              color: Colors.white, fontSize: 16),
           decoration: const InputDecoration(
               border: InputBorder.none, hintText: 'Workout name'),
           onChanged: (v) {
@@ -182,7 +183,7 @@ class _SegmentCard extends StatelessWidget {
               value: segment.zoneNumber,
               dropdownColor: const Color(0xFF222222),
               style: TextStyle(
-                  color: zone.color, fontFamily: 'Courier', fontSize: 14),
+                  color: zone.color, fontSize: 14),
               underline: const SizedBox.shrink(),
               items: zones
                   .map((z) => DropdownMenuItem(
@@ -254,7 +255,6 @@ class _SegmentCard extends StatelessWidget {
                     : '${segment.value.toStringAsFixed(1)} km',
                 style: const TextStyle(
                     color: Colors.white70,
-                    fontFamily: 'Courier',
                     fontSize: 13),
                 textAlign: TextAlign.right,
               ),

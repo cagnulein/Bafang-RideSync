@@ -1,48 +1,53 @@
 class PasPid {
-  final double kp;
-  final double ki;
-  final double kd;
-  final int minPas;
-  final int maxPas;
+  int minPas;
+  int maxPas;
 
-  double _integral = 0;
-  double _prevError = 0;
-  DateTime? _prevTime;
+  // 1 = very gentle (change every 30s), 10 = aggressive (change every 3s)
+  int intensity;
+
+  DateTime? _lastChange;
 
   PasPid({
-    this.kp = 0.15,
-    this.ki = 0.02,
-    this.kd = 0.05,
     this.minPas = 0,
     this.maxPas = 9,
+    this.intensity = 3,
   });
 
+  // Cooldown between PAS changes: intensity 1→30s, 10→3s
+  double get _cooldownSeconds => 33.0 - intensity * 3.0;
+
+  // Dead band: bpm outside zone before reacting: intensity 1→5bpm, 10→1bpm
+  int get _deadbandBpm => 6 - (intensity / 2.0).round();
+
   void reset() {
-    _integral = 0;
-    _prevError = 0;
-    _prevTime = null;
+    _lastChange = null;
   }
 
-  // Positive error → HR above target → increase PAS (more assistance, less effort, HR drops).
-  // Negative error → HR below target → decrease PAS (less assistance, more effort, HR rises).
+  // Positive error (HR above target) → increase PAS (more assist → less effort → HR drops).
+  // Negative error (HR below target) → decrease PAS (less assist → more effort → HR rises).
   int update(int currentHr, int targetHrMin, int targetHrMax, int currentPas) {
+    // Within zone: do nothing
+    if (currentHr >= targetHrMin && currentHr <= targetHrMax) return currentPas;
+
+    // Within dead band outside zone: do nothing
+    final overMax = currentHr - targetHrMax;
+    final underMin = targetHrMin - currentHr;
+    if (overMax > 0 && overMax < _deadbandBpm) return currentPas;
+    if (underMin > 0 && underMin < _deadbandBpm) return currentPas;
+
+    // Cooldown: don't change faster than allowed
     final now = DateTime.now();
-    final dt = _prevTime == null
-        ? 1.0
-        : now.difference(_prevTime!).inMilliseconds / 1000.0;
-    _prevTime = now;
+    if (_lastChange != null) {
+      final elapsed = now.difference(_lastChange!).inMilliseconds / 1000.0;
+      if (elapsed < _cooldownSeconds) return currentPas;
+    }
 
-    final targetHr = (targetHrMin + targetHrMax) / 2.0;
-    final error = currentHr - targetHr;
+    // Change PAS by exactly 1 level
+    final newPas = currentHr > targetHrMax
+        ? (currentPas + 1).clamp(minPas, maxPas)
+        : (currentPas - 1).clamp(minPas, maxPas);
 
-    _integral += error * dt;
-    _integral = _integral.clamp(-30.0, 30.0); // anti-windup
-
-    final derivative = dt > 0 ? (error - _prevError) / dt : 0.0;
-    _prevError = error;
-
-    final output = kp * error + ki * _integral + kd * derivative;
-    final newPas = (currentPas + output.round()).clamp(minPas, maxPas);
+    if (newPas != currentPas) _lastChange = now;
     return newPas;
   }
 }

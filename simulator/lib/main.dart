@@ -2,31 +2,41 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_blue_plus/flutter_blue_plus.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'bafang_data.dart';
 import 'ble_service.dart';
 import 'home_screen.dart';
 import 'models/heart_zone.dart';
+import 'screens/onboarding_screen.dart';
+import 'services/cadence_service.dart';
 import 'services/gps_service.dart';
 import 'services/health_service.dart';
 import 'services/hr_service.dart';
 import 'services/live_activity_service.dart';
+import 'services/power_service.dart';
 import 'services/workout_service.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  runApp(const BafangSimApp());
+  final prefs = await SharedPreferences.getInstance();
+  final onboardingDone = prefs.getBool('onboarding_done') ?? false;
+  runApp(BafangSimApp(showOnboarding: !onboardingDone));
 }
 
 class BafangSimApp extends StatefulWidget {
-  const BafangSimApp({super.key});
+  final bool showOnboarding;
+  const BafangSimApp({super.key, this.showOnboarding = false});
   @override
   State<BafangSimApp> createState() => _BafangSimAppState();
 }
 
 class _BafangSimAppState extends State<BafangSimApp> {
+  late bool _showOnboarding;
   final _bikeData = BafangData();
   final _hrZones = HrZones();
   final _hrService = HrService();
+  final _cadenceService = CadenceService();
+  final _powerService = PowerService();
   final _gpsService = GpsService();
   final _healthService = HealthService();
   final _liveActivityService = LiveActivityService();
@@ -37,6 +47,7 @@ class _BafangSimAppState extends State<BafangSimApp> {
   @override
   void initState() {
     super.initState();
+    _showOnboarding = widget.showOnboarding;
     _bleService = BleService(_bikeData);
     _workoutService = WorkoutService(
       bike: _bikeData,
@@ -67,6 +78,8 @@ class _BafangSimAppState extends State<BafangSimApp> {
     _adapterSub?.cancel();
     _bleService.dispose();
     _hrService.dispose();
+    _cadenceService.dispose();
+    _powerService.dispose();
     _gpsService.dispose();
     super.dispose();
   }
@@ -77,11 +90,13 @@ class _BafangSimAppState extends State<BafangSimApp> {
           ChangeNotifierProvider.value(value: _bikeData),
           ChangeNotifierProvider.value(value: _hrZones),
           ChangeNotifierProvider.value(value: _hrService),
+          ChangeNotifierProvider.value(value: _cadenceService),
+          ChangeNotifierProvider.value(value: _powerService),
           ChangeNotifierProvider.value(value: _gpsService),
           ChangeNotifierProvider.value(value: _workoutService),
         ],
         child: MaterialApp(
-          title: 'BafangRideSync',
+          title: 'RideSync',
           debugShowCheckedModeBanner: false,
           theme: ThemeData.dark(useMaterial3: true).copyWith(
             colorScheme: ColorScheme.dark(
@@ -91,7 +106,11 @@ class _BafangSimAppState extends State<BafangSimApp> {
             ),
             scaffoldBackgroundColor: Colors.black,
           ),
-          home: HomeScreen(bleService: _bleService),
+          home: _showOnboarding
+              ? OnboardingScreen(
+                  onDone: () => setState(() => _showOnboarding = false),
+                )
+              : HomeScreen(bleService: _bleService),
         ),
       );
 }

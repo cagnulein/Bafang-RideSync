@@ -4,11 +4,15 @@ import 'package:latlong2/latlong.dart';
 import 'package:provider/provider.dart';
 import '../bafang_data.dart';
 import '../models/heart_zone.dart';
+import '../services/cadence_service.dart';
 import '../services/gps_service.dart';
 import '../services/hr_service.dart';
+import '../services/power_service.dart';
 import '../services/workout_service.dart';
+import 'cadence_scan_screen.dart';
 import 'hr_scan_screen.dart';
 import 'plan_screen.dart';
+import 'power_scan_screen.dart';
 import 'zones_screen.dart';
 
 class WorkoutScreen extends StatelessWidget {
@@ -16,14 +20,15 @@ class WorkoutScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer4<WorkoutService, HrService, BafangData, GpsService>(
-      builder: (context, ws, hr, bike, gps, _) {
+    return Consumer6<WorkoutService, HrService, CadenceService, PowerService,
+        BafangData, GpsService>(
+      builder: (context, ws, hr, cad, pwr, bike, gps, _) {
         final zone = ws.currentZone;
         final accentColor = zone?.color ?? Colors.white54;
 
         return Scaffold(
           backgroundColor: Colors.black,
-          appBar: _appBar(context, ws, hr, accentColor),
+          appBar: _appBar(context, ws, hr, cad, pwr, accentColor),
           body: SingleChildScrollView(
             padding: const EdgeInsets.all(16),
             child: Column(
@@ -34,6 +39,11 @@ class WorkoutScreen extends StatelessWidget {
                 const SizedBox(height: 12),
                 // Bike metrics row
                 _bikeRow(bike),
+                // External sensor row (cadence / power meter)
+                if (cad.connected || pwr.connected) ...[
+                  const SizedBox(height: 8),
+                  _externalSensorRow(cad, pwr),
+                ],
                 const SizedBox(height: 12),
                 // Workout info
                 if (ws.state != WorkoutState.idle) _workoutInfo(ws, accentColor),
@@ -54,11 +64,11 @@ class WorkoutScreen extends StatelessWidget {
     );
   }
 
-  AppBar _appBar(
-      BuildContext context, WorkoutService ws, HrService hr, Color accent) {
+  AppBar _appBar(BuildContext context, WorkoutService ws, HrService hr,
+      CadenceService cad, PowerService pwr, Color accent) {
     return AppBar(
       backgroundColor: Colors.black,
-      title: const Text('Workout', style: TextStyle(fontFamily: 'Courier')),
+      title: const Text('Workout', style: TextStyle()),
       actions: [
         IconButton(
           icon: Icon(Icons.favorite,
@@ -66,6 +76,20 @@ class WorkoutScreen extends StatelessWidget {
           tooltip: 'HR Monitor',
           onPressed: () => Navigator.push(context,
               MaterialPageRoute(builder: (_) => const HrScanScreen())),
+        ),
+        IconButton(
+          icon: Icon(Icons.rotate_right,
+              color: cad.connected ? Colors.cyanAccent : Colors.white38),
+          tooltip: 'Cadence Sensor',
+          onPressed: () => Navigator.push(context,
+              MaterialPageRoute(builder: (_) => const CadenceScanScreen())),
+        ),
+        IconButton(
+          icon: Icon(Icons.bolt,
+              color: pwr.connected ? Colors.orangeAccent : Colors.white38),
+          tooltip: 'Power Meter',
+          onPressed: () => Navigator.push(context,
+              MaterialPageRoute(builder: (_) => const PowerScanScreen())),
         ),
         IconButton(
           icon: const Icon(Icons.list_alt, color: Colors.white54),
@@ -96,7 +120,7 @@ class WorkoutScreen extends StatelessWidget {
                     size: 16, color: Colors.white54),
                 const SizedBox(width: 8),
                 const Text('Auto PAS',
-                    style: TextStyle(color: Colors.white70, fontFamily: 'Courier')),
+                    style: TextStyle(color: Colors.white70)),
               ]),
             ),
           ],
@@ -122,7 +146,6 @@ class WorkoutScreen extends StatelessWidget {
             '${hr.bpm ?? '--'} bpm',
             style: TextStyle(
                 color: accent,
-                fontFamily: 'Courier',
                 fontSize: 52,
                 fontWeight: FontWeight.bold),
           ),
@@ -131,20 +154,44 @@ class WorkoutScreen extends StatelessWidget {
           const SizedBox(height: 6),
           Text(
             'Zone ${zone.number} — ${zone.name}',
-            style: TextStyle(color: accent, fontFamily: 'Courier', fontSize: 14),
+            style: TextStyle(color: accent, fontSize: 14),
           ),
           Text(
             '${zone.minBpm}–${zone.maxBpm} bpm',
             style: const TextStyle(
-                color: Colors.white38, fontFamily: 'Courier', fontSize: 12),
+                color: Colors.white38, fontSize: 12),
           ),
         ] else if (!hr.connected) ...[
           const SizedBox(height: 8),
           const Text('No HR monitor connected',
               style: TextStyle(
-                  color: Colors.white38, fontFamily: 'Courier', fontSize: 12)),
+                  color: Colors.white38, fontSize: 12)),
         ],
       ]),
+    );
+  }
+
+  Widget _externalSensorRow(CadenceService cad, PowerService pwr) {
+    // Cadence: prefer power meter (it also has cadence), fall back to standalone sensor
+    final rpm = pwr.cadenceRpm ?? cad.cadenceRpm;
+    final w = pwr.watts;
+
+    return Container(
+      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 16),
+      decoration: BoxDecoration(
+        color: const Color(0xFF0d0d0d),
+        borderRadius: BorderRadius.circular(10),
+        border: Border.all(color: Colors.white12),
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          if (rpm != null)
+            _metricCell('RPM', rpm.toStringAsFixed(0), 'rpm', Colors.cyanAccent),
+          if (w != null)
+            _metricCell('POWER', '$w', 'W', Colors.orangeAccent),
+        ],
+      ),
     );
   }
 
@@ -172,10 +219,10 @@ class WorkoutScreen extends StatelessWidget {
     return Column(children: [
       Text(label,
           style: const TextStyle(
-              color: Colors.white38, fontFamily: 'Courier', fontSize: 11)),
+              color: Colors.white38, fontSize: 11)),
       RichText(
         text: TextSpan(
-          style: const TextStyle(fontFamily: 'Courier'),
+          style: const TextStyle(),
           children: [
             TextSpan(
                 text: value,
@@ -228,11 +275,11 @@ class WorkoutScreen extends StatelessWidget {
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
         Text('Segment $idx / $total',
             style: const TextStyle(
-                color: Colors.white38, fontFamily: 'Courier', fontSize: 11)),
+                color: Colors.white38, fontSize: 11)),
         const SizedBox(height: 4),
         Text(seg.label,
             style: TextStyle(
-                color: accent, fontFamily: 'Courier', fontSize: 15)),
+                color: accent, fontSize: 15)),
       ]),
     );
   }
@@ -284,7 +331,7 @@ class WorkoutScreen extends StatelessWidget {
       ElevatedButton.icon(
         icon: Icon(icon, color: Colors.black),
         label: Text(label,
-            style: const TextStyle(color: Colors.black, fontFamily: 'Courier')),
+            style: const TextStyle(color: Colors.black)),
         style: ElevatedButton.styleFrom(
           backgroundColor: color,
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 14),
@@ -370,7 +417,6 @@ class _MapCardState extends State<_MapCard> {
                     const Text('GPS non disponibile',
                         style: TextStyle(
                             color: Colors.white38,
-                            fontFamily: 'Courier',
                             fontSize: 13)),
                   ],
                 ),

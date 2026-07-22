@@ -34,8 +34,7 @@ class _HomeScreenState extends State<HomeScreen> {
           onDestinationSelected: (i) => setState(() => _tab = i),
           destinations: const [
             NavigationDestination(icon: Icon(Icons.speed), label: 'Data'),
-            NavigationDestination(
-                icon: Icon(Icons.directions_bike), label: 'Workout'),
+            NavigationDestination(icon: Icon(Icons.directions_bike), label: 'Workout'),
           ],
         ),
       );
@@ -43,57 +42,42 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   AppBar _buildAppBar(BafangData data) {
-    final statusColor = switch (data.bleStatus) {
-      'OK' => Colors.greenAccent,
-      'SIM' => Colors.amber,
-      'INIT' => Colors.lightBlueAccent,
-      'ERR' => Colors.redAccent,
-      _ => Colors.white54,
-    };
-
+    final connected = data.bleStatus == 'OK';
     return AppBar(
       backgroundColor: Colors.black,
-      title: RichText(
-        text: TextSpan(
-          style: const TextStyle(fontFamily: 'Courier', fontSize: 16),
-          children: [
-            const TextSpan(
-                text: 'BafangRideSync  ',
-                style: TextStyle(color: Colors.white)),
-            TextSpan(
-                text: '[${data.bleStatus}]',
-                style:
-                    TextStyle(color: statusColor, fontWeight: FontWeight.bold)),
-          ],
-        ),
+      title: Row(
+        children: [
+          const Text('RideSync', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 18)),
+          const SizedBox(width: 10),
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+            decoration: BoxDecoration(
+              color: connected ? Colors.greenAccent.shade700.withOpacity(0.2) : Colors.white12,
+              borderRadius: BorderRadius.circular(4),
+              border: Border.all(color: connected ? Colors.greenAccent.shade700 : Colors.white24),
+            ),
+            child: Text(
+              data.bleStatus,
+              style: TextStyle(
+                color: connected ? Colors.greenAccent.shade400 : Colors.white54,
+                fontSize: 11,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+          ),
+        ],
       ),
       actions: [
-        IconButton(
-          icon: const Icon(Icons.science_outlined, color: Colors.amber),
-          tooltip: 'Inject sim frames',
-          onPressed: data.injectSimFrames,
-        ),
-        if (data.bleStatus == 'SCAN' ||
-            data.bleStatus == 'ERR' ||
-            data.bleStatus == 'IDLE')
+        if (data.bleStatus == 'SCAN' || data.bleStatus == 'ERR' || data.bleStatus == 'IDLE')
           IconButton(
-            icon: const Icon(Icons.bluetooth_searching,
-                color: Colors.lightBlueAccent),
-            tooltip: 'Start scan',
+            icon: const Icon(Icons.bluetooth_searching, color: Colors.lightBlueAccent),
+            tooltip: 'Reconnect',
             onPressed: widget.bleService.startScan,
-          ),
-        if (data.bleStatus == 'SCAN')
-          IconButton(
-            icon: const Icon(Icons.bluetooth_disabled, color: Colors.white54),
-            tooltip: 'Stop scan',
-            onPressed: widget.bleService.stopScan,
           ),
       ],
     );
   }
 }
-
-// ── Data tab ──────────────────────────────────────────────────────────────────
 
 class _DataTab extends StatelessWidget {
   final BafangData data;
@@ -105,24 +89,20 @@ class _DataTab extends StatelessWidget {
     return SingleChildScrollView(
       padding: const EdgeInsets.all(20),
       child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
-        _label('MODEL', data.model),
-        const SizedBox(height: 12),
-        _metric('BATTERY', _pct(data.battery), Colors.greenAccent),
+        if (data.model != null && data.model!.isNotEmpty)
+          Padding(
+            padding: const EdgeInsets.only(bottom: 16),
+            child: Text(data.model!, style: const TextStyle(color: Colors.white38, fontSize: 13)),
+          ),
+        _metric('Battery', _pct(data.battery), Colors.greenAccent),
         _metric('PAS', data.pas?.toString() ?? '--', Colors.lightBlueAccent),
-        _metric('POWER', _watts(data.powerWatts), Colors.orangeAccent),
-        _metric('CADENCE', _rpm(data.cadenceRpm), Colors.cyanAccent),
-        _metric('SPEED', _kmh(data.speedKmh), Colors.white),
-        _metric('TRIP', _km(data.tripKm), Colors.white70),
-        _metric('ODO', _km(data.odometerKm), Colors.white70),
-        const SizedBox(height: 8),
+        _metric('Power', _watts(data.powerWatts), Colors.orangeAccent),
+        _metric('Cadence', _rpm(data.cadenceRpm), Colors.cyanAccent),
+        _metric('Speed', _kmh(data.speedKmh), Colors.white),
+        _metric('Trip', _km(data.tripKm), Colors.white70),
+        _metric('Odometer', _km(data.odometerKm), Colors.white54),
+        const SizedBox(height: 16),
         _pasControls(),
-        const Divider(color: Colors.white12, height: 32),
-        _label('TICK', data.tickCounter?.toString() ?? '--'),
-        _label(
-            'WHEEL CFG', data.wheelCfg != null ? '${data.wheelCfg} mm?' : '--'),
-        const Divider(color: Colors.white12, height: 32),
-        if (data.raw0601 != null) _hexBlock('06 01 DATA', data.raw0601!),
-        if (data.raw0609 != null) _hexBlock('06 09 DATA', data.raw0609!),
       ]),
     );
   }
@@ -136,11 +116,12 @@ class _DataTab extends StatelessWidget {
   Widget _pasControls() {
     final current = data.pas ?? 0;
     return Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+      const Text('PAS Level', style: TextStyle(color: Colors.white38, fontSize: 13)),
+      const SizedBox(height: 8),
       Row(children: [
         Expanded(
           child: OutlinedButton.icon(
-            onPressed:
-                current > 0 ? () => bleService.setPasLevel(current - 1) : null,
+            onPressed: current > 0 ? () => bleService.setPasLevel(current - 1) : null,
             icon: const Icon(Icons.remove, size: 16),
             label: const Text('PAS'),
           ),
@@ -148,8 +129,7 @@ class _DataTab extends StatelessWidget {
         const SizedBox(width: 8),
         Expanded(
           child: OutlinedButton.icon(
-            onPressed:
-                current < 9 ? () => bleService.setPasLevel(current + 1) : null,
+            onPressed: current < 9 ? () => bleService.setPasLevel(current + 1) : null,
             icon: const Icon(Icons.add, size: 16),
             label: const Text('PAS'),
           ),
@@ -167,17 +147,10 @@ class _DataTab extends StatelessWidget {
                 onPressed: () => bleService.setPasLevel(level),
                 style: OutlinedButton.styleFrom(
                   padding: EdgeInsets.zero,
-                  foregroundColor: data.pas == level
-                      ? Colors.lightBlueAccent
-                      : Colors.white54,
-                  side: BorderSide(
-                    color: data.pas == level
-                        ? Colors.lightBlueAccent
-                        : Colors.white24,
-                  ),
+                  foregroundColor: data.pas == level ? Colors.lightBlueAccent : Colors.white54,
+                  side: BorderSide(color: data.pas == level ? Colors.lightBlueAccent : Colors.white24),
                 ),
-                child: Text('$level',
-                    style: const TextStyle(fontFamily: 'Courier')),
+                child: Text('$level'),
               ),
             ),
         ],
@@ -190,56 +163,9 @@ class _DataTab extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(label,
-                style: const TextStyle(
-                    color: Colors.white38,
-                    fontFamily: 'Courier',
-                    fontSize: 13)),
-            Text(value,
-                style: TextStyle(
-                    color: color,
-                    fontFamily: 'Courier',
-                    fontSize: 26,
-                    fontWeight: FontWeight.bold)),
+            Text(label, style: const TextStyle(color: Colors.white38, fontSize: 13)),
+            Text(value, style: TextStyle(color: color, fontSize: 26, fontWeight: FontWeight.bold)),
           ],
         ),
       );
-
-  Widget _label(String k, String v) => Padding(
-        padding: const EdgeInsets.symmetric(vertical: 2),
-        child: Row(children: [
-          Text('$k  ',
-              style: const TextStyle(
-                  color: Colors.white38, fontFamily: 'Courier', fontSize: 12)),
-          Expanded(
-              child: Text(v,
-                  style: const TextStyle(
-                      color: Colors.white60,
-                      fontFamily: 'Courier',
-                      fontSize: 12))),
-        ]),
-      );
-
-  Widget _hexBlock(String title, List<int> bytes) {
-    final rows = <String>[];
-    for (int i = 0; i < bytes.length; i += 8) {
-      final end = (i + 8).clamp(0, bytes.length);
-      final hex = bytes
-          .sublist(i, end)
-          .map((b) => b.toRadixString(16).padLeft(2, '0'))
-          .join(' ');
-      rows.add('  $hex');
-    }
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 12),
-      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        Text(title,
-            style: const TextStyle(
-                color: Colors.white38, fontFamily: 'Courier', fontSize: 11)),
-        Text(rows.join('\n'),
-            style: const TextStyle(
-                color: Colors.white24, fontFamily: 'Courier', fontSize: 11)),
-      ]),
-    );
-  }
 }

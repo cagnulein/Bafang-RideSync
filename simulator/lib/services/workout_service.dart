@@ -34,12 +34,33 @@ class WorkoutService extends ChangeNotifier {
   DateTime? _segmentStartTime;
   double _totalDistAtSegmentStart = 0;
 
-  final _pid = PasPid();
+  late final PasPid _pid;
+
+  int get pidIntensity => _pid.intensity;
+  set pidIntensity(int v) {
+    _pid.intensity = v.clamp(1, 10);
+    notifyListeners();
+  }
+
+  int get pidMinPas => _pid.minPas;
+  set pidMinPas(int v) {
+    _pid.minPas = v.clamp(0, _pid.maxPas);
+    notifyListeners();
+  }
+
+  int get pidMaxPas => _pid.maxPas;
+  set pidMaxPas(int v) {
+    _pid.maxPas = v.clamp(_pid.minPas, 9);
+    notifyListeners();
+  }
   // Timer only refreshes the UI while the app is in foreground.
   Timer? _uiTicker;
   int _autoTargetMinBpm = 0;
   int _autoTargetMaxBpm = 999;
   bool autoPasEnabled = true;
+
+  // Last PAS level we commanded. If bike.pas differs, the user changed it manually.
+  int? _lastCommandedPas;
 
   // Wired by main.dart to BleService.setPasLevel
   void Function(int)? onSetPas;
@@ -51,7 +72,9 @@ class WorkoutService extends ChangeNotifier {
     required this.zones,
     required this.health,
     required this.liveActivity,
-  });
+  }) {
+    _pid = PasPid(intensity: 3);
+  }
 
   HeartZone? get currentZone => hr.bpm != null ? zones.zoneFor(hr.bpm!) : null;
 
@@ -75,7 +98,7 @@ class WorkoutService extends ChangeNotifier {
       currentSegmentIndex = 0;
       _segmentStartTime = DateTime.now();
       _totalDistAtSegmentStart = bike.tripKm ?? 0;
-      _pid.reset();
+      _pid.reset(); _lastCommandedPas = null;
       await gps.start();
       await health.startWorkout(record!.startTime);
       final startLabel = _fmtTime(record!.startTime);
@@ -103,7 +126,7 @@ class WorkoutService extends ChangeNotifier {
     _uiTicker?.cancel();
     state = WorkoutState.idle;
     gps.stop();
-    _pid.reset();
+    _pid.reset(); _lastCommandedPas = null;
     await health.endWorkout(DateTime.now());
     await liveActivity.end();
     notifyListeners();
@@ -135,10 +158,19 @@ class WorkoutService extends ChangeNotifier {
 
     // PID — runs on every telemetry frame, guaranteed in background
     if (autoPasEnabled && hr.bpm != null && bike.pas != null) {
-      final newPas =
-          _pid.update(hr.bpm!, _autoTargetMinBpm, _autoTargetMaxBpm, bike.pas!);
-      if (newPas != bike.pas) {
-        onSetPas?.call(newPas);
+      final currentPas = bike.pas!;
+      // If bike PAS differs from what we last commanded, user changed it manually.
+      // Respect that choice: update our reference and reset PID cooldown.
+      if (_lastCommandedPas != null && currentPas != _lastCommandedPas) {
+        // User changed PAS manually — respect it and wait a full cooldown before acting
+        _lastCommandedPas = currentPas;
+        _pid.reset();
+      } else {
+        final newPas = _pid.update(hr.bpm!, _autoTargetMinBpm, _autoTargetMaxBpm, currentPas);
+        if (newPas != currentPas) {
+          _lastCommandedPas = newPas;
+          onSetPas?.call(newPas);
+        }
       }
     }
 
@@ -185,7 +217,7 @@ class WorkoutService extends ChangeNotifier {
     currentSegmentIndex++;
     _segmentStartTime = DateTime.now();
     _totalDistAtSegmentStart = bike.tripKm ?? 0;
-    _pid.reset();
+    _pid.reset(); _lastCommandedPas = null;
     _applySegmentTarget();
   }
 

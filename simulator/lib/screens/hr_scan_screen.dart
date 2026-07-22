@@ -26,7 +26,7 @@ class _HrScanScreenState extends State<HrScanScreen> {
         appBar: AppBar(
           backgroundColor: Colors.black,
           title: const Text('Heart Rate Monitor',
-              style: TextStyle(fontFamily: 'Courier')),
+              style: TextStyle()),
           actions: [
             if (hr.connected)
               IconButton(
@@ -50,7 +50,7 @@ class _HrScanScreenState extends State<HrScanScreen> {
                   Text(
                     hr.scanning ? 'Scanning…' : 'Not scanning',
                     style: const TextStyle(
-                        color: Colors.white54, fontFamily: 'Courier'),
+                        color: Colors.white54),
                   ),
                   const SizedBox(width: 12),
                   if (hr.scanning)
@@ -73,7 +73,7 @@ class _HrScanScreenState extends State<HrScanScreen> {
                   padding: const EdgeInsets.only(bottom: 12),
                   child: Text(
                     'Error: ${hr.connectError}',
-                    style: const TextStyle(color: Colors.redAccent, fontFamily: 'Courier', fontSize: 12),
+                    style: const TextStyle(color: Colors.redAccent, fontSize: 12),
                   ),
                 ),
               ...hr.scanResults.map((d) {
@@ -88,12 +88,11 @@ class _HrScanScreenState extends State<HrScanScreen> {
                   title: Text(
                     d.platformName.isEmpty ? d.remoteId.str : d.platformName,
                     style: const TextStyle(
-                        color: Colors.white, fontFamily: 'Courier'),
+                        color: Colors.white),
                   ),
                   subtitle: Text(d.remoteId.str,
                       style: const TextStyle(
                           color: Colors.white38,
-                          fontFamily: 'Courier',
                           fontSize: 11)),
                   onTap: hr.connecting ? null : () => hr.connect(d),
                 );
@@ -118,14 +117,13 @@ class _HrScanScreenState extends State<HrScanScreen> {
             const SizedBox(width: 8),
             Text(hr.deviceName ?? 'Connected',
                 style: const TextStyle(
-                    color: Colors.redAccent, fontFamily: 'Courier')),
+                    color: Colors.redAccent)),
           ]),
           const SizedBox(height: 12),
           Text(
             '${hr.bpm ?? '--'} bpm',
             style: const TextStyle(
                 color: Colors.white,
-                fontFamily: 'Courier',
                 fontSize: 48,
                 fontWeight: FontWeight.bold),
           ),

@@ -76,6 +76,16 @@ class BleService {
 
   void startScan() {
     if (_state != BleState.idle && _state != BleState.error) return;
+
+    // Check if device is already connected (e.g. paired via system Bluetooth)
+    for (final d in FlutterBluePlus.connectedDevices) {
+      if (d.platformName.contains(_deviceName)) {
+        _log('Device already connected: ${d.platformName} – skipping scan');
+        _connect(d);
+        return;
+      }
+    }
+
     _log('Scanning for $_deviceName…');
     _setState(BleState.scanning, status: 'SCAN');
 
