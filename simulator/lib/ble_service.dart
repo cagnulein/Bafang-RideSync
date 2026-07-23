@@ -48,6 +48,7 @@ class BleService {
   final List<int> _rxBuffer = [];
 
   StreamSubscription<List<ScanResult>>? _scanSub;
+  StreamSubscription<bool>? _scanStateSub;
   StreamSubscription<List<int>>? _rxSub;
   final List<StreamSubscription<List<int>>> _extraNotifySubs = [];
   StreamSubscription<BluetoothConnectionState>? _connSub;
@@ -76,24 +77,44 @@ class BleService {
 
   void startScan() {
     if (_state != BleState.idle && _state != BleState.error) return;
+    _doStartScan();
+  }
 
-    // Check if device is already connected (e.g. paired via system Bluetooth)
+  Future<void> _doStartScan() async {
+    // 1. Check app-level connected devices
     for (final d in FlutterBluePlus.connectedDevices) {
       if (d.platformName.contains(_deviceName)) {
-        _log('Device already connected: ${d.platformName} – skipping scan');
+        _log('Already connected (app): ${d.platformName}');
         _connect(d);
         return;
       }
     }
 
+    // 2. Check system-paired/known devices (iOS: paired in previous session)
+    try {
+      final systemDevices = await FlutterBluePlus.systemDevices([]);
+      for (final d in systemDevices) {
+        if (d.platformName.contains(_deviceName)) {
+          _log('Found in system devices: ${d.platformName} – connecting directly');
+          _connect(d);
+          return;
+        }
+      }
+    } catch (_) {}
+
+    if (_state != BleState.idle && _state != BleState.error) return;
+
     _log('Scanning for $_deviceName…');
     _setState(BleState.scanning, status: 'SCAN');
 
+    _scanSub?.cancel();
+    _scanStateSub?.cancel();
+
     FlutterBluePlus.startScan(
-      timeout: const Duration(seconds: 30),
+      timeout: const Duration(seconds: 15),
+      androidUsesFineLocation: false,
     );
 
-    _scanSub?.cancel();
     _scanSub = FlutterBluePlus.scanResults.listen((results) {
       for (final r in results) {
         final name = r.device.platformName;
@@ -101,9 +122,21 @@ class BleService {
             r.advertisementData.advName.contains(_deviceName)) {
           FlutterBluePlus.stopScan();
           _scanSub?.cancel();
+          _scanStateSub?.cancel();
           _connect(r.device);
           return;
         }
+      }
+    });
+
+    // Auto-retry when scan ends without finding the device
+    _scanStateSub = FlutterBluePlus.isScanning.listen((scanning) {
+      if (!scanning && _state == BleState.scanning) {
+        _log('Scan ended without finding device – retrying in 3s');
+        _scanSub?.cancel();
+        _scanStateSub?.cancel();
+        _setState(BleState.idle, status: 'SCAN');
+        Future.delayed(const Duration(seconds: 3), startScan);
       }
     });
   }
@@ -111,11 +144,13 @@ class BleService {
   void stopScan() {
     FlutterBluePlus.stopScan();
     _scanSub?.cancel();
+    _scanStateSub?.cancel();
     _setState(BleState.idle, status: 'IDLE');
   }
 
   void dispose() {
     _scanSub?.cancel();
+    _scanStateSub?.cancel();
     _rxSub?.cancel();
     _cancelExtraNotifySubs();
     _connSub?.cancel();
@@ -370,6 +405,8 @@ class BleService {
   void _handleDisconnect() {
     _log('Disconnected');
     _rxSub?.cancel();
+    _scanSub?.cancel();
+    _scanStateSub?.cancel();
     _cancelExtraNotifySubs();
     _connSub?.cancel();
     _txChar = null;
@@ -382,7 +419,7 @@ class BleService {
     data.bleConnected = false;
     data.bleStatus = 'SCAN';
     _setState(BleState.idle, status: 'SCAN');
-    Future.delayed(const Duration(seconds: 2), startScan);
+    Future.delayed(const Duration(seconds: 1), startScan);
   }
 
   // ── Helpers ───────────────────────────────────────────────────────────────
