@@ -43,3 +43,11 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+# Fastlane secrets
+.env.secret
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/test_output/
+build/fastlane/
+vendor/bundle/

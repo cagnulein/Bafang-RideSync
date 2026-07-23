@@ -1,0 +1,1 @@
+e-bike,cycling,training,heart rate,bafang,PAS,power meter,cadence,FIT,Garmin

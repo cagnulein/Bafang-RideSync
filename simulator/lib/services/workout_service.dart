@@ -7,18 +7,22 @@ import '../bafang_data.dart';
 import '../models/heart_zone.dart';
 import '../models/workout_plan.dart';
 import '../models/workout_record.dart';
+import 'cadence_service.dart';
 import 'fit_writer.dart';
 import 'gps_service.dart';
 import 'health_service.dart';
 import 'hr_service.dart';
 import 'live_activity_service.dart';
 import 'pas_pid.dart';
+import 'power_service.dart';
 
 enum WorkoutState { idle, running, paused }
 
 class WorkoutService extends ChangeNotifier {
   final BafangData bike;
   final HrService hr;
+  final CadenceService cadence;
+  final PowerService power;
   final GpsService gps;
   final HrZones zones;
   final HealthService health;
@@ -68,6 +72,8 @@ class WorkoutService extends ChangeNotifier {
   WorkoutService({
     required this.bike,
     required this.hr,
+    required this.cadence,
+    required this.power,
     required this.gps,
     required this.zones,
     required this.health,
@@ -148,8 +154,8 @@ class WorkoutService extends ChangeNotifier {
       lon: pos?.longitude,
       hrBpm: hr.bpm,
       speedKmh: bike.speedKmh,
-      powerWatts: bike.powerWatts,
-      cadenceRpm: bike.cadenceRpm,
+      powerWatts: power.watts,
+      cadenceRpm: power.cadenceRpm ?? cadence.cadenceRpm,
       batteryPct: bike.battery,
       distanceKm: bike.tripKm,
       pas: bike.pas,

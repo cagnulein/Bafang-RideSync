@@ -1,0 +1,6 @@
+app_identifier("org.cagnulein.eerg")
+apple_id("cagnulein@gmail.com")
+team_id("6335M7T29D")
+
+# App Store Connect API key (preferred over password)
+# Set ASC_KEY_ID, ASC_ISSUER_ID, ASC_KEY_CONTENT in .env.secret

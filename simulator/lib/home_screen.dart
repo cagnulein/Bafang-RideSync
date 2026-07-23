@@ -47,7 +47,7 @@ class _HomeScreenState extends State<HomeScreen> {
       backgroundColor: Colors.black,
       title: Row(
         children: [
-          const Text('RideSync', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 18)),
+          const Text('E-ERG', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 18)),
           const SizedBox(width: 10),
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),

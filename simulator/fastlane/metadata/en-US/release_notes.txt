@@ -1,0 +1,7 @@
+First public beta — thank you for testing!
+
+• Auto-PAS: heart rate–driven pedal assist with adjustable intensity and min/max PAS limits
+• Support for external cadence sensors (BLE CSC) and power meters (BLE CP)
+• FIT export with battery % and PAS level as developer fields
+• Live Activity on Dynamic Island and Lock Screen
+• 4-step onboarding

@@ -1,0 +1,22 @@
+E-ERG turns your Bafang-powered e-bike into a smart training partner.
+
+Connect via Bluetooth to your Bafang EKD01-BF display and pair a heart rate monitor. E-ERG reads your heart rate in real time and automatically adjusts the pedal assist level (PAS) to keep you exactly in your target training zone — no manual gear changes needed.
+
+KEY FEATURES
+
+• Auto-PAS — heart rate–driven PAS control that adjusts one level at a time, respecting your manual overrides
+• Heart rate zones — configure up to 5 zones based on your max HR; the workout screen highlights your current zone live
+• Workout plans — build structured sessions with multiple segments, each targeting a specific HR zone for a set time or distance
+• External sensors — pair a Bluetooth cadence sensor or power meter to record cadence (rpm) and power (watts) in your FIT file
+• GPS tracking — live map with route trace recorded during the ride
+• FIT export — every workout exports a standard FIT file with HR, speed, GPS, power, cadence, battery %, and PAS level as developer fields — ready for Garmin Connect, Strava, or any training platform
+• HealthKit — workouts are saved to the Health app automatically
+• Live Activity — glanceable stats on the Dynamic Island and Lock Screen while riding
+
+COMPATIBLE BIKES
+Any e-bike with a Bafang EKD01-BF display that supports Bluetooth connectivity.
+
+SENSORS SUPPORTED
+• Heart rate: any Bluetooth LE HR monitor (Garmin, Polar, Wahoo, chest straps…)
+• Cadence: any BLE Cycling Speed & Cadence (CSC) sensor
+• Power meter: any BLE Cycling Power (CP) sensor

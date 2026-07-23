@@ -52,6 +52,8 @@ class _BafangSimAppState extends State<BafangSimApp> {
     _workoutService = WorkoutService(
       bike: _bikeData,
       hr: _hrService,
+      cadence: _cadenceService,
+      power: _powerService,
       gps: _gpsService,
       zones: _hrZones,
       health: _healthService,
@@ -96,7 +98,7 @@ class _BafangSimAppState extends State<BafangSimApp> {
           ChangeNotifierProvider.value(value: _workoutService),
         ],
         child: MaterialApp(
-          title: 'RideSync',
+          title: 'E-ERG',
           debugShowCheckedModeBanner: false,
           theme: ThemeData.dark(useMaterial3: true).copyWith(
             colorScheme: ColorScheme.dark(

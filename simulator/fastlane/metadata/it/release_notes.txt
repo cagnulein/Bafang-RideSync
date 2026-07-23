@@ -1,0 +1,7 @@
+Prima beta pubblica — grazie per i test!
+
+• Auto-PAS: controllo assistenza guidato dalla frequenza cardiaca con intensità e limiti PAS min/max configurabili
+• Supporto sensori cadenza Bluetooth (CSC) e misuratori di potenza (CP)
+• Esportazione FIT con batteria % e livello PAS come campi developer
+• Live Activity su Isola Dinamica e schermata di blocco
+• Onboarding in 4 passaggi

@@ -19,7 +19,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       color: Color(0xFF30D158),
       title: 'Connect your bike',
       body:
-          'RideSync automatically finds and connects to your Bafang EKD01-BF display via Bluetooth when you open the app.\n\nMake sure Bluetooth is on and the display is active.',
+          'E-ERG automatically finds and connects to your Bafang EKD01-BF display via Bluetooth when you open the app.\n\nMake sure Bluetooth is on and the display is active.',
     ),
     _OnboardingPage(
       icon: Icons.favorite,

@@ -1,0 +1,15 @@
+devices([
+  "iPhone 17 Pro Max",   # 6.9" — required by App Store
+  "iPhone Air",          # 6.7" — covers older 6.5" slot
+])
+
+languages(["en-US", "it"])
+
+workspace("ios/Runner.xcworkspace")
+scheme("RunnerUITests")
+output_directory("fastlane/screenshots")
+clear_previous_screenshots(true)
+override_status_bar(true)
+
+# Stop after first device fails (easier debugging)
+stop_after_first_error(false)

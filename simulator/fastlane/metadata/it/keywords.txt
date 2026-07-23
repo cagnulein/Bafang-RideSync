@@ -1,0 +1,1 @@
+e-bike,ciclismo,allenamento,frequenza cardiaca,bafang,PAS,potenza,cadenza,FIT,Garmin

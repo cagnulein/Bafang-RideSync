@@ -1,0 +1,15 @@
+workspace("ios/Runner.xcworkspace")
+scheme("Runner")
+export_method("app-store")
+output_directory("build/fastlane")
+output_name("E-ERG")
+clean(true)
+xcargs("-allowProvisioningUpdates")
+
+export_options({
+  teamID: "6335M7T29D",
+  uploadBitcode: false,
+  uploadSymbols: true,
+  compileBitcode: false,
+  allowProvisioningUpdates: true
+})
