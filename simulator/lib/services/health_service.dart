@@ -54,6 +54,17 @@ class HealthService extends ChangeNotifier {
     } catch (_) {}
   }
 
+  /// Returns body mass in kg from the most recent HealthKit sample, or null.
+  Future<double?> fetchBodyWeightKg() async {
+    if (!authorized) return null;
+    try {
+      final result = await _ch.invokeMethod<double>('fetchBodyWeight');
+      return result;
+    } catch (_) {
+      return null;
+    }
+  }
+
   Future<void> endWorkout(DateTime endTime) async {
     if (!authorized) return;
     try {

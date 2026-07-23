@@ -17,6 +17,12 @@ class HealthKitService: NSObject {
         return types
     }()
 
+    private static let readTypes: Set<HKObjectType> = {
+        var types: Set<HKObjectType> = []
+        if let t = HKQuantityType.quantityType(forIdentifier: .bodyMass) { types.insert(t) }
+        return types
+    }()
+
     // MARK: – Method channel registration
 
     static func register(with messenger: FlutterBinaryMessenger) {
@@ -43,6 +49,8 @@ class HealthKitService: NSObject {
                 let ms = args?["endMs"] as? Int64 ?? Int64(Date().timeIntervalSince1970 * 1000)
                 let endDate = Date(timeIntervalSince1970: Double(ms) / 1000)
                 svc.endWorkout(endDate: endDate, result: result)
+            case "fetchBodyWeight":
+                svc.fetchBodyWeight(result: result)
             default:
                 result(FlutterMethodNotImplemented)
             }
@@ -53,7 +61,7 @@ class HealthKitService: NSObject {
 
     private func requestAuthorization(result: @escaping FlutterResult) {
         guard HKHealthStore.isHealthDataAvailable() else { result(false); return }
-        store.requestAuthorization(toShare: Self.writeTypes, read: nil) { ok, _ in
+        store.requestAuthorization(toShare: Self.writeTypes, read: Self.readTypes) { ok, _ in
             DispatchQueue.main.async { result(ok) }
         }
     }
@@ -97,6 +105,23 @@ class HealthKitService: NSObject {
 
         if samples.isEmpty { result(true); return }
         b.add(samples) { ok, _ in DispatchQueue.main.async { result(ok) } }
+    }
+
+    private func fetchBodyWeight(result: @escaping FlutterResult) {
+        guard let type = HKQuantityType.quantityType(forIdentifier: .bodyMass) else {
+            result(nil); return
+        }
+        let query = HKSampleQuery(
+            sampleType: type,
+            predicate: nil,
+            limit: 1,
+            sortDescriptors: [NSSortDescriptor(key: HKSampleSortIdentifierEndDate, ascending: false)]
+        ) { _, samples, _ in
+            let kg = (samples?.first as? HKQuantitySample)?
+                .quantity.doubleValue(for: .gramUnit(with: .kilo))
+            DispatchQueue.main.async { result(kg) }
+        }
+        store.execute(query)
     }
 
     private func endWorkout(endDate: Date, result: @escaping FlutterResult) {

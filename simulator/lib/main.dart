@@ -96,6 +96,7 @@ class _BafangSimAppState extends State<BafangSimApp> {
           ChangeNotifierProvider.value(value: _powerService),
           ChangeNotifierProvider.value(value: _gpsService),
           ChangeNotifierProvider.value(value: _workoutService),
+          ChangeNotifierProvider.value(value: _healthService),
         ],
         child: MaterialApp(
           title: 'E-ERG',

@@ -9,6 +9,7 @@ class RecordPoint {
   final int? batteryPct;
   final double? distanceKm;
   final int? pas;
+  final int? estimatedRiderPowerW;
 
   const RecordPoint({
     required this.timestamp,
@@ -21,6 +22,7 @@ class RecordPoint {
     this.batteryPct,
     this.distanceKm,
     this.pas,
+    this.estimatedRiderPowerW,
   });
 }
 

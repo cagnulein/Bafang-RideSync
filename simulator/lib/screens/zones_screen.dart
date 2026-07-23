@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../bafang_data.dart';
 import '../models/heart_zone.dart';
+import '../services/health_service.dart';
 import '../services/workout_service.dart';
 
 class ZonesScreen extends StatelessWidget {
@@ -9,8 +10,8 @@ class ZonesScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer3<HrZones, WorkoutService, BafangData>(
-        builder: (context, zones, workout, bike, _) {
+    return Consumer4<HrZones, WorkoutService, BafangData, HealthService>(
+        builder: (context, zones, workout, bike, health, _) {
       final pasAbsMax = bike.pasMax ?? 9;
       return Scaffold(
         backgroundColor: Colors.black,
@@ -30,6 +31,12 @@ class ZonesScreen extends StatelessWidget {
             _pidIntensityRow(workout),
             const SizedBox(height: 24),
             _pasRangeRow(workout, pasAbsMax),
+            const SizedBox(height: 32),
+            _sectionHeader('Cadence Boost'),
+            _cadenceBoostSection(workout),
+            const SizedBox(height: 32),
+            _sectionHeader('Bike Profile'),
+            _bikeProfileSection(context, workout, health),
           ],
         ),
       );
@@ -53,6 +60,117 @@ class ZonesScreen extends StatelessWidget {
       displayText: '${zones.maxHr} bpm',
       activeColor: Colors.redAccent,
       onChanged: (v) => zones.setMaxHr(v.round()),
+    );
+  }
+
+  Widget _bikeProfileSection(BuildContext context, WorkoutService workout, HealthService health) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(children: [
+          Expanded(
+            child: _SliderRow(
+              label: 'Rider weight',
+              value: workout.riderWeightKg,
+              min: 30,
+              max: 200,
+              divisions: 170,
+              displayText: '${workout.riderWeightKg.round()} kg',
+              activeColor: Colors.tealAccent,
+              onChanged: (v) => workout.updateRiderWeight(v),
+            ),
+          ),
+          TextButton.icon(
+            icon: const Icon(Icons.health_and_safety, size: 16, color: Colors.tealAccent),
+            label: const Text('Health', style: TextStyle(color: Colors.tealAccent, fontSize: 12)),
+            onPressed: () async {
+              final kg = await health.fetchBodyWeightKg();
+              if (kg != null) workout.updateRiderWeight(kg);
+            },
+          ),
+        ]),
+        _SliderRow(
+          label: 'Bike weight',
+          value: workout.bikeWeightKg,
+          min: 5,
+          max: 80,
+          divisions: 75,
+          displayText: '${workout.bikeWeightKg.round()} kg',
+          activeColor: Colors.tealAccent,
+          onChanged: (v) => workout.updateBikeWeight(v),
+        ),
+        const SizedBox(height: 16),
+        const Text('Motor watts per PAS level',
+            style: TextStyle(color: Colors.white54, fontSize: 13)),
+        const SizedBox(height: 8),
+        ...List.generate(workout.pasConfigs.length, (i) {
+          final cfg = workout.pasConfigs[i];
+          return _PasConfigRow(
+            pasLevel: i,
+            motorWatts: cfg.motorWatts,
+            maxSpeedKmh: cfg.maxSpeedKmh,
+            onWattsChanged: (w) => workout.updatePasMotorWatts(i, w),
+            onSpeedChanged: (s) => workout.updatePasMaxSpeed(i, s),
+          );
+        }),
+        const Padding(
+          padding: EdgeInsets.only(top: 4),
+          child: Text(
+            'Used to estimate rider power when no power meter is connected',
+            style: TextStyle(color: Colors.white38, fontSize: 11),
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _cadenceBoostSection(WorkoutService workout) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            const Text('Enable',
+                style: TextStyle(color: Colors.white70, fontSize: 14)),
+            Switch(
+              value: workout.lowCadenceBoostEnabled,
+              activeColor: Colors.orangeAccent,
+              onChanged: (v) => workout.lowCadenceBoostEnabled = v,
+            ),
+          ],
+        ),
+        if (workout.lowCadenceBoostEnabled) ...[
+          const SizedBox(height: 4),
+          _SliderRow(
+            label: 'Min cadence',
+            value: workout.lowCadenceThresholdRpm.toDouble(),
+            min: 20,
+            max: 120,
+            divisions: 100,
+            displayText: '${workout.lowCadenceThresholdRpm} rpm',
+            activeColor: Colors.orangeAccent,
+            onChanged: (v) => workout.lowCadenceThresholdRpm = v.round(),
+          ),
+          _SliderRow(
+            label: 'Delay',
+            value: workout.lowCadenceBoostSeconds.toDouble(),
+            min: 3,
+            max: 60,
+            divisions: 57,
+            displayText: '${workout.lowCadenceBoostSeconds}s',
+            activeColor: Colors.orangeAccent,
+            onChanged: (v) => workout.lowCadenceBoostSeconds = v.round(),
+          ),
+          const Padding(
+            padding: EdgeInsets.only(top: 2),
+            child: Text(
+              'If cadence stays below threshold, +1 PAS after delay',
+              style: TextStyle(color: Colors.white38, fontSize: 11),
+            ),
+          ),
+        ],
+      ],
     );
   }
 
@@ -164,6 +282,90 @@ class _SliderRow extends StatelessWidget {
           inactiveColor: Colors.white12,
           onChanged: onChanged,
         ),
+      ],
+    );
+  }
+}
+
+class _PasConfigRow extends StatefulWidget {
+  final int pasLevel;
+  final int motorWatts;
+  final double maxSpeedKmh;
+  final ValueChanged<int> onWattsChanged;
+  final ValueChanged<double> onSpeedChanged;
+
+  const _PasConfigRow({
+    required this.pasLevel,
+    required this.motorWatts,
+    required this.maxSpeedKmh,
+    required this.onWattsChanged,
+    required this.onSpeedChanged,
+  });
+
+  @override
+  State<_PasConfigRow> createState() => _PasConfigRowState();
+}
+
+class _PasConfigRowState extends State<_PasConfigRow> {
+  bool _expanded = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(children: [
+          SizedBox(
+            width: 44,
+            child: Text('PAS ${widget.pasLevel}',
+                style: const TextStyle(color: Colors.white54, fontSize: 12)),
+          ),
+          Expanded(
+            child: Slider(
+              value: widget.motorWatts.toDouble(),
+              min: 0,
+              max: 1000,
+              divisions: 100,
+              activeColor: Colors.tealAccent,
+              inactiveColor: Colors.white12,
+              onChanged: (v) => widget.onWattsChanged(v.round()),
+            ),
+          ),
+          SizedBox(
+            width: 52,
+            child: Text('${widget.motorWatts} W',
+                style: const TextStyle(color: Colors.tealAccent, fontSize: 12),
+                textAlign: TextAlign.right),
+          ),
+          GestureDetector(
+            onTap: () => setState(() => _expanded = !_expanded),
+            child: Icon(
+              _expanded ? Icons.expand_less : Icons.expand_more,
+              color: Colors.white24,
+              size: 18,
+            ),
+          ),
+        ]),
+        if (_expanded)
+          Padding(
+            padding: const EdgeInsets.only(left: 44, bottom: 4),
+            child: Row(children: [
+              const Text('Max speed', style: TextStyle(color: Colors.white38, fontSize: 11)),
+              Expanded(
+                child: Slider(
+                  value: widget.maxSpeedKmh,
+                  min: 5,
+                  max: 99,
+                  divisions: 94,
+                  activeColor: Colors.white24,
+                  inactiveColor: Colors.white12,
+                  onChanged: widget.onSpeedChanged,
+                ),
+              ),
+              Text('${widget.maxSpeedKmh.round()} km/h',
+                  style: const TextStyle(color: Colors.white38, fontSize: 11)),
+            ]),
+          ),
       ],
     );
   }

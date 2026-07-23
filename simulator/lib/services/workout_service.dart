@@ -14,7 +14,9 @@ import 'health_service.dart';
 import 'hr_service.dart';
 import 'live_activity_service.dart';
 import 'pas_pid.dart';
+import 'power_estimator.dart';
 import 'power_service.dart';
+import '../models/pas_config.dart';
 
 enum WorkoutState { idle, running, paused }
 
@@ -62,6 +64,74 @@ class WorkoutService extends ChangeNotifier {
   int _autoTargetMinBpm = 0;
   int _autoTargetMaxBpm = 999;
   bool autoPasEnabled = true;
+
+  // ── Bike profile & power estimation ─────────────────────────────────────────
+  double riderWeightKg = 75;
+  double bikeWeightKg = 25;
+  List<PasLevelConfig> pasConfigs = PasLevelConfig.defaults();
+
+  // Gradient smoothing: EMA over consecutive GPS+distance samples
+  double _currentGradientPct = 0;
+  double? _prevAltitudeM;
+  double? _prevDistanceKm;
+
+  // Last computed estimated rider power (W), null if not enough data
+  int? estimatedRiderPowerW;
+
+  int get motorWattsAtCurrentPas {
+    final pas = bike.pas;
+    if (pas == null || pas < 0 || pas >= pasConfigs.length) return 0;
+    return pasConfigs[pas].motorWatts;
+  }
+
+  void updateRiderWeight(double kg) {
+    riderWeightKg = kg.clamp(30, 200);
+    notifyListeners();
+  }
+
+  void updateBikeWeight(double kg) {
+    bikeWeightKg = kg.clamp(5, 80);
+    notifyListeners();
+  }
+
+  void updatePasMotorWatts(int pasLevel, int watts) {
+    if (pasLevel < 0 || pasLevel >= pasConfigs.length) return;
+    pasConfigs[pasLevel].motorWatts = watts.clamp(0, 1000);
+    notifyListeners();
+  }
+
+  void updatePasMaxSpeed(int pasLevel, double kmh) {
+    if (pasLevel < 0 || pasLevel >= pasConfigs.length) return;
+    pasConfigs[pasLevel].maxSpeedKmh = kmh.clamp(5, 99);
+    notifyListeners();
+  }
+
+  // Cadence-based PAS boost: if cadence stays below threshold for N seconds, +1 PAS.
+  bool _lowCadenceBoostEnabled = true;
+  bool get lowCadenceBoostEnabled => _lowCadenceBoostEnabled;
+  set lowCadenceBoostEnabled(bool v) {
+    _lowCadenceBoostEnabled = v;
+    _lowCadenceSince = null;
+    notifyListeners();
+  }
+  int _lowCadenceThresholdRpm = 60;
+  int _lowCadenceBoostSeconds = 10;
+  DateTime? _lowCadenceSince;
+  DateTime? _lowCadenceCooldownUntil;
+
+  int get lowCadenceThresholdRpm => _lowCadenceThresholdRpm;
+  set lowCadenceThresholdRpm(int v) {
+    _lowCadenceThresholdRpm = v.clamp(20, 120);
+    _lowCadenceSince = null; _lowCadenceCooldownUntil = null;
+    notifyListeners();
+  }
+
+  int get lowCadenceBoostSeconds => _lowCadenceBoostSeconds;
+  set lowCadenceBoostSeconds(int v) {
+    _lowCadenceBoostSeconds = v.clamp(3, 60);
+    _lowCadenceSince = null; _lowCadenceCooldownUntil = null;
+    notifyListeners();
+  }
 
   // Last PAS level we commanded. If bike.pas differs, the user changed it manually.
   int? _lastCommandedPas;
@@ -132,7 +202,8 @@ class WorkoutService extends ChangeNotifier {
     _uiTicker?.cancel();
     state = WorkoutState.idle;
     gps.stop();
-    _pid.reset(); _lastCommandedPas = null;
+    _pid.reset(); _lastCommandedPas = null; _lowCadenceSince = null; _lowCadenceCooldownUntil = null;
+    _prevAltitudeM = null; _prevDistanceKm = null; _currentGradientPct = 0; estimatedRiderPowerW = null;
     await health.endWorkout(DateTime.now());
     await liveActivity.end();
     notifyListeners();
@@ -160,7 +231,32 @@ class WorkoutService extends ChangeNotifier {
       distanceKm: bike.tripKm,
       pas: bike.pas,
     );
-    record!.add(p);
+    // Power estimation (only when no real power sensor)
+    if (power.watts == null && bike.speedKmh != null && bike.speedKmh! > 0) {
+      _updateGradient(pos?.altitude, bike.tripKm);
+      estimatedRiderPowerW = PowerEstimator.riderPowerW(
+        speedKmh: bike.speedKmh!,
+        gradientPct: _currentGradientPct,
+        totalMassKg: riderWeightKg + bikeWeightKg,
+        motorWatts: motorWattsAtCurrentPas,
+      );
+    } else if (power.watts != null) {
+      estimatedRiderPowerW = null;
+    }
+
+    record!.add(RecordPoint(
+      timestamp: p.timestamp,
+      lat: p.lat,
+      lon: p.lon,
+      hrBpm: p.hrBpm,
+      speedKmh: p.speedKmh,
+      powerWatts: p.powerWatts,
+      cadenceRpm: p.cadenceRpm,
+      batteryPct: p.batteryPct,
+      distanceKm: p.distanceKm,
+      pas: p.pas,
+      estimatedRiderPowerW: estimatedRiderPowerW,
+    ));
 
     // PID — runs on every telemetry frame, guaranteed in background
     if (autoPasEnabled && hr.bpm != null && bike.pas != null) {
@@ -176,6 +272,31 @@ class WorkoutService extends ChangeNotifier {
         if (newPas != currentPas) {
           _lastCommandedPas = newPas;
           onSetPas?.call(newPas);
+        }
+      }
+    }
+
+    // Cadence boost: if cadence below threshold for N seconds, +1 PAS
+    if (_lowCadenceBoostEnabled && bike.pas != null) {
+      final now = DateTime.now();
+      if (_lowCadenceCooldownUntil != null && now.isBefore(_lowCadenceCooldownUntil!)) {
+        // In cooldown after last boost — skip entirely
+      } else {
+        final cad = power.cadenceRpm ?? cadence.cadenceRpm;
+        if (cad != null && cad < _lowCadenceThresholdRpm) {
+          _lowCadenceSince ??= now;
+          final secondsBelow = now.difference(_lowCadenceSince!).inSeconds;
+          if (secondsBelow >= _lowCadenceBoostSeconds) {
+            final boosted = (bike.pas! + 1).clamp(0, _pid.maxPas);
+            if (boosted != bike.pas) {
+              _lastCommandedPas = boosted;
+              onSetPas?.call(boosted);
+            }
+            _lowCadenceSince = null;
+            _lowCadenceCooldownUntil = now.add(Duration(seconds: _lowCadenceBoostSeconds));
+          }
+        } else {
+          _lowCadenceSince = null;
         }
       }
     }
@@ -280,6 +401,24 @@ class WorkoutService extends ChangeNotifier {
       return WorkoutPlan.fromJsonString(src);
     } catch (_) {
       return null;
+    }
+  }
+
+  void _updateGradient(double? altM, double? distKm) {
+    if (altM == null || distKm == null) return;
+    if (_prevAltitudeM != null && _prevDistanceKm != null) {
+      final dDist = (distKm - _prevDistanceKm!) * 1000; // metres
+      if (dDist > 2) {
+        final dAlt = altM - _prevAltitudeM!;
+        final raw = (dAlt / dDist) * 100; // percent
+        // EMA smoothing (α = 0.15)
+        _currentGradientPct = _currentGradientPct * 0.85 + raw.clamp(-30, 30) * 0.15;
+        _prevAltitudeM = altM;
+        _prevDistanceKm = distKm;
+      }
+    } else {
+      _prevAltitudeM = altM;
+      _prevDistanceKm = distKm;
     }
   }
 

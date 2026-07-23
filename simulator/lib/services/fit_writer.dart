@@ -10,7 +10,8 @@ class FitWriter {
 
   static Uint8List write(WorkoutRecord rec) {
     // Decide which optional standard fields are present
-    final hasPower   = rec.points.any((p) => p.powerWatts != null);
+    // Use real power sensor when available; fall back to estimated rider power
+    final hasPower   = rec.points.any((p) => p.powerWatts != null || p.estimatedRiderPowerW != null);
     final hasCadence = rec.points.any((p) => p.cadenceRpm != null);
 
     final body = BytesBuilder();
@@ -88,7 +89,7 @@ class FitWriter {
         _s32(lon),
         _u16(spd),
         _u8(p.hrBpm?.clamp(0, 254) ?? 0xFF),
-        if (hasPower)   _u16(p.powerWatts?.clamp(0, 65534) ?? 0xFFFF),
+        if (hasPower)   _u16((p.powerWatts ?? p.estimatedRiderPowerW)?.clamp(0, 65534) ?? 0xFFFF),
         if (hasCadence) _u8(p.cadenceRpm?.round().clamp(0, 254) ?? 0xFF),
         // developer fields
         _u8(p.batteryPct?.clamp(0, 254) ?? 0xFF),
@@ -104,7 +105,7 @@ class FitWriter {
     final elapsedMs = rec.elapsed.inMilliseconds * 1000;
     final distCm = (rec.totalDistanceKm * 100000).round();
     final avgHr  = _avg(rec.points.map((p) => p.hrBpm).whereType<int>().toList());
-    final avgPow = _avg(rec.points.map((p) => p.powerWatts).whereType<int>().toList());
+    final avgPow = _avg(rec.points.map((p) => p.powerWatts ?? p.estimatedRiderPowerW).whereType<int>().toList());
     final avgCad = _avg(rec.points.map((p) => p.cadenceRpm?.round()).whereType<int>().toList());
 
     body.add(_defMsg(2, 18, [

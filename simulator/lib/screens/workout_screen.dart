@@ -39,10 +39,10 @@ class WorkoutScreen extends StatelessWidget {
                 const SizedBox(height: 12),
                 // Bike metrics row
                 _bikeRow(bike),
-                // External sensor row (cadence / power meter)
-                if (cad.connected || pwr.connected) ...[
+                // External sensor row (cadence / power meter / estimated power)
+                if (cad.connected || pwr.connected || ws.estimatedRiderPowerW != null) ...[
                   const SizedBox(height: 8),
-                  _externalSensorRow(cad, pwr),
+                  _externalSensorRow(cad, pwr, ws),
                 ],
                 const SizedBox(height: 12),
                 // Workout info
@@ -171,10 +171,10 @@ class WorkoutScreen extends StatelessWidget {
     );
   }
 
-  Widget _externalSensorRow(CadenceService cad, PowerService pwr) {
-    // Cadence: prefer power meter (it also has cadence), fall back to standalone sensor
+  Widget _externalSensorRow(CadenceService cad, PowerService pwr, WorkoutService ws) {
     final rpm = pwr.cadenceRpm ?? cad.cadenceRpm;
     final w = pwr.watts;
+    final estW = ws.estimatedRiderPowerW;
 
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 16),
@@ -189,7 +189,9 @@ class WorkoutScreen extends StatelessWidget {
           if (rpm != null)
             _metricCell('RPM', rpm.toStringAsFixed(0), 'rpm', Colors.cyanAccent),
           if (w != null)
-            _metricCell('POWER', '$w', 'W', Colors.orangeAccent),
+            _metricCell('POWER', '$w', 'W', Colors.orangeAccent)
+          else if (estW != null)
+            _metricCell('RIDER~', '$estW', 'W', Colors.orange.withValues(alpha: 0.7)),
         ],
       ),
     );
