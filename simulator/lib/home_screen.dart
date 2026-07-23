@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'bafang_data.dart';
 import 'ble_service.dart';
+import 'screens/history_screen.dart';
 import 'screens/workout_screen.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -26,6 +27,7 @@ class _HomeScreenState extends State<HomeScreen> {
           children: [
             _DataTab(data: data, bleService: widget.bleService),
             const WorkoutScreen(),
+            const HistoryScreen(),
           ],
         ),
         bottomNavigationBar: NavigationBar(
@@ -35,6 +37,7 @@ class _HomeScreenState extends State<HomeScreen> {
           destinations: const [
             NavigationDestination(icon: Icon(Icons.speed), label: 'Data'),
             NavigationDestination(icon: Icon(Icons.directions_bike), label: 'Workout'),
+            NavigationDestination(icon: Icon(Icons.history), label: 'History'),
           ],
         ),
       );

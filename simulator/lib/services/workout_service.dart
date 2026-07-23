@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:path_provider/path_provider.dart';
@@ -7,6 +8,7 @@ import '../bafang_data.dart';
 import '../models/heart_zone.dart';
 import '../models/workout_plan.dart';
 import '../models/workout_record.dart';
+import '../models/workout_summary.dart';
 import 'cadence_service.dart';
 import 'fit_writer.dart';
 import 'gps_service.dart';
@@ -209,6 +211,7 @@ class WorkoutService extends ChangeNotifier {
     notifyListeners();
 
     if (record == null || record!.points.isEmpty) return null;
+    await _exportJson(record!);
     return _exportFit(record!);
   }
 
@@ -363,6 +366,33 @@ class WorkoutService extends ChangeNotifier {
     _autoTargetMaxBpm = zone.maxBpm;
   }
 
+  Future<void> _exportJson(WorkoutRecord rec) async {
+    try {
+      final dir = await getApplicationDocumentsDirectory();
+      final ts = rec.startTime.toIso8601String().replaceAll(':', '-').substring(0, 19);
+      final pts = rec.points;
+      final hrVals = pts.map((p) => p.hrBpm).whereType<int>().toList();
+      final pwrVals = pts.map((p) => p.powerWatts ?? p.estimatedRiderPowerW).whereType<int>().toList();
+      final cadVals = pts.map((p) => p.cadenceRpm).whereType<double>().toList();
+      final spdVals = pts.map((p) => p.speedKmh).whereType<double>().toList();
+      final summary = WorkoutSummary(
+        jsonPath: '${dir.path}/workout_$ts.workout.json',
+        startTime: rec.startTime,
+        durationSeconds: rec.elapsed.inSeconds,
+        distanceKm: rec.totalDistanceKm,
+        avgHrBpm: hrVals.isEmpty ? null : hrVals.reduce((a, b) => a + b) ~/ hrVals.length,
+        avgPowerW: pwrVals.isEmpty ? null : pwrVals.reduce((a, b) => a + b) ~/ pwrVals.length,
+        avgCadenceRpm: cadVals.isEmpty ? null : cadVals.reduce((a, b) => a + b) / cadVals.length,
+        maxSpeedKmh: spdVals.isEmpty ? null : spdVals.reduce((a, b) => a > b ? a : b),
+        hasPowerEstimate: pts.any((p) => p.estimatedRiderPowerW != null),
+      );
+      final file = File(summary.jsonPath);
+      await file.writeAsString(WorkoutSummary.encode(summary, pts));
+    } catch (e) {
+      debugPrint('JSON export error: $e');
+    }
+  }
+
   Future<String?> _exportFit(WorkoutRecord rec) async {
     try {
       final bytes = FitWriter.write(rec);
@@ -377,6 +407,43 @@ class WorkoutService extends ChangeNotifier {
       debugPrint('FIT export error: $e');
       return null;
     }
+  }
+
+  // ── Workout history ──────────────────────────────────────────────────────────
+
+  Future<List<WorkoutSummary>> listWorkouts() async {
+    final dir = await getApplicationDocumentsDirectory();
+    final files = dir.listSync()
+        .whereType<File>()
+        .where((f) => f.path.endsWith('.workout.json'))
+        .toList()
+      ..sort((a, b) => b.path.compareTo(a.path)); // newest first
+    final summaries = <WorkoutSummary>[];
+    for (final f in files) {
+      try {
+        final src = await f.readAsString();
+        final j = jsonDecode(src) as Map<String, dynamic>;
+        summaries.add(WorkoutSummary.fromJson(f.path, j));
+      } catch (_) {}
+    }
+    return summaries;
+  }
+
+  Future<List<RecordPoint>> loadWorkoutPoints(WorkoutSummary s) async {
+    try {
+      final src = await File(s.jsonPath).readAsString();
+      final j = jsonDecode(src) as Map<String, dynamic>;
+      return WorkoutSummary.pointsFromJson(j);
+    } catch (_) {
+      return [];
+    }
+  }
+
+  Future<void> deleteWorkout(WorkoutSummary s) async {
+    try { await File(s.jsonPath).delete(); } catch (_) {}
+    // Also delete the companion FIT file if present
+    final fitPath = s.jsonPath.replaceAll('.workout.json', '.fit');
+    try { await File(fitPath).delete(); } catch (_) {}
   }
 
   Future<void> savePlan(WorkoutPlan p) async {
